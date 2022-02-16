@@ -1,0 +1,140 @@
+{% load static %}
+<!DOCTYPE html>
+<html >
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - TheOrchid</title>
+    {% load static %}
+    <meta name="description" content="A One-to-One Video calling app with Sign Language Conversion that will help hearing/speech impaired people">
+    <link rel="stylesheet" href="{% static 'home/bootstrap/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Allerta&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Almarai&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Archivo&amp;display=swap">
+    <link rel="stylesheet" href="{% static  'home/fonts/font-awesome.min.css'%}">
+    <link rel="stylesheet" href="{% static 'home/fonts/material-icons.min.css'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+</head>
+
+<body style="filter: blur(0px);">
+    <nav class="navbar navbar-light navbar-expand bg-light navigation-clean" style="color: var(--bs-gray-900);background: var(--bs-white);">
+        <div class="container"><img style="width: 50px;height: 50px;margin: 10px;" src="{% static 'orchid.svg'%}"><a class="navbar-brand" href="#" style="font-family: Archivo, sans-serif;font-weight: bold;">TheOrchid</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"></button>
+            <div class="collapse navbar-collapse" id="navcol-1"><a class="btn btn-primary ms-auto" role="button" href="#" style="background: rgb(26,188,156);border-color: rgb(0,192,117);font-family: Archivo, sans-serif;">Sign In</a></div>
+        </div>
+    </nav>
+    <header class="text-center text-white masthead" style="background: url({% static 'home/img/deaf-intro-1.png'%});background-size: cover;opacity: 1;filter: blur(0px) brightness(100%);">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-9 mx-auto position-relative">
+                    <h1 class="mb-5" style="font-size: 48px;font-family: Archivo, sans-serif;">One-to-one video calling app with sign language conversion for hearing/speech impaired people.</h1>
+                </div>
+                <div class="col-md-10 col-lg-8 col-xl-7 mx-auto position-relative">
+                    <form>
+                        <div class="row">
+                            <div class="col-12"><button class="btn btn-primary btn-lg" type="submit" style="--bs-primary: #1abc9c;--bs-primary-rgb: 26,188,156;background: rgb(26,188,156);--bs-secondary: #2d3d3a;--bs-secondary-rgb: 45,61,58;border-color: rgb(26,188,156);font-family: Archivo, sans-serif;">Sign up!</button></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="text-center bg-light features-icons" style="--bs-primary: #1abc9c;--bs-primary-rgb: 26,188,156;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3">
+                        <div class="d-flex features-icons-icon"><i class="material-icons text-primary m-auto text-primary" data-bss-hover-animate="pulse">contacts</i></div>
+                        <h3 style="font-family: Archivo, sans-serif;">Sync Google Contacts</h3>
+                        <p class="lead mb-0" style="font-family: Lato, sans-serif;">Sync all your Google contacts with few easy steps</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3">
+                        <div class="d-flex features-icons-icon"><i class="material-icons m-auto text-primary" data-bss-hover-animate="pulse">videocam</i></div>
+                        <h3 style="font-family: Archivo, sans-serif;">Real-Time Sign language Conversion</h3>
+                        <p class="lead mb-0">Converts sign languages into text/voice as per need</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3">
+                        <div class="d-flex features-icons-icon"><i class="material-icons m-auto text-primary" data-bss-hover-animate="pulse">chat</i></div>
+                        <h3 style="font-family: Archivo, sans-serif;">Chat in VC</h3>
+                        <p class="lead mb-0">Chat window inside a video call as a preferable choice for communication</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="showcase">
+        <div class="container-fluid p-0">
+            <div class="row g-0">
+                <div class="col-lg-6 text-white order-lg-2 showcase-img" style="background-image:url({% static 'home/img/bg-showcase-1.jpg'%});"><span></span></div>
+                <div class="col-lg-6 my-auto order-lg-1 showcase-text">
+                    <h2 style="font-family: Archivo, sans-serif;">Sync Google Contacts</h2>
+                    <p class="lead mb-0">When you use a theme created with Bootstrap, you know that the theme will look great on any device, whether it's a phone, tablet, or desktop the page will behave responsively!</p>
+                </div>
+            </div>
+            <div class="row g-0">
+                <div class="col-lg-6 text-white showcase-img" style="background-image:url({% static 'home/img/bg-showcase-2.jpg'%});"><span></span></div>
+                <div class="col-lg-6 my-auto order-lg-1 showcase-text">
+                    <h2 style="font-family: Archivo, sans-serif;">Real-Time Sign language conversion</h2>
+                    <p class="lead mb-0">Newly improved, and full of great utility classes, Bootstrap 4 is leading the way in mobile responsive web development! All of the themes are now using Bootstrap 4!</p>
+                </div>
+            </div>
+            <div class="row g-0">
+                <div class="col-lg-6 text-white order-lg-2 showcase-img" style="background-image:url({% static 'home/img/bg-showcase-3.jpg'%});"><span></span></div>
+                <div class="col-lg-6 my-auto order-lg-1 showcase-text">
+                    <h2 style="font-family: Archivo, sans-serif;">Chat in video call</h2>
+                    <p class="lead mb-0">Landing Page is just HTML and CSS with a splash of SCSS for users who demand some deeper customization options. Out of the box, just add your content and images, and your new landing page will be ready to go!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="text-center text-white call-to-action" style="background: url({% static 'home/img/deaf-intro-2.jpg'%}) center center / cover no-repeat;--bs-primary: #1abc9c;--bs-primary-rgb: 26,188,156;">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-9 mx-auto position-relative">
+                    <h2 class="mb-4" style="border-color: rgb(26,188,156);color: rgb(36,96,84);">Ready to get started? Sign up now!</h2>
+                </div>
+                <div class="col-md-10 col-lg-8 col-xl-7 mx-auto position-relative">
+                    <form>
+                        <div class="row">
+                            <div class="col-12"><button class="btn btn-primary btn-lg" type="submit" style="background: rgb(26,188,156);border-color: rgb(26,188,156);">Sign up!</button></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="bg-light footer" style="--bs-primary: #1abc9c;--bs-primary-rgb: 26,188,156;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 text-center text-lg-start my-auto h-100">
+                    <ul class="list-inline mb-2">
+                        <li class="list-inline-item"><a href="#" style="color: rgb(26,188,156);">About</a></li>
+                        <li class="list-inline-item"><span>⋅</span></li>
+                        <li class="list-inline-item"><a href="#" style="color: rgb(26,188,156);">Contact</a></li>
+                        <li class="list-inline-item"><span>⋅</span></li>
+                        <li class="list-inline-item"><a href="#" style="color: #1abc9c;">Terms of &nbsp;Use</a></li>
+                        <li class="list-inline-item"><span>⋅</span></li>
+                        <li class="list-inline-item"><a href="#" style="color: rgb(26,188,156);">Privacy Policy</a></li>
+                    </ul>
+                    <p class="text-muted small mb-4 mb-lg-0">© TheOrchid 2022. All Rights Reserved.</p>
+                </div>
+                <div class="col-lg-6 text-center text-lg-end my-auto h-100">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item"><a href="#"><i class="fa fa-facebook fa-2x fa-fw" style="border-color: rgb(26,188,156);color: rgb(26,188,156);"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fa fa-twitter fa-2x fa-fw" style="color: rgb(26,188,156);"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fa fa-instagram fa-2x fa-fw" style="color: rgb(26,188,156);"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="home/bootstrap/js/bootstrap.min.js"></script>
+    <script src="home/js/bs-init.js"></script>
+</body>
+
+</html>
