@@ -1,0 +1,155 @@
+ .u-section-1 {
+  background-color: black;
+  background-position: 50% 50%;
+}
+
+.u-section-1 .u-sheet-1 {
+  min-height: 408px;
+}
+
+.u-section-1 .u-text-1 {
+  font-size: 3rem;
+  width: 796px;
+  font-weight: 700;
+  margin: 60px auto 0;
+}
+
+.u-section-1 .u-form-1 {
+  height: 143px;
+  width: 570px;
+  margin: 30px auto 60px;
+}
+
+.u-section-1 .u-label-1 {
+  font-size: 1.25rem;
+}
+
+.u-section-1 .u-btn-1 {
+  border-style: none;
+  letter-spacing: 1px;
+  font-size: 0.875rem;
+  background-image: none;
+  text-transform: uppercase;
+  font-weight: normal;
+}
+
+@media (max-width: 1199px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 336px;
+  }
+}
+
+@media (max-width: 991px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 257px;
+  }
+
+  .u-section-1 .u-text-1 {
+    font-size: 2.8125rem;
+    width: 720px;
+  }
+}
+
+@media (max-width: 767px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 193px;
+  }
+
+  .u-section-1 .u-text-1 {
+    width: 540px;
+  }
+
+  .u-section-1 .u-form-1 {
+    width: 540px;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 122px;
+  }
+
+  .u-section-1 .u-text-1 {
+    font-size: 1.75rem;
+    width: 340px;
+  }
+
+  .u-section-1 .u-form-1 {
+    width: 340px;
+  }
+} .u-section-2 {
+  background-image: none;
+}
+
+.u-section-2 .u-sheet-1 {
+  min-height: 500px;
+}
+
+.u-section-2 .u-list-1 {
+  width: 512px;
+  margin: 38px auto 60px;
+}
+
+.u-section-2 .u-repeater-1 {
+  min-height: 380px;
+  grid-template-columns: 50% 50%;
+  grid-gap: 0px 0px;
+}
+
+.u-section-2 .u-container-layout-1 {
+  padding: 0 0 0 10px;
+}
+
+.u-section-2 .u-image-1 {
+  width: 147px;
+  height: 147px;
+  background-image: url("images/WhatsAppImage2022-02-17at1.21.30PM.jpeg");
+  background-position: 50% 50%;
+  margin: 70px auto 0;
+}
+
+.u-section-2 .u-text-1 {
+  margin: 13px auto 0;
+}
+
+.u-section-2 .u-text-2 {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
+  font-weight: 100;
+}
+
+.u-section-2 .u-container-layout-2 {
+  padding: 0 0 0 10px;
+}
+
+.u-section-2 .u-image-2 {
+  width: 147px;
+  height: 147px;
+  background-image: url("images/3IMG_20200917_222849.jpg");
+  background-position: 50% 50%;
+  margin: 70px auto 0;
+}
+
+.u-section-2 .u-text-3 {
+  margin: 13px auto 0;
+}
+
+.u-section-2 .u-text-4 {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
+  font-weight: 100;
+}
+
+@media (max-width: 991px) {
+  .u-section-2 .u-repeater-1 {
+    grid-template-columns: 100%;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-2 .u-list-1 {
+    width: 340px;
+  }
+}

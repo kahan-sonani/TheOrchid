@@ -16,8 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from landing import views
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('landing.urls'))
+    path('', views.index, name='index'),
+    path('Index.html', views.index, name='index'),
+    path('About.html', views.about, name='About'),
+    path('Contact.html', views.contact, name='Contact')
 ]
 
