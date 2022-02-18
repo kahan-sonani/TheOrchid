@@ -1,1 +1,2 @@
+django-storages[azure]
 django~=3.2.12
