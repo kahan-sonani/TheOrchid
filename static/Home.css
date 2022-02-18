@@ -105,8 +105,13 @@
   }
 
   .u-section-1 .u-container-layout-1 {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 0 10px;
+  }
+
+  .u-section-1 .u-text-1 {
+    width: auto;
+    margin-top: 85px;
+    margin-bottom: -30px;
   }
 
   .u-section-1 .u-layout-cell-2 {
@@ -136,11 +141,12 @@
   }
 
   .u-section-1 .u-layout-cell-1 {
-    min-height: 100px;
+    min-height: 218px;
   }
 
   .u-section-1 .u-text-1 {
     font-size: 4.5rem;
+    margin-top: 60px;
   }
 
   .u-section-1 .u-layout-cell-2 {

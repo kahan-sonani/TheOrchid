@@ -30,7 +30,7 @@
     <meta property="og:title" content="About">
     <meta property="og:type" content="website">
   </head>
-  <body class="u-body u-xl-mode"><header class="u-black u-clearfix u-header u-sticky u-header" id="sec-7829"><div class="u-clearfix u-sheet u-sheet-1">
+  <body id="body__" class="u-body u-xl-mode"><header class="u-black u-clearfix u-header u-sticky u-header" id="sec-7829"><div class="u-clearfix u-sheet u-sheet-1">
         <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="150" data-image-height="150">
           <img src="{% static 'images/icons8-orchid2.svg'%}" class="u-logo-image u-logo-image-1">
         </a>
@@ -48,7 +48,7 @@
                 <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-1-light-2 u-text-white" href="Index.html" style="padding: 6px 0px;">Home</a></li>
                 <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-1-light-2 u-text-white" href="#" style="padding: 6px 0px;">About</a></li>
                 <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-1-light-2 u-text-white" href="Contact.html" style="padding: 6px 0px;">Contact</a></li>
-                <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-1-light-2 u-text-white" style="padding: 6px 0px;">Sign In</a></li>
+                <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-1-light-2 u-text-white" href="Login.html" style="padding: 6px 0px;">Sign In</a></li>
             </ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
@@ -58,7 +58,7 @@
                 <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Index.html" style="padding: 10px 20px;">Home</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="#" style="padding: 10px 20px;">About</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Contact.html" style="padding: 10px 20px;">Contact</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" style="padding: 10px 20px;">Sign In</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Login.html" style="padding: 10px 20px;">Sign In</a>
 </li></ul>
               </div>
             </div>
@@ -110,5 +110,8 @@
         <div class="u-border-1 u-border-white u-expanded-width u-line u-line-horizontal u-opacity u-opacity-50 u-line-1"></div>
         <p class="u-align-center u-text u-text-1">© TheOrchid 2022. All Rights Reserved</p>
       </div></footer>
+    <script>
+        document.getElementById('body__').style.backgroundColor = 'black';
+    </script>
   </body>
 </html>

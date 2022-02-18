@@ -30,7 +30,7 @@
     <meta property="og:title" content="Contact">
     <meta property="og:type" content="website">
   </head>
-  <body class="u-body u-xl-mode"><header class="u-black u-clearfix u-header u-sticky u-header" id="sec-7829"><div class="u-clearfix u-sheet u-sheet-1">
+  <body id="body__" class="u-body u-xl-mode"><header class="u-black u-clearfix u-header u-sticky u-header" id="sec-7829"><div class="u-clearfix u-sheet u-sheet-1">
         <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="150" data-image-height="150">
           <img src="{% static 'images/icons8-orchid2.svg'%}" class="u-logo-image u-logo-image-1">
         </a>
@@ -46,8 +46,8 @@
           <div class="u-custom-menu u-nav-container">
             <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-1-light-2 u-text-white" href="Index.html" style="padding: 6px 0px;">Home</a>
 </li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-1-light-2 u-text-white" href="About.html" style="padding: 6px 0px;">About</a>
-</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-1-light-2 u-text-white" href="Contact.html" style="padding: 6px 0px;">Contact</a>
-</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-1-light-2 u-text-white" style="padding: 6px 0px;">Sign In</a>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-1-light-2 u-text-white" href="#" style="padding: 6px 0px;">Contact</a>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-1-light-2 u-text-white" href="Login.html" style="padding: 6px 0px;">Sign In</a>
 </li></ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
@@ -56,8 +56,8 @@
                 <div class="u-menu-close"></div>
                 <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Index.html" style="padding: 10px 20px;">Home</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="About.html" style="padding: 10px 20px;">About</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Contact.html" style="padding: 10px 20px;">Contact</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" style="padding: 10px 20px;">Sign In</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="#" style="padding: 10px 20px;">Contact</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Login.html" style="padding: 10px 20px;">Sign In</a>
 </li></ul>
               </div>
             </div>
@@ -65,21 +65,25 @@
           </div>
         </nav>
       </div></header>
-    <section class="u-align-center u-clearfix u-image u-shading u-section-1" id="carousel_d106" data-image-width="1600" data-image-height="1067">
-      <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-        <h2 class="u-text u-text-1">Get in touch</h2>
-        <div class="u-align-left u-form u-form-1">
-          <form action="#" method="POST" class="u-clearfix u-form-spacing-30 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form">
-            <div class="u-form-email u-form-group">
-              <label for="email-f997" class="u-form-control-hidden u-label u-label-1"></label>
-              <input type="email" placeholder="Email adress" id="email-f997" name="email" class="u-border-2 u-border-white u-input u-input-rectangle" required="" autofocus="autofocus">
+    <section class="u-align-center u-black u-clearfix u-section-1" id="carousel_0295">
+      <div class="u-clearfix u-sheet u-valign-bottom u-sheet-1">
+        <h2 class="u-align-center u-text u-text-1">Get in touch</h2>
+        <div class="u-align-center u-form u-form-1">
+          <form action="#" method="POST" class="u-clearfix u-form-spacing-20 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form">
+            <div class="u-form-email u-form-group u-form-partition-factor-2 u-form-group-1">
+              <label for="email-b339" class="u-form-control-hidden u-label">Email</label>
+              <input type="email" placeholder="Enter a valid email address" id="email-b339" name="email" class="u-border-4 u-border-no-left u-border-no-right u-border-no-top u-border-white u-grey-80 u-input u-input-rectangle" required="">
             </div>
-            <div class="u-form-group u-form-textarea u-form-group-2">
-              <label for="textarea-eb96" class="u-form-control-hidden u-label u-label-2"></label>
-              <textarea style="resize: none" rows="4" cols="50" id="textarea-eb96" name="textarea" class="u-border-2 u-border-white u-input u-input-rectangle" placeholder="Say something..." required="required"></textarea>
+            <div class="u-form-group u-form-name u-form-partition-factor-2 u-form-group-2">
+              <label for="name-b339" class="u-form-control-hidden u-label">Name</label>
+              <input type="text" placeholder="Enter your Name" id="name-b339" name="name" class="u-border-4 u-border-no-left u-border-no-right u-border-no-top u-border-white u-grey-80 u-input u-input-rectangle" required="">
             </div>
-            <div class="u-align-center u-form-group u-form-submit">
-              <a href="#" class="u-active-grey-5 u-border-none u-btn u-btn-round u-btn-submit u-button-style u-custom-font u-heading-font u-hover-grey-5 u-radius-2 u-text-black u-white u-btn-1">send</a>
+            <div class="u-form-group u-form-message u-form-group-3">
+              <label for="message-b339" class="u-form-control-hidden u-label">Message</label>
+              <textarea placeholder="Enter your message" rows="4" cols="50" id="message-b339" name="message" class="u-border-4 u-border-no-left u-border-no-right u-border-no-top u-border-white u-grey-80 u-input u-input-rectangle" required=""></textarea>
+            </div>
+            <div class="u-align-center u-form-group u-form-submit u-form-group-4">
+              <a href="#" class="u-border-2 u-border-hover-white u-border-white u-btn u-btn-rectangle u-btn-submit u-button-style u-custom-font u-heading-font u-hover-white u-none u-text-hover-black u-btn-1">SEND</a>
               <input type="submit" value="submit" class="u-form-control-hidden">
             </div>
             <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
@@ -90,7 +94,7 @@
       </div>
     </section>
     <section class="u-black u-clearfix u-section-2" id="sec-6e8b">
-      <div class="u-clearfix u-sheet u-sheet-1">
+      <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
         <div class="u-layout-grid u-list u-list-1">
           <div class="u-repeater u-repeater-1">
             <div class="u-container-style u-list-item u-repeater-item">
@@ -130,5 +134,8 @@
         <div class="u-border-1 u-border-white u-expanded-width u-line u-line-horizontal u-opacity u-opacity-50 u-line-1"></div>
         <p class="u-align-center u-text u-text-1">© TheOrchid 2022. All Rights Reserved</p>
       </div></footer>
+    <script>
+        document.getElementById('body__').style.backgroundColor = 'black';
+    </script>
   </body>
 </html>
