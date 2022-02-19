@@ -7,6 +7,7 @@
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
     <title>Login - TheOrchid</title>
+      <script src="https://accounts.google.com/gsi/client" async defer></script>
       {% load static %}
     <link rel="stylesheet" href="{% static 'nicepage.css'%}" media="screen">
 <link rel="stylesheet" href="{% static 'Login.css'%}" media="screen">
@@ -70,7 +71,7 @@
         <a href="https://nicepage.com/k/hospital-website-templates" class="u-active-none u-border-active-palette-2-dark-1 u-border-hover-palette-1-light-2 u-border-none u-btn u-button-style u-hover-none u-none u-text-hover-palette-1-light-2 u-text-palette-1-base u-btn-1">Register here</a>
         <p class="u-align-center u-heading-font u-text u-text-2">Don't have an account?</p>
         <div class="u-align-center u-expanded-width-sm u-expanded-width-xs u-form u-form-1">
-          <form action="#" method="POST" class="u-clearfix u-form-spacing-20 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form">
+          <form style = "display: flex; justify-content: center;padding: 10px;" action="#" method="POST" class="u-clearfix u-form-spacing-20 u-form-vertical u-inner-form" source="custom" name="form">
             <div class="u-form-group u-form-phone u-form-group-1">
               <label for="name-b339" class="u-form-control-hidden u-label">Name</label>
               <input type="tel" placeholder="Phone" id="name-b339" name="name" class="u-border-4 u-border-no-left u-border-no-right u-border-no-top u-border-white u-grey-80 u-input u-input-rectangle" required="required">
@@ -86,10 +87,21 @@
             <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
             <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
             <input type="hidden" value="" name="recaptchaResponse">
+              <div id="g_id_onload"
+                 data-client_id="456816466000-0s6vbkkl7mgkk2vn0s3kbt4nqd3k1rbp.apps.googleusercontent.com"
+                 data-login_uri="https://theorchid.azurewebsites.net/Login.html"
+                 data-auto_prompt="false">
+              </div>
+              <div style="padding-top: 5%; padding-left: 4%" class="g_id_signin"
+                 data-type="standard"
+                 data-size="large"
+                 data-theme="outline"
+                 data-text="sign_in_with"
+                 data-shape="rectangular"
+                 data-logo_alignment="left">
+              </div>
           </form>
         </div>
-        <p class="u-align-center u-heading-font u-text u-text-default u-text-3">or</p>
-        <a href="https://nicepage.com/k/consulting-website-templates" class="u-active-none u-align-center u-border-active-palette-2-dark-1 u-border-hover-palette-1-light-2 u-border-none u-btn u-button-style u-hover-none u-none u-text-hover-palette-1-light-2 u-text-palette-1-base u-btn-3">Sign in with Google</a>
       </div>
     </section>
 
