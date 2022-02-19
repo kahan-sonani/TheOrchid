@@ -87,19 +87,23 @@
             <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
             <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
             <input type="hidden" value="" name="recaptchaResponse">
-              <div id="g_id_onload"
-                 data-client_id="456816466000-0s6vbkkl7mgkk2vn0s3kbt4nqd3k1rbp.apps.googleusercontent.com"
-                 data-login_uri="https://theorchid.azurewebsites.net/Login.html"
-                 data-auto_prompt="false">
-              </div>
-              <div style="padding-top: 5%; padding-left: 4%" class="g_id_signin"
-                 data-type="standard"
-                 data-size="large"
-                 data-theme="outline"
-                 data-text="sign_in_with"
-                 data-shape="rectangular"
-                 data-logo_alignment="left">
-              </div>
+              <script>
+                function handleCredentialResponse(response) {
+                  console.log("Encoded JWT ID token: " + response.credential);
+                }
+                window.onload = function () {
+                  google.accounts.id.initialize({
+                    client_id: "456816466000-fllno6mknd0nq7fivp486gkd7f35g00f.apps.googleusercontent.com",
+                    callback: handleCredentialResponse
+                  });
+                  google.accounts.id.renderButton(
+                    document.getElementById("buttonDiv"),
+                    { theme: "outline", size: "large" }  // customization attributes
+                  );
+                  google.accounts.id.prompt(); // also display the One Tap dialog
+                }
+            </script>
+    <div style="padding-top: 5%; padding-left: 4%" id="buttonDiv"></div>
           </form>
         </div>
       </div>
