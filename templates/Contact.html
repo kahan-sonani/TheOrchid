@@ -70,7 +70,8 @@
         <h3 class="u-align-center u-text u-text-1">Get in touch</h3>
         <div class="u-align-center u-form u-form-1">
           <form action="#" method="POST" class="u-clearfix u-form-spacing-20 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form">
-            <div class="u-form-email u-form-group u-form-partition-factor-2 u-form-group-1">
+            {% csrf_token %}
+              <div class="u-form-email u-form-group u-form-partition-factor-2 u-form-group-1">
               <label for="email-b339" class="u-form-control-hidden u-label">Email</label>
               <input type="email" placeholder="Enter a valid email address" id="email-b339" name="email" class="u-border-4 u-border-no-left u-border-no-right u-border-no-top u-border-white u-grey-80 u-input u-input-rectangle" required="">
             </div>
