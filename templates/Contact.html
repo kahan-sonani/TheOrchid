@@ -15,8 +15,6 @@
     <meta name="generator" content="Nicepage 4.5.4, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
 
-
-
     <script type="application/ld+json">{
 		"@context": "http://schema.org",
 		"@type": "Organization",
@@ -30,7 +28,8 @@
     <meta property="og:title" content="Contact">
     <meta property="og:type" content="website">
   </head>
-  <body id="body__" class="u-body u-xl-mode"><header class="u-black u-clearfix u-header u-sticky u-header" id="sec-7829"><div class="u-clearfix u-sheet u-sheet-1">
+  <body id="body__" class="u-body u-xl-mode">
+  <header class="u-black u-clearfix u-header u-sticky u-header" id="sec-7829"><div class="u-clearfix u-sheet u-sheet-1">
         <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="150" data-image-height="150">
           <img src="{% static 'images/icons8-orchid2.svg'%}" class="u-logo-image u-logo-image-1">
         </a>
@@ -44,51 +43,61 @@
             </a>
           </div>
           <div class="u-custom-menu u-nav-container">
-            <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-1-light-2 u-text-white" href="Index.html" style="padding: 6px 0px;">Home</a>
-</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-1-light-2 u-text-white" href="About.html" style="padding: 6px 0px;">About</a>
+            <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-1-light-2 u-text-white" href="index" style="padding: 6px 0px;">Home</a>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-1-light-2 u-text-white" href="about" style="padding: 6px 0px;">About</a>
 </li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-1-light-2 u-text-white" href="#" style="padding: 6px 0px;">Contact</a>
-</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-1-light-2 u-text-white" href="Login.html" style="padding: 6px 0px;">Sign In</a>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-1-light-2 u-text-white" href="login" style="padding: 6px 0px;">Sign In</a>
 </li></ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
             <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
               <div class="u-inner-container-layout u-sidenav-overflow">
                 <div class="u-menu-close"></div>
-                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Index.html" style="padding: 10px 20px;">Home</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="About.html" style="padding: 10px 20px;">About</a>
+                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index" style="padding: 10px 20px;">Home</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="about" style="padding: 10px 20px;">About</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="#" style="padding: 10px 20px;">Contact</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Login.html" style="padding: 10px 20px;">Sign In</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="login" style="padding: 10px 20px;">Sign In</a>
 </li></ul>
               </div>
             </div>
             <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
           </div>
         </nav>
-      </div></header>
+      </div>
+      {% if messages %}
+        {% for message in messages %}
+              <div class="alert-{{ message.tags }}">
+                  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                  <strong>{{ message }}</strong>
+              </div>
+        {% endfor %}
+  {% endif %}
+  </header>
+
     <section class="u-align-center u-black u-clearfix u-section-1" id="carousel_0295">
       <div class="u-clearfix u-sheet u-valign-bottom u-sheet-1">
-        <h3 class="u-align-center u-text u-text-1">Get in touch</h3>
+        <h2 class="u-align-center u-text u-text-1">Get in touch</h2>
         <div class="u-align-center u-form u-form-1">
-          <form action="#" method="POST" class="u-clearfix u-form-spacing-20 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form">
-            {% csrf_token %}
+          <form action="Contact.html" method="POST" class="u-clearfix u-form-custom-backend u-form-spacing-20 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form" redirect="true">
+            {% csrf_token s%}
               <div class="u-form-email u-form-group u-form-partition-factor-2 u-form-group-1">
               <label for="email-b339" class="u-form-control-hidden u-label">Email</label>
-              <input type="email" placeholder="Enter a valid email address" id="email-b339" name="email" class="u-border-4 u-border-no-left u-border-no-right u-border-no-top u-border-white u-grey-80 u-input u-input-rectangle" required="">
+              <input type="email" placeholder="Email" id="email-b339" name="email" class="u-border-4 u-border-no-left u-border-no-right u-border-no-top u-border-white u-grey-80 u-input u-input-rectangle" required="">
             </div>
             <div class="u-form-group u-form-name u-form-partition-factor-2 u-form-group-2">
               <label for="name-b339" class="u-form-control-hidden u-label">Name</label>
-              <input type="text" placeholder="Enter your Name" id="name-b339" name="name" class="u-border-4 u-border-no-left u-border-no-right u-border-no-top u-border-white u-grey-80 u-input u-input-rectangle" required="">
+              <input type="text" placeholder="Name" id="name-b339" name="name" class="u-border-4 u-border-no-left u-border-no-right u-border-no-top u-border-white u-grey-80 u-input u-input-rectangle" required="">
             </div>
             <div class="u-form-group u-form-message u-form-group-3">
               <label for="message-b339" class="u-form-control-hidden u-label">Message</label>
-              <textarea placeholder="Enter your message" rows="4" cols="50" id="message-b339" name="message" class="u-border-4 u-border-no-left u-border-no-right u-border-no-top u-border-white u-grey-80 u-input u-input-rectangle" required=""></textarea>
+              <textarea style="resize: none;" placeholder="Enter your message" rows="4" cols="50" id="message-b339" name="message" class="u-border-4 u-border-no-left u-border-no-right u-border-no-top u-border-white u-grey-80 u-input u-input-rectangle" required=""></textarea>
             </div>
             <div class="u-align-center u-form-group u-form-submit u-form-group-4">
               <a href="#" class="u-border-2 u-border-hover-white u-border-white u-btn u-btn-rectangle u-btn-submit u-button-style u-custom-font u-heading-font u-hover-white u-none u-text-hover-black u-btn-1">SEND</a>
               <input type="submit" value="submit" class="u-form-control-hidden">
             </div>
-            <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
-            <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
+            <div class="u-form-send-message u-form-send-success"></div>
+            <div class="u-form-send-error u-form-send-message"></div>
             <input type="hidden" value="" name="recaptchaResponse">
           </form>
         </div>

@@ -1447,7 +1447,6 @@ a {
   margin-left: -20px;
   width: calc(100% +  20px);
 }
-
 .u-form-vertical.u-form-spacing-20 .u-form-group {
   margin-bottom: 20px;
   padding-left: 20px;
@@ -1872,6 +1871,44 @@ a {
 .u-form-horizontal .u-form-group.u-form-submit {
   margin-right: 0;
 }
+
+
+.alert-success {
+  padding: 20px;
+  background-color: #62C584;
+  color: white;
+}
+
+.alert-warning {
+  padding: 20px;
+  background-color: #F95D51;
+  color: white;
+}
+
+.link-white:hover, .link-white{
+    text-decoration: underline;
+    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+    color:white;
+    font-weight: bold;
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
+}
+
 .u-form div.u-form-send-error,
 .u-form div.u-form-send-success {
   display: none;
@@ -36347,13 +36384,15 @@ a.u-link.u-text-hover-grey-90:hover {
 }
 
 .u-header .u-menu-1 {
-  margin: -42px 0 42px auto;
+  margin: -43px 0 43px auto;
 }
 
 .u-header .u-nav-1 {
   font-size: 1rem;
   letter-spacing: 0px;
   background-image: none;
+  font-weight: normal;
+  text-transform: none;
 }
 
 .u-header .u-nav-2 {
@@ -36362,11 +36401,6 @@ a.u-link.u-text-hover-grey-90:hover {
 @media (max-width: 1199px) {
   .u-header .u-menu-1 {
     width: auto;
-  }
-
-  .u-header .u-nav-1 {
-    font-weight: normal;
-    text-transform: none;
   }
 }
 

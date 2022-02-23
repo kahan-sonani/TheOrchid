@@ -16,13 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+import app.views
+from app import views
 from landing import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('Index.html', views.index, name='index'),
-    path('About.html', views.about, name='About'),
-    path('Contact.html', views.contact, name='Contact'),
-    path('Login.html', views.login, name='Login')
+    path('index', views.index, name='index'),
+    path('about', views.about, name='about'),
+    path('contact', views.contact, name='contact'),
+    path('login', views.login_user, name='login'),
+    path('register', views.register, name='register')
 ]
 
