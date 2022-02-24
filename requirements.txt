@@ -1,3 +1,6 @@
+pyotp
+pybase64
+django-rest-framework
 mysqlclient
 django-storages[azure]
 django~=3.2.12
