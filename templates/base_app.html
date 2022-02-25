@@ -7,9 +7,11 @@
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
     <title>{% block title %}{% endblock title%} - TheOrchid</title>
+  {% block linklibs %}
+
+  {% endblock linklibs %}
       {% load static %}
     <link rel="stylesheet" href="{% static 'nicepage.css'%}" media="screen">
-<link rel="stylesheet" href="{% static  'Home.css'%}" media="screen">
     <script class="u-script" type="text/javascript" src="{% static  'jquery.js'%}" defer=""></script>
     <script class="u-script" type="text/javascript" src="{% static 'nicepage.js'%}" defer=""></script>
     <meta name="generator" content="Nicepage 4.5.4, nicepage.com">
@@ -44,18 +46,16 @@
             </a>
           </div>
           <div class="u-custom-menu u-nav-container">
-            <ul class="u-custom-font u-nav u-spacing-30 u-text-font u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-1-light-2 u-text-white" style="padding: 6px 0px;">Contacts</a>
-</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-1-light-2 u-text-white" style="padding: 6px 0px;">Call Log</a>
-</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-1-light-2 u-text-white" style="padding: 6px 0px;">Profile</a>
+            <ul class="u-custom-font u-nav u-spacing-30 u-text-font u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-1-light-2 u-text-white" href="contacts" style="padding: 6px 0px;">Contacts</a>
+<li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-1-light-2 u-text-white" style="padding: 6px 0px;">Profile</a>
 </li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-1-light-2 u-text-white" href="logout" style="padding: 6px 0px;">Sign Out</a></ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
             <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
               <div class="u-inner-container-layout u-sidenav-overflow">
                 <div class="u-menu-close"></div>
-                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" style="padding: 6px 0px;">Contacts</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" style="padding: 6px 0px;">Call Log</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" style="padding: 6px 0px;">Profile</a>
+                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href='contacts' style="padding: 6px 0px;">Contacts</a>
+<li class="u-nav-item"><a class="u-button-style u-nav-link" style="padding: 6px 0px;">Profile</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="logout" style="padding: 6px 0px;">Sign Out</a>
 </li></ul>
               </div>
@@ -65,13 +65,13 @@
         </nav>
       </div></header>
     {% if messages %}
-      <div class="alert-success">
-          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-            {% for message in messages %}
-                <strong{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</strong>
-            {% endfor %}
-      </div>
-  {% endif %}
+        {% for message in messages %}
+              <div class="alert-{{ message.tags }}">
+                  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                  <strong>{{ message }}</strong>
+              </div>
+        {% endfor %}
+    {% endif %}
     {% block body %}
     {% endblock body %}
   <footer class="u-black u-clearfix u-footer" id="sec-76b0"><div class="u-clearfix u-sheet u-sheet-1">

@@ -1871,44 +1871,6 @@ a {
 .u-form-horizontal .u-form-group.u-form-submit {
   margin-right: 0;
 }
-
-
-.alert-success {
-  padding: 20px;
-  background-color: #62C584;
-  color: white;
-}
-
-.alert-warning {
-  padding: 20px;
-  background-color: #F95D51;
-  color: white;
-}
-
-.link-white:hover, .link-white{
-    text-decoration: underline;
-    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
-    color:white;
-    font-weight: bold;
-}
-
-/* The close button */
-.closebtn {
-  margin-left: 15px;
-  color: white;
-  font-weight: bold;
-  float: right;
-  font-size: 22px;
-  line-height: 20px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-/* When moving the mouse over the close button */
-.closebtn:hover {
-  color: black;
-}
-
 .u-form div.u-form-send-error,
 .u-form div.u-form-send-success {
   display: none;
@@ -15781,7 +15743,7 @@ p {
 .u-accordion:not([class*="u-align-"]),
 .u-repeater-item:not([class*="u-align-"]),
 .u-container-style:not([class*="u-align-"]) {
-  text-align: right;
+  text-align: left;
 }
 .u-nav:not([class*="u-align-"]) .u-nav {
   text-align: left;
@@ -36363,13 +36325,13 @@ a.u-link.u-text-hover-grey-90:hover {
 }
 
 .u-header .u-sheet-1 {
-  min-height: 115px;
+  min-height: 109px;
 }
 
 .u-header .u-image-1 {
   width: 64px;
   height: 64px;
-  margin: 20px auto 0 -1px;
+  margin: 22px auto 0 -1px;
 }
 
 .u-header .u-logo-image-1 {
@@ -36384,7 +36346,7 @@ a.u-link.u-text-hover-grey-90:hover {
 }
 
 .u-header .u-menu-1 {
-  margin: -43px 0 43px auto;
+  margin: -42px 0 35px auto;
 }
 
 .u-header .u-nav-1 {
@@ -36401,6 +36363,7 @@ a.u-link.u-text-hover-grey-90:hover {
 @media (max-width: 1199px) {
   .u-header .u-menu-1 {
     width: auto;
+    margin-top: -42px;
   }
 }
 
