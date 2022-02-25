@@ -66,4 +66,4 @@ def contacts(request):
     #     print(err)
     #     messages.warning(request, "Something went wrong!, Couldn't load contacts")
 
-    return render(request, 'contacts.html', connections)
+    return render(request, 'contacts.html')
