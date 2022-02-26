@@ -3,6 +3,8 @@ from __future__ import print_function
 import os
 
 from django.contrib import messages
+from django.forms import ModelForm
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth import logout
 from django.shortcuts import redirect
@@ -13,6 +15,7 @@ from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 
+from landing.models import OUser
 
 SCOPES = ['https://www.googleapis.com/auth/contacts.readonly']
 
@@ -67,3 +70,20 @@ def contacts(request):
     #     messages.warning(request, "Something went wrong!, Couldn't load contacts")
 
     return render(request, 'contacts.html')
+
+
+def profile(request):
+
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            user = form.save()
+            user.save()
+    user = request.user
+    return render(request, 'Profile.html', {"user": user})
+
+
+class ProfileForm(ModelForm):
+    class Meta:
+        model = OUser
+        fields = ['fname', 'lname', 'email', 'mobileno', 'profile_photo']

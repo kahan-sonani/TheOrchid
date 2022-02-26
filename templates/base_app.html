@@ -12,6 +12,7 @@
   {% endblock linklibs %}
       {% load static %}
     <link rel="stylesheet" href="{% static 'nicepage.css'%}" media="screen">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script class="u-script" type="text/javascript" src="{% static  'jquery.js'%}" defer=""></script>
     <script class="u-script" type="text/javascript" src="{% static 'nicepage.js'%}" defer=""></script>
     <meta name="generator" content="Nicepage 4.5.4, nicepage.com">
@@ -47,15 +48,17 @@
           </div>
           <div class="u-custom-menu u-nav-container">
             <ul class="u-custom-font u-nav u-spacing-30 u-text-font u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-1-light-2 u-text-white" href="contacts" style="padding: 6px 0px;">Contacts</a>
-<li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-1-light-2 u-text-white" style="padding: 6px 0px;">Profile</a>
-</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-1-light-2 u-text-white" href="logout" style="padding: 6px 0px;">Sign Out</a></ul>
+<li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-1-light-2 u-text-white" href="profile" style="padding: 6px 0px;">Profile</a>
+                <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-1-light-2 u-text-white" href="home" style="padding: 6px 0px;">Home</a></li>
+<li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-1-light-2 u-text-white" href="logout" style="padding: 6px 0px;">Sign Out</a></ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
             <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
               <div class="u-inner-container-layout u-sidenav-overflow">
                 <div class="u-menu-close"></div>
                 <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href='contacts' style="padding: 6px 0px;">Contacts</a>
-<li class="u-nav-item"><a class="u-button-style u-nav-link" style="padding: 6px 0px;">Profile</a>
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href='home' style="padding: 6px 0px;">Home</a>
+<li class="u-nav-item"><a class="u-button-style u-nav-link" href="profile" style="padding: 6px 0px;">Profile</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="logout" style="padding: 6px 0px;">Sign Out</a>
 </li></ul>
               </div>

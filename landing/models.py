@@ -61,17 +61,19 @@ class OUserManager(BaseUserManager):
 
 
 class OUser(AbstractBaseUser):
-    fname = models.CharField(max_length=122, default='')
-    lname = models.CharField(max_length=122, default='')
+    fname = models.CharField(max_length=122)
+    lname = models.CharField(max_length=122)
 
     is_verified = models.BooleanField(blank=False, default=False)
     counter = models.IntegerField(default=0, blank=False)
     email = models.EmailField(primary_key=True, max_length=155)
-    mobileno = models.CharField(max_length=10, default='')
+    mobileno = models.CharField(max_length=10)
     active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False)
     admin = models.BooleanField(default=False)
     time_stamp = models.DateTimeField(auto_now=True)
+    profile_photo = models.ImageField(upload_to='images/', default='icons8-test-account.svg')
+
     USERNAME_FIELD = 'email'
     EMAIL_FIELD = 'email'
     REQUIRED_FIELDS = ['mobileno', 'fname', 'lname']
