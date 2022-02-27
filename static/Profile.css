@@ -1,0 +1,66 @@
+.u-section-1 .u-sheet-1 {
+  min-height: 873px;
+}
+
+.u-section-1 .u-image-1 {
+  width: 215px;
+  height: 215px;
+  background-position: 50% 50%;
+  margin: 60px auto 0;
+}
+
+.u-section-1 .u-form-1 {
+  height: 238px;
+  width: 448px;
+  background-image: none;
+  margin: 10px auto 0;
+}
+
+.u-section-1 .u-form-group-2 {
+  margin-left: 0;
+}
+
+.u-section-1 .u-btn-1 {
+  letter-spacing: 1px;
+  border-style: none;
+  text-transform: uppercase;
+  background-image: none;
+  font-weight: 700;
+}
+
+.u-section-1 .u-btn-2 {
+  border-style: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background-image: none;
+  font-weight: 700;
+  margin: 0 auto 60px;
+  padding: 10px 30px;
+}
+
+@media (max-width: 575px) {
+  .u-section-1 .u-form-1 {
+    width: 340px;
+  }
+}
+
+#imageUpload
+{
+    display: none;
+}
+
+#profileImage
+{
+    cursor: pointer;
+}
+
+#profile-container {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+}
+
+#profile-container img {
+    width: 200px;
+    height: 200px;
+}
