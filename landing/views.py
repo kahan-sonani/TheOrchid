@@ -42,20 +42,27 @@ def login_user(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
-        user = authenticate(email=email, password=password)
-        if user is not None:
-            django.contrib.auth.login(request, user)
-            return redirect('home')
+
+        try:
+            OUser.objects.get(email=email)
+        except OUser.DoesNotExist:
+            messages.warning(request, 'User does not exists!')
         else:
-            messages.warning(request, 'Invalid Credentials or User does not exists!')
+            user = authenticate(email=email, password=password)
+            if user is not None:
+                django.contrib.auth.login(request, user)
+                return redirect('home')
+            else:
+                messages.warning(request, 'Invalid Credentials!')
     return render(request, 'Login.html')
 
 
 def register(request):
     if request.method == 'POST':
-        # if OUser.objects.get(email=request.POST.get('email')) is not None:
-        #     messages.warning(request, "User already exists!")
-        # else:
+        try:
+            OUser.objects.get(email=request.POST.get('email'))
+            messages.warning(request, "User already exists!")
+        except OUser.DoesNotExist:
             return get(request,
                        fname=request.POST.get('fname'),
                        lname=request.POST.get('lname'),
@@ -63,26 +70,6 @@ def register(request):
                        phone=request.POST.get('phone'),
                        password=request.POST.get('password')
                        )
-    #     mobileno = request.POST.get('mobileno')
-    #     try:
-    #         user = OUser.objects.get(mobileno=mobileno)
-    #         messages.warning(request, 'User already exists with given email id')
-    #         return render(request, 'Register.html')
-    #     except OUser.DoesNotExist:
-    #         password = request.POST.get('password')
-    #         firstname = request.POST.get('fname')
-    #         lastname = request.POST.get('lname')
-    #         email = request.POST.get('email')
-    #
-    #         user = OUser.objects.create_user(
-    #             email=email,
-    #             password=password,
-    #             fname=firstname,
-    #             lname=lastname,
-    #             mobileno=mobileno
-    #         )
-    #         user.save()
-    #         messages.success(request, 'Registration Successful!')
     return render(request, 'Register.html')
 
 
