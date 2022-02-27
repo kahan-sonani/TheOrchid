@@ -1,21 +1,18 @@
 import django.contrib.auth
 import pyotp
 import requests
-import json
-
 from django.contrib.auth import authenticate, login
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect
 from datetime import datetime
-
 import base64
-
-from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from landing.models import Contact
 from django.contrib import messages
 from landing.models import OUser
+
+url = "https://www.fast2sms.com/dev/bulkV2"
 
 
 # Create your views here.
@@ -56,79 +53,114 @@ def login_user(request):
 
 def register(request):
     if request.method == 'POST':
-        email = request.POST.get('email')
-        try:
-            user = OUser.objects.get(email=email)
-            messages.warning(request, 'User already exists with given email id')
-            return render(request, 'Register.html')
-        except OUser.DoesNotExist:
-            password = request.POST.get('password')
-            firstname = request.POST.get('fname')
-            lastname = request.POST.get('lname')
-            phone = request.POST.get('phone')
-
-            user = OUser.objects.create_user(
-                email=email,
-                password=password,
-                fname=firstname,
-                lname=lastname,
-                mobileno=phone
-            )
-            user.save()
-            messages.success(request, 'Registration Successful!')
+        # if OUser.objects.get(email=request.POST.get('email')) is not None:
+        #     messages.warning(request, "User already exists!")
+        # else:
+            return get(request,
+                       fname=request.POST.get('fname'),
+                       lname=request.POST.get('lname'),
+                       email=request.POST.get('email'),
+                       phone=request.POST.get('phone'),
+                       password=request.POST.get('password')
+                       )
+    #     mobileno = request.POST.get('mobileno')
+    #     try:
+    #         user = OUser.objects.get(mobileno=mobileno)
+    #         messages.warning(request, 'User already exists with given email id')
+    #         return render(request, 'Register.html')
+    #     except OUser.DoesNotExist:
+    #         password = request.POST.get('password')
+    #         firstname = request.POST.get('fname')
+    #         lastname = request.POST.get('lname')
+    #         email = request.POST.get('email')
+    #
+    #         user = OUser.objects.create_user(
+    #             email=email,
+    #             password=password,
+    #             fname=firstname,
+    #             lname=lastname,
+    #             mobileno=mobileno
+    #         )
+    #         user.save()
+    #         messages.success(request, 'Registration Successful!')
     return render(request, 'Register.html')
+
+
+def get(request, fname, lname, email, phone, password):
+    response = None
+    mobile = None
+    try:
+        mobile = OUser.objects.get(email=email)
+    except ObjectDoesNotExist:
+        user = OUser.objects.create_user(
+            email=email,
+            password=password,
+            fname=fname,
+            lname=lname,
+            mobileno=phone
+        )
+        mobile = OUser.objects.get(email=email)
+    mobile.counter += 1  # Update Counter At every Call
+    mobile.save()  # Save the data
+    keygen = GenerateKey()
+    key = base64.b32encode(keygen.return_value(phone).encode())  # Key is generated
+    otp = pyotp.HOTP(key)  # HOTP Model for OTP is created
+    print(otp.at(mobile.counter))
+    querystring = {
+        "authorization": "k13sAiIfKoOeMYXDWLF98RBCcTp2vqVrJutGS74glwQ6Hymzd5havlBuEyrAFxe3sgfHOSIm8GP1MJ09",
+        "variables_values": otp.at(mobile.counter), "route": "otp",
+        "numbers": mobile.mobileno}
+    headers = {
+        'cache-control': "no-cache"
+    }
+    response = requests.request("GET", url, headers=headers, params=querystring)
+    print(response.text)
+
+    context = {
+        'fname': '',
+        'lname': '',
+        'email': '',
+        'phone': '',
+        'password': '',
+        'display': 'none'
+    }
+    if response is not None:
+        context['fname'] = mobile.fname
+        context['lname'] = mobile.lname
+        context['email'] = mobile.email
+        context['phone'] = mobile.mobileno
+        context['password'] = mobile.password
+        context['display'] = 'block'
+    return render(request, 'Register.html', context)
+
+
+def post(request):
+    phone = None
+    email = None
+    mobile = None
+    if request.method == 'POST':
+        try:
+            email = request.POST.get('email')
+            mobile = OUser.objects.get(email=email)
+        except ObjectDoesNotExist:
+            messages.warning(request, 'User does not exists!')
+
+        keygen = GenerateKey()
+        key = base64.b32encode(keygen.return_value(mobile.mobileno).encode())  # Generating Key
+        otp = pyotp.HOTP(key)  # HOTP Model
+        otpp = f"{request.POST.get('1')}{request.POST.get('2')}{request.POST.get('3')}{request.POST.get('4')}{request.POST.get('5')}{request.POST.get('6')}"
+        if otp.verify(otpp, mobile.counter):  # Verifying the OTP
+            mobile.is_verified = True
+            mobile.save()
+            messages.success(request, 'OTP verified!')
+        else:
+            if not mobile.is_verified:
+                mobile.delete()
+            messages.warning(request, 'OTP you entered was wrong!')
+    return render(request, 'Register.html', {'display': 'none'})
 
 
 class GenerateKey:
     @staticmethod
     def return_value(phone):
         return str(phone) + str(datetime.date(datetime.now())) + "Some Random Secret Key"
-
-
-class GetPhoneNumberRegistered(APIView):
-    # Get to Create a call for OTP
-    @staticmethod
-    def get(request, phone):
-        if request.method == 'POST':
-            try:
-                mobile = OUser.objects.get(mobileno=phone)
-            except ObjectDoesNotExist:
-                email = request.POST.get('email')
-                password = request.POST.get('password')
-                firstname = request.POST.get('fname')
-                lastname = request.POST.get('lname')
-                user = OUser.objects.create_user(
-                    email=email,
-                    password=password,
-                    fname=firstname,
-                    lname=lastname,
-                    mobileno=phone
-                )
-
-                mobile = OUser.objects.get(Mobile=phone)
-
-            mobile.counter += 1  # Update Counter At every Call
-            mobile.save()  # Save the data
-            keygen = GenerateKey()
-            key = base64.b32encode(keygen.return_value(phone).encode())  # Key is generated
-            otp = pyotp.HOTP(key)  # HOTP Model for OTP is created
-            print(otp.at(mobile.counter))
-            # Using Multi-Threading send the OTP Using Messaging Services like Twilio or Fast2sms
-            return Response({"OTP for mobile number verification for TheOrchid WebApp Registration": otp.at(mobile.counter)}, status=200)
-
-    # This Method verifies the OTP
-    @staticmethod
-    def post(request, phone):
-        try:
-            mobile = OUser.objects.get(mobileno=phone)
-        except ObjectDoesNotExist:
-            return Response("User does not exist", status=404)  # False Call
-
-        keygen = GenerateKey()
-        key = base64.b32encode(keygen.return_value(phone).encode())  # Generating Key
-        otp = pyotp.HOTP(key)  # HOTP Model
-        if otp.verify(request.data["otp"], mobile.counter):  # Verifying the OTP
-            mobile.isVerified = True
-            mobile.save()
-            return Response("You are authorised", status=200)
-        return Response("OTP is wrong", status=400)
