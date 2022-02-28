@@ -108,7 +108,7 @@
       }
 
       function listConnectionNames() {
-        gapi.client.people.people.me.connections.list({
+        gapi.client.people.people.connections.list({
             'sortOrder': 'FIRST_NAME_ASCENDING',
            'personFields': 'names,phoneNumbers, photos'
          }).then(function(response) {
