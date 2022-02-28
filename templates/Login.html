@@ -11,6 +11,8 @@
       {% load static %}
     <link rel="stylesheet" href="{% static 'nicepage.css'%}" media="screen">
 <link rel="stylesheet" href="{% static 'Login.css'%}" media="screen">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js">
     <script class="u-script" type="text/javascript" src="{% static 'jquery.js'%}" defer=""></script>
     <script class="u-script" type="text/javascript" src="{% static 'nicepage.js'%}" defer=""></script>
     <meta name="generator" content="Nicepage 4.5.4, nicepage.com">
@@ -68,7 +70,7 @@
       </div>
     {% if messages %}
         {% for message in messages %}
-              <div class="alert-{{ message.tags }}">
+              <div class="alert-box-{{ message.tags }}">
                   <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
                   <strong>{{ message }}</strong>
               </div>
@@ -85,8 +87,8 @@
           <form style = "display: flex; justify-content: center;padding: 10px;" action="login" method="POST" class="u-clearfix u-form-custom-backend u-form-spacing-20 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form" redirect="true">
               {% csrf_token %}
             <div class="u-form-group u-form-phone u-form-group-2">
-              <label for="email-b339" class="u-form-control-hidden u-label">Email</label>
-              <input type="email" placeholder="Email" id="email-b339" name="email" class="u-border-4 u-border-no-left u-border-no-right u-border-no-top u-border-white u-grey-80 u-input u-input-rectangle" required="required">
+              <label for="phone-b339" class="u-form-control-hidden u-label">Phone</label>
+              <input type="tel" placeholder="Phone" id="phone-b339" value="{{ phone }}" name="phone" class="u-border-4 u-border-no-left u-border-no-right u-border-no-top u-border-white u-grey-80 u-input u-input-rectangle" required="required">
             </div>
             <div class="u-form-group u-form-group-3">
               <label for="password-b441" class="u-form-control-hidden u-label">Password</label>
@@ -104,6 +106,29 @@
         </div>
       </div>
     </section>
+
+    <div style="display: {{ display }}" id="myModal" class="modal">
+        <!-- Modal content -->
+         <div class="container height-100 d-flex justify-content-center align-items-center">
+        <div class="position-relative">
+        <div class="card p-2 text-center">
+            <form action="validateOtpLogin" method="post">
+                {% csrf_token %}
+            <h6>Please enter the one time password <br> to verify your account</h6>
+            <div> <h6>A code has been sent to</h6> <h6>{{ phone }}</h6> </div>
+                <input type="hidden" value="{{ phone }}" name="phone">
+            <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
+                <input name="1" class="m-2 text-center form-control rounded" type="text" id="first" maxlength="1" />
+                <input name="2" class="m-2 text-center form-control rounded" type="text" id="second" maxlength="1" />
+                <input name="3" class="m-2 text-center form-control rounded" type="text" id="third" maxlength="1" />
+                <input name="4" class="m-2 text-center form-control rounded" type="text" id="fourth" maxlength="1" />
+                <input name="5" class="m-2 text-center form-control rounded" type="text" id="fifth" maxlength="1" />
+                <input name="6" class="m-2 text-center form-control rounded" type="text" id="sixth" maxlength="1" /> </div>
+            <div class="mt-4"> <input type="submit" value="Validate" href="validateOtp" class="btn btn-danger px-4 validate"></div>
+            </form>
+        </div>
+    </div>
+</div>
     <footer class="u-black u-clearfix u-footer" id="sec-76b0"><div class="u-clearfix u-sheet u-sheet-1">
         <a href="https://nicepage.com" class="u-align-center u-image u-logo u-image-1" data-image-width="135" data-image-height="135">
           <img src="{% static 'images/icons8-orchid2.svg'%}" class="u-logo-image u-logo-image-1">

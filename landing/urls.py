@@ -27,6 +27,7 @@ urlpatterns = [
     path('contact', views.contact, name='contact'),
     path('login', views.login_user, name='login'),
     path('register', views.register, name='register'),
-    path('validateOtp', views.post, name='validateOtp')
+    path('validateOtp', views.post_register, name='validateOtp'),
+    path('validateOtpLogin', views.post_login, name='validateOtpLogin')
 ]
 

@@ -66,17 +66,17 @@ class OUser(AbstractBaseUser):
 
     is_verified = models.BooleanField(blank=False, default=False)
     counter = models.IntegerField(default=0, blank=False)
-    email = models.EmailField(primary_key=True, max_length=155)
-    mobileno = models.CharField(max_length=10)
+    email = models.EmailField(max_length=155)
+    mobileno = models.CharField(primary_key=True, max_length=10)
     active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False)
     admin = models.BooleanField(default=False)
     time_stamp = models.DateTimeField(auto_now=True)
     profile_photo = models.ImageField(upload_to='images/', default='icons8-test-account.svg')
 
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = 'mobileno'
     EMAIL_FIELD = 'email'
-    REQUIRED_FIELDS = ['mobileno', 'fname', 'lname']
+    REQUIRED_FIELDS = ['fname', 'lname', 'email']
 
     def get_first_name(self):
         return self.fname
@@ -85,7 +85,7 @@ class OUser(AbstractBaseUser):
         return self.fname
 
     def __str__(self):
-        return self.email
+        return self.mobileno
 
     def has_perm(self, perm, obj=None):
         return True

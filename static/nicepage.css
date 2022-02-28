@@ -36356,14 +36356,14 @@ a.u-link.u-text-hover-grey-90:hover {
   font-weight: normal;
   text-transform: none;
 }
-.alert-warning {
+.alert-box-warning {
   padding: 20px;
   background-color: #F95D51; /* Red */
   color: white;
   margin-bottom: 15px;
 }
 
-.alert-success {
+.alert-box-success {
   padding: 20px;
   background-color: #62C584;
   color: white;
@@ -36385,6 +36385,113 @@ a.u-link.u-text-hover-grey-90:hover {
 /* When moving the mouse over the close button */
 .closebtn:hover {
   color: black;
+}
+
+
+body {
+    background-color: black
+}
+
+.height-100 {
+    height: 100vh
+}
+
+.card {
+    width: 400px;
+    border: none;
+    height: 300px;
+    box-shadow: 0px 5px 20px 0px #75808c;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.card h6 {
+    color: black;
+    font-size: 20px
+}
+
+.inputs input {
+    width: 40px;
+    height: 40px
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0
+}
+
+.card-2 {
+    background-color: #fff;
+    padding: 10px;
+    width: 350px;
+    height: 100px;
+    bottom: -50px;
+    left: 20px;
+    position: absolute;
+    border-radius: 5px
+}
+
+.card-2 .content {
+    margin-top: 50px
+}
+
+.card-2 .content a {
+    color: black;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border: 2px solid black
+}
+
+.validate {
+    border-radius: 20px;
+    height: 40px;
+    background-color: black;
+    border: 1px solid black;
+    width: 140px
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .u-header .u-nav-2 {

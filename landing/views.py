@@ -40,15 +40,23 @@ def contact(request):
 
 def login_user(request):
     if request.method == 'POST':
-        email = request.POST.get('email')
+        mobileno = request.POST.get('phone')
         password = request.POST.get('password')
 
         try:
-            OUser.objects.get(email=email)
+            user = OUser.objects.get(mobileno=mobileno)
+            if not user.is_verified:
+                return get(request=request,
+                           fname=None,
+                           lname=None,
+                           email=None,
+                           phone=mobileno,
+                           password=password,
+                           responseHtml='Login.html')
         except OUser.DoesNotExist:
             messages.warning(request, 'User does not exists!')
         else:
-            user = authenticate(email=email, password=password)
+            user = authenticate(mobileno=mobileno, password=password)
             if user is not None:
                 django.contrib.auth.login(request, user)
                 return redirect('home')
@@ -60,24 +68,24 @@ def login_user(request):
 def register(request):
     if request.method == 'POST':
         try:
-            OUser.objects.get(email=request.POST.get('email'))
+            user = OUser.objects.get(mobileno=request.POST.get('phone'))
             messages.warning(request, "User already exists!")
         except OUser.DoesNotExist:
-            return get(request,
+            return get(request=request,
                        fname=request.POST.get('fname'),
                        lname=request.POST.get('lname'),
                        email=request.POST.get('email'),
                        phone=request.POST.get('phone'),
-                       password=request.POST.get('password')
-                       )
+                       password=request.POST.get('password'),
+                       responseHtml='Register.html')
     return render(request, 'Register.html')
 
 
-def get(request, fname, lname, email, phone, password):
+def get(request, fname, lname, email, phone, password, responseHtml):
     response = None
     mobile = None
     try:
-        mobile = OUser.objects.get(email=email)
+        mobile = OUser.objects.get(mobileno=phone)
     except ObjectDoesNotExist:
         user = OUser.objects.create_user(
             email=email,
@@ -86,7 +94,7 @@ def get(request, fname, lname, email, phone, password):
             lname=lname,
             mobileno=phone
         )
-        mobile = OUser.objects.get(email=email)
+        mobile = OUser.objects.get(mobileno=phone)
     mobile.counter += 1  # Update Counter At every Call
     mobile.save()  # Save the data
     keygen = GenerateKey()
@@ -118,17 +126,17 @@ def get(request, fname, lname, email, phone, password):
         context['phone'] = mobile.mobileno
         context['password'] = mobile.password
         context['display'] = 'block'
-    return render(request, 'Register.html', context)
+    return render(request, responseHtml, context)
 
 
-def post(request):
+def post_register(request):
     phone = None
     email = None
     mobile = None
     if request.method == 'POST':
         try:
-            email = request.POST.get('email')
-            mobile = OUser.objects.get(email=email)
+            phone = request.POST.get('phone')
+            mobile = OUser.objects.get(mobileno=phone)
         except ObjectDoesNotExist:
             messages.warning(request, 'User does not exists!')
 
@@ -141,10 +149,37 @@ def post(request):
             mobile.save()
             messages.success(request, 'OTP verified!')
         else:
-            if not mobile.is_verified:
-                mobile.delete()
             messages.warning(request, 'OTP you entered was wrong!')
     return render(request, 'Register.html', {'display': 'none'})
+
+
+def post_login(request):
+    phone = None
+    email = None
+    mobile = None
+    if request.method == 'POST':
+        try:
+            phone = request.POST.get('phone')
+            mobile = OUser.objects.get(mobileno=phone)
+        except ObjectDoesNotExist:
+            messages.warning(request, 'User does not exists!')
+
+        keygen = GenerateKey()
+        key = base64.b32encode(keygen.return_value(mobile.mobileno).encode())  # Generating Key
+        otp = pyotp.HOTP(key)  # HOTP Model
+        otpp = f"{request.POST.get('1')}{request.POST.get('2')}{request.POST.get('3')}{request.POST.get('4')}{request.POST.get('5')}{request.POST.get('6')}"
+        if otp.verify(otpp, mobile.counter):  # Verifying the OTP
+            mobile.is_verified = True
+            mobile.save()
+            user = authenticate(mobileno=mobile.mobileno, password=mobile.password)
+            if user is not None:
+                django.contrib.auth.login(request, user)
+                return redirect('home')
+            else:
+                messages.warning(request, 'Invalid Credentials!')
+        else:
+            messages.warning(request, 'OTP you entered was wrong!')
+    return render(request, 'Login.html', {'display': 'none'})
 
 
 class GenerateKey:
