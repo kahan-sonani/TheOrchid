@@ -98,7 +98,7 @@
        * @param {string} message Text to be placed in pre element.
        */
       function appendPre(person) {
-        list.insertAdjacentHTML('beforeend', `<div class="u-container-style u-grey-5 u-list-item u-radius-5 u-repeater-item u-shape-round u-list-item-1">
+        list.innerHTML += `<div class="u-container-style u-grey-5 u-list-item u-radius-5 u-repeater-item u-shape-round u-list-item-1">
             <div class="u-container-layout u-similar-container u-container-layout-2">
                 <div class="u-image u-image-circle u-image-1" alt="" data-image-width="1280" data-image-height="853"></div>
                 <h4 class="u-text u-text-default u-text-2">${person.names[0]}</h4><span class="u-file-icon u-icon u-icon-1"><img src="{% static  'images/icons8-phone.svg'%}" alt=""></span>
