@@ -169,7 +169,7 @@
       function listConnectionNames() {
         gapi.client.people.people.connections.list({
            'resourceName': 'people/me',
-           'personFields': 'names,emailAddresses',
+           'personFields': 'names,phoneNumbers',
          }).then(function(response) {
            var connections = response.result.connections;
            appendPre('Connections:');
@@ -178,7 +178,7 @@
              for (i = 0; i < connections.length; i++) {
                var person = connections[i];
                if (person.names && person.names.length > 0) {
-                 appendPre(person.names[0].displayName)
+                 console.log(person['phoneNumbers'])
                } else {
                  appendPre("No display name found for connection.");
                }
