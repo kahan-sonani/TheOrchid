@@ -89,6 +89,7 @@
       // included, separated by spaces.
       var SCOPES = "https://www.googleapis.com/auth/contacts";
 
+      var contactList = document.getElementById('after_me');
       var authorizeButton = document.getElementById('authorize_button');
       var signoutButton = document.getElementById('signout_button');
 
@@ -155,12 +156,18 @@
        * Append a pre element to the body containing the given message
        * as its text node. Used to display the results of the API call.
        *
-       * @param {string} message Text to be placed in pre element.
+       * @param name
+       * @param phone
        */
-      function appendPre(message) {
-        var pre = document.getElementById('content');
-        var textContent = document.createTextNode(message + '\n');
-        pre.appendChild(textContent);
+      function appendPre(name, phone) {
+        contactList.insertAdjacentHTML('afterend',
+            `<div class="u-align-center-md u-align-center-sm u-align-center-xs u-container-style u-grey-5 u-list-item u-radius-5 u-repeater-item u-shape-round u-list-item-1">
+                        <div class="u-container-layout u-similar-container u-container-layout-2">
+                          <div class="u-image u-image-circle u-image-1" alt="" data-image-width="1280" data-image-height="853"></div>
+                          <h4 class="u-text u-text-default u-text-2">${name}</h4><span class="u-file-icon u-icon u-icon-1"><img src="images/483947.png" alt=""></span>
+                          <h5 class="u-text u-text-default u-text-3">${phone}</h5>
+                        </div>
+                      </div>`);
       }
 
       /**
@@ -178,7 +185,7 @@
              for (i = 0; i < connections.length; i++) {
                var person = connections[i];
                if (person.names && person.names.length > 0) {
-                 console.log(person.phoneNumbers[0].value)
+                 appendPre(person.names[0].displayName, person.phoneNumbers[0].value)
                } else {
                  appendPre("No display name found for connection.");
                }
