@@ -157,9 +157,9 @@
        *
        * @param {string} message Text to be placed in pre element.
        */
-      function appendPre(message) {
+      function appendPre(message, message2) {
         var pre = document.getElementById('content');
-        var textContent = document.createTextNode(message + '\n');
+        var textContent = document.createTextNode(message + ' ' + message2 +'\n');
         pre.appendChild(textContent);
       }
 
@@ -169,7 +169,6 @@
       function listConnectionNames() {
         gapi.client.people.people.connections.list({
            'resourceName': 'people/me',
-           'pageSize': 10,
            'personFields': 'names,emailAddresses',
          }).then(function(response) {
            var connections = response.result.connections;
@@ -179,7 +178,7 @@
              for (i = 0; i < connections.length; i++) {
                var person = connections[i];
                if (person.names && person.names.length > 0) {
-                 appendPre(person.names[0].displayName)
+                 appendPre(person.names[0].displayName, person.phoneNumbers[0])
                } else {
                  appendPre("No display name found for connection.");
                }
