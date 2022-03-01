@@ -14,8 +14,64 @@
     <button id="authorize_button" style="display: none;">Authorize</button>
     <button id="signout_button" style="display: none;">Sign Out</button>
 
-    <pre id="content" style="white-space: pre-wrap;"></pre>
-
+    <section class="u-align-center u-clearfix u-section-1" id="sec-453d">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-clearfix u-expanded-width u-gutter-20 u-layout-wrap u-layout-wrap-1">
+          <div class="u-layout">
+            <div class="u-layout-row">
+              <div class="u-align-left u-container-style u-layout-cell u-size-30-lg u-size-30-xl u-size-60-md u-size-60-sm u-size-60-xs u-layout-cell-1">
+                <div class="u-container-layout u-container-layout-1">
+                  <h2 class="u-align-center u-text u-text-1">Contacts</h2>
+                  <div class="u-align-center u-form u-form-1">
+                    <form action="#" method="POST" class="u-clearfix u-form-custom-backend u-form-horizontal u-form-spacing-10 u-inner-form" source="custom" name="form" style="padding: 0px;" redirect="true">
+                      <div class="u-form-group u-form-name">
+                        <label for="name-a49c" class="u-form-control-hidden u-label"></label>
+                        <input type="text" placeholder="Search Contacts" id="name-a49c" name="contact" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                      </div>
+                      <div class="u-align-left u-form-group u-form-submit">
+                        <a href="#" class="u-black u-border-none u-btn u-btn-submit u-button-style u-btn-1">Search</a>
+                        <input type="submit" value="submit" class="u-form-control-hidden">
+                      </div>
+                      <div class="u-form-send-message u-form-send-success"></div>
+                      <div class="u-form-send-error u-form-send-message"></div>
+                      <input type="hidden" value="" name="recaptchaResponse">
+                    </form>
+                  </div>
+                  <div class="u-align-center u-list u-list-1">
+                    <div class="u-repeater u-repeater-1">
+                      <div id="after_me"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="u-align-center-lg u-align-center-md u-align-center-sm u-align-center-xs u-container-style u-layout-cell u-shape-rectangle u-size-30-lg u-size-30-xl u-size-60-md u-size-60-sm u-size-60-xs u-layout-cell-2">
+                <div class="u-container-layout u-container-layout-7">
+                  <h2 class="u-align-center-xl u-text u-text-12">Call Log</h2>
+                  <div class="u-align-center u-list u-list-2">
+                    <div class="u-repeater u-repeater-2">
+                      <div class="u-align-center-lg u-align-center-md u-align-center-sm u-align-center-xs u-container-style u-grey-5 u-list-item u-radius-5 u-repeater-item u-shape-round u-list-item-6">
+                        <div class="u-container-layout u-similar-container u-container-layout-8">
+                          <div class="u-image u-image-circle u-image-6" alt="" data-image-width="1280" data-image-height="853"></div>
+                          <h4 class="u-text u-text-default u-text-13">Sonani Kahan</h4><span class="u-file-icon u-icon u-icon-6"><img src="images/2227858.png" alt=""></span><span class="u-file-icon u-icon u-icon-7"><img src="images/483947.png" alt=""></span>
+                          <h5 class="u-text u-text-default u-text-14">Yesterday</h5>
+                        </div>
+                      </div>
+                      <div class="u-align-center-lg u-align-center-md u-align-center-sm u-align-center-xs u-container-style u-grey-5 u-list-item u-radius-5 u-repeater-item u-shape-round u-list-item-7">
+                        <div class="u-container-layout u-similar-container u-container-layout-9">
+                          <div class="u-image u-image-circle u-image-7" alt="" data-image-width="1280" data-image-height="853"></div>
+                          <h4 class="u-text u-text-default u-text-15">John Doe</h4><span class="u-file-icon u-icon u-icon-8"><img src="images/2227858.png" alt=""></span><span class="u-file-icon u-icon u-icon-9"><img src="images/483947.png" alt=""></span>
+                          <h5 class="u-text u-text-default u-text-16">2 hours ago</h5>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <script type="text/javascript">
       // Client ID and API key from the Developer Console
       var CLIENT_ID = '456816466000-fllno6mknd0nq7fivp486gkd7f35g00f';
@@ -28,7 +84,7 @@
       // included, separated by spaces.
       var SCOPES = "https://www.googleapis.com/auth/contacts";
 
-      var list = document.getElementById('contacts')
+      var list = document.getElementById('after_me')
       var authorizeButton = document.getElementById('authorize_button');
       var signoutButton = document.getElementById('signout_button');
 
@@ -134,90 +190,4 @@
       onload="this.onload=function(){};handleClientLoad()"
       onreadystatechange="if (this.readyState === 'complete') this.onload()">
     </script>
-    <section class="u-align-center u-clearfix u-section-1" id="sec-453d">
-      <div class="u-clearfix u-sheet u-sheet-1">
-        <div class="u-clearfix u-expanded-width u-gutter-20 u-layout-wrap u-layout-wrap-1">
-          <div class="u-layout">
-            <div class="u-layout-row">
-              <div class="u-align-left u-container-style u-layout-cell u-size-30-lg u-size-30-xl u-size-60-md u-size-60-sm u-size-60-xs u-layout-cell-1">
-                <div class="u-container-layout u-container-layout-1">
-                  <h2 class="u-align-center u-text u-text-1">Contacts</h2>
-                  <div class="u-align-center u-form u-form-1">
-                    <form action="#" method="POST" class="u-clearfix u-form-custom-backend u-form-horizontal u-form-spacing-10 u-inner-form" source="custom" name="form" style="padding: 0px;" redirect="true">
-                      <div class="u-form-group u-form-name">
-                        <label for="name-a49c" class="u-form-control-hidden u-label"></label>
-                        <input type="text" placeholder="Search Contacts" id="name-a49c" name="contact" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
-                      </div>
-                      <div class="u-align-left u-form-group u-form-submit">
-                        <a href="#" class="u-black u-border-none u-btn u-btn-submit u-button-style u-btn-1">Search</a>
-                        <input type="submit" value="submit" class="u-form-control-hidden">
-                      </div>
-                      <div class="u-form-send-message u-form-send-success"></div>
-                      <div class="u-form-send-error u-form-send-message"></div>
-                      <input type="hidden" value="" name="recaptchaResponse">
-                    </form>
-                  </div>
-                  <div class="u-align-center u-list u-list-1">
-                    <div class="u-repeater u-repeater-1">
-                      <div id="after_me"></div>
-                      <div class="u-align-center-md u-align-center-sm u-align-center-xs u-container-style u-grey-5 u-list-item u-radius-5 u-repeater-item u-shape-round u-list-item-2">
-                        <div class="u-container-layout u-similar-container u-container-layout-3">
-                          <div class="u-image u-image-circle u-image-2" alt="" data-image-width="1280" data-image-height="853"></div>
-                          <h4 class="u-text u-text-default u-text-4">Sample Headline</h4><span class="u-file-icon u-icon u-icon-2"><img src="images/483947.png" alt=""></span>
-                          <h5 class="u-text u-text-default u-text-5">Sample Headline</h5>
-                        </div>
-                      </div>
-                      <div class="u-align-center-md u-align-center-sm u-align-center-xs u-container-style u-grey-5 u-list-item u-radius-5 u-repeater-item u-shape-round u-list-item-3">
-                        <div class="u-container-layout u-similar-container u-container-layout-4">
-                          <div class="u-image u-image-circle u-image-3" alt="" data-image-width="1280" data-image-height="853"></div>
-                          <h4 class="u-text u-text-default u-text-6">Sample Headline</h4><span class="u-file-icon u-icon u-icon-3"><img src="images/483947.png" alt=""></span>
-                          <h5 class="u-text u-text-default u-text-7">Sample Headline</h5>
-                        </div>
-                      </div>
-                      <div class="u-align-center-md u-align-center-sm u-align-center-xs u-container-style u-grey-5 u-list-item u-radius-5 u-repeater-item u-shape-round u-list-item-4">
-                        <div class="u-container-layout u-similar-container u-container-layout-5">
-                          <div class="u-image u-image-circle u-image-4" alt="" data-image-width="1280" data-image-height="853"></div>
-                          <h4 class="u-text u-text-default u-text-8">Sample Headline</h4><span class="u-file-icon u-icon u-icon-4"><img src="images/483947.png" alt=""></span>
-                          <h5 class="u-text u-text-default u-text-9">Sample Headline</h5>
-                        </div>
-                      </div>
-                      <div class="u-align-center-md u-align-center-sm u-align-center-xs u-container-style u-grey-5 u-list-item u-radius-5 u-repeater-item u-shape-round u-list-item-5">
-                        <div class="u-container-layout u-similar-container u-container-layout-6">
-                          <div class="u-image u-image-circle u-image-5" alt="" data-image-width="1280" data-image-height="853"></div>
-                          <h4 class="u-text u-text-default u-text-10">Sample Headline</h4><span class="u-file-icon u-icon u-icon-5"><img src="images/483947.png" alt=""></span>
-                          <h5 class="u-text u-text-default u-text-11">Sample Headline</h5>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="u-align-center-lg u-align-center-md u-align-center-sm u-align-center-xs u-container-style u-layout-cell u-shape-rectangle u-size-30-lg u-size-30-xl u-size-60-md u-size-60-sm u-size-60-xs u-layout-cell-2">
-                <div class="u-container-layout u-container-layout-7">
-                  <h2 class="u-align-center-xl u-text u-text-12">Call Log</h2>
-                  <div class="u-align-center u-list u-list-2">
-                    <div class="u-repeater u-repeater-2">
-                      <div class="u-align-center-lg u-align-center-md u-align-center-sm u-align-center-xs u-container-style u-grey-5 u-list-item u-radius-5 u-repeater-item u-shape-round u-list-item-6">
-                        <div class="u-container-layout u-similar-container u-container-layout-8">
-                          <div class="u-image u-image-circle u-image-6" alt="" data-image-width="1280" data-image-height="853"></div>
-                          <h4 class="u-text u-text-default u-text-13">Sonani Kahan</h4><span class="u-file-icon u-icon u-icon-6"><img src="images/2227858.png" alt=""></span><span class="u-file-icon u-icon u-icon-7"><img src="images/483947.png" alt=""></span>
-                          <h5 class="u-text u-text-default u-text-14">Yesterday</h5>
-                        </div>
-                      </div>
-                      <div class="u-align-center-lg u-align-center-md u-align-center-sm u-align-center-xs u-container-style u-grey-5 u-list-item u-radius-5 u-repeater-item u-shape-round u-list-item-7">
-                        <div class="u-container-layout u-similar-container u-container-layout-9">
-                          <div class="u-image u-image-circle u-image-7" alt="" data-image-width="1280" data-image-height="853"></div>
-                          <h4 class="u-text u-text-default u-text-15">John Doe</h4><span class="u-file-icon u-icon u-icon-8"><img src="images/2227858.png" alt=""></span><span class="u-file-icon u-icon u-icon-9"><img src="images/483947.png" alt=""></span>
-                          <h5 class="u-text u-text-default u-text-16">2 hours ago</h5>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 {% endblock body %}
