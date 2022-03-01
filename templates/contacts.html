@@ -184,14 +184,10 @@
            if (connections.length > 0) {
              for (i = 0; i < connections.length; i++) {
                var person = connections[i];
-               if (person.names && person.names.length > 0) {
+               if (person.names && person.names.length > 0 && person.phoneNumbers && person.phoneNumbers.length > 0) {
                  appendPre(person.names[0].displayName, person.phoneNumbers[0].value)
-               } else {
-                 appendPre("No display name found for connection.");
                }
              }
-           } else {
-             appendPre('No connections found.');
            }
          });
       }
