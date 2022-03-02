@@ -81,7 +81,7 @@
        */
       function appendPre(name, index) {
         contactList.insertAdjacentHTML('afterend',
-            `<div id=${index} onclick="listConnectionNames(${index})" class="card2 u-container-style u-grey-5 u-list-item u-radius-5 u-repeater-item u-shape-round u-list-item-1">
+            `<div id="myBtn" onclick="listConnectionNames(${index})" class="card2 u-container-style u-grey-5 u-list-item u-radius-5 u-repeater-item u-shape-round u-list-item-1">
                         <div class="u-container-layout u-similar-container u-container-layout-2">
                           <div class="u-image u-image-circle u-image-1" alt="" data-image-width="1280" data-image-height="853"></div>
                           <h4 class="u-text u-text-default u-text-3">${name}</h4>
