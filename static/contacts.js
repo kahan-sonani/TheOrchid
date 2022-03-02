@@ -121,7 +121,7 @@
           let list = document.getElementById('phone-after-me')
           for(i = 0; i < person.phoneNumbers.length; i++){
                 list.insertAdjacentHTML('afterend',
-                `<a href="#" style="padding: 10px 10px 10px 10px" class="list-group-item-dark list-group-item-action">
+                `<a href="#" style="padding: 10px 10px 10px 10px" class="list-group-item">
                             ${person.phoneNumbers[i].value}
                      </a>`
                 );
