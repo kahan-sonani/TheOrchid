@@ -79,6 +79,7 @@
        * @param name
        * @param phone
        */
+
       var modal = document.getElementById("myModal");
       function appendPre(name, index) {
         contactList.insertAdjacentHTML('afterend',
