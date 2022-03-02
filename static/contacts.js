@@ -81,7 +81,7 @@
        */
       function appendPre(name, index) {
         contactList.insertAdjacentHTML('afterend',
-            `<div id=${index} class="card2 u-container-style u-grey-5 u-list-item u-radius-5 u-repeater-item u-shape-round u-list-item-1">
+            `<div id=${index} onclick="listConnectionNames(${index})" class="card2 u-container-style u-grey-5 u-list-item u-radius-5 u-repeater-item u-shape-round u-list-item-1">
                         <div class="u-container-layout u-similar-container u-container-layout-2">
                           <div class="u-image u-image-circle u-image-1" alt="" data-image-width="1280" data-image-height="853"></div>
                           <h4 class="u-text u-text-default u-text-3">${name}</h4>
@@ -109,3 +109,34 @@
            }
          });
       }
+
+      function displayContactInfo(index){
+          let person = people[index];
+          document.getElementById('person').innerHTML = person.names[0].displayName;
+          let list = document.getElementById('phone-after-me')
+          for(i = 0; i < person.phoneNumbers.length; i++){
+                list.insertAdjacentHTML('afterend',
+                `<a href="#" style="padding: 10px 10px 10px 10px" class="list-group-item-dark list-group-item-action">
+                            ${person.phoneNumbers[i].value}
+                     </a>`
+                );
+          }
+      }
+
+        var modal = document.getElementById("myModal");
+        var close = document.getElementById('close')
+
+        var btn = document.getElementById("myBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on the button, open the modal
+        btn.onclick = function() {
+          modal.style.display = "block";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        close.onclick = function() {
+            modal.style.display = "none";
+        }

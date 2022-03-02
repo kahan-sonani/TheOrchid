@@ -36397,9 +36397,9 @@ body {
 }
 
 .card {
-    width: 400px;
+    min-width: 400px;
     border: none;
-    height: 300px;
+    max-height: 300px;
     box-shadow: 0px 5px 20px 0px #75808c;
     z-index: 1;
     display: flex;
@@ -36481,6 +36481,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 /* The Close Button */
 .close {
+    padding-right: 10px;
   color: #aaa;
   float: right;
   font-size: 28px;
