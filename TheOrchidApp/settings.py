@@ -124,19 +124,19 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
-# DEFAULT_FILE_STORAGE = 'backend.custom_azure.AzureMediaStorage'
-# STATICFILES_STORAGE = 'backend.custom_azure.AzureStaticStorage'
-#
-# MEDIA_LOCATION = "media"
-# STATIC_LOCATION = "static"
-#
-# AZURE_ACCOUNT_NAME = "djangotheorchidstorage"
-# AZURE_CUSTOM_DOMAIN = f'{AZURE_ACCOUNT_NAME}.blob.core.windows.net'
-# STATIC_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
-# MEDIA_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{MEDIA_LOCATION}/'
+DEFAULT_FILE_STORAGE = 'backend.custom_azure.AzureMediaStorage'
+STATICFILES_STORAGE = 'backend.custom_azure.AzureStaticStorage'
+
+MEDIA_LOCATION = "media"
+STATIC_LOCATION = "static"
+
+AZURE_ACCOUNT_NAME = "djangotheorchidstorage"
+AZURE_CUSTOM_DOMAIN = f'{AZURE_ACCOUNT_NAME}.blob.core.windows.net'
+STATIC_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
+MEDIA_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{MEDIA_LOCATION}/'
 
 SECURE_REFERRER_POLICY = 'no-referrer-when-downgrade'
 AUTH_USER_MODEL = 'landing.OUser'
-STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# STATIC_URL = '/static/'
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
