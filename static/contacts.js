@@ -114,6 +114,7 @@
 
       function displayContactInfo(index){
           let person = people[index];
+          console.log(person)
           document.getElementById('person').innerHTML = person.names[0].displayName;
           let list = document.getElementById('phone-after-me')
           for(i = 0; i < person.phoneNumbers.length; i++){
