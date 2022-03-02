@@ -80,10 +80,10 @@
        * @param phone
        */
 
-      var modal = document.getElementById("myModal");
+
       function appendPre(name, index) {
         contactList.insertAdjacentHTML('afterend',
-            `<div id="myBtn" onclick="modal.style.display ='block';listConnectionNames(${index});" class="card2 u-container-style u-grey-5 u-list-item u-radius-5 u-repeater-item u-shape-round u-list-item-1">
+            `<div id="myBtn" onclick="displayContactInfo(${index});" class="card2 u-container-style u-grey-5 u-list-item u-radius-5 u-repeater-item u-shape-round u-list-item-1">
                         <div class="u-container-layout u-similar-container u-container-layout-2">
                           <div class="u-image u-image-circle u-image-1" alt="" data-image-width="1280" data-image-height="853"></div>
                           <h4 class="u-text u-text-default u-text-3">${name}</h4>
@@ -112,7 +112,9 @@
          });
       }
 
+      var modal = document.getElementById("myModal");
       function displayContactInfo(index){
+          modal.style.display ='block';
           let person = people[index];
           console.log(person)
           document.getElementById('person').innerHTML = person.names[0].displayName;
