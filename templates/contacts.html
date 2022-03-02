@@ -9,8 +9,8 @@
 {% block body %}
     <section class="u-align-center u-clearfix u-section-1" id="sec-453d">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <a id="connection-btn" href="https://nicepage.com/c/pricing-website-templates" class="u-active-none u-border-2 u-border-active-palette-2-dark-1 u-border-hover-palette-2-base u-border-palette-1-base u-btn u-button-style u-hover-none u-none u-text-hover-palette-2-base u-text-palette-1-base u-btn-1"></a>
-        <h5 class="u-align-center u-text u-text-default u-text-1">Connect to Google Contacts&nbsp;</h5>
+        <a id="connection-btn" class="u-active-none u-border-2 u-border-active-palette-2-dark-1 u-border-hover-palette-2-base u-border-palette-1-base u-btn u-button-style u-hover-none u-none u-text-hover-palette-2-base u-text-palette-1-base u-btn-1"></a>
+        <h5 id="desc-connection" class="u-align-center u-text u-text-default u-text-1"></h5>
         <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-1">
           <div class="u-layout">
             <div class="u-layout-row">
@@ -33,7 +33,7 @@
                     </form>
                   </div>
                   <div class="u-align-center u-list u-list-1">
-                    <div id="contacts" class="u-repeater u-repeater-1">
+                    <div class="u-repeater u-repeater-1">
                       <div id="after_me"></div>
                     </div>
                   </div>
@@ -67,9 +67,6 @@
         </div>
       </div>
     </section>
-
-    <pre id="content" style="white-space: pre-wrap;"></pre>
-
     <script type="text/javascript">
       // Client ID and API key from the Developer Console
       var CLIENT_ID = '456816466000-fllno6mknd0nq7fivp486gkd7f35g00f';
@@ -121,10 +118,12 @@
         if (isSignedIn) {
           connectionBtn.onclick = handleSignoutClick;
           connectionBtn.innerHTML = 'Disconnect'
+            document.getElementById('desc-connection').innerHTML = 'Disconnect Google Contacts'
           listConnectionNames();
         } else {
           connectionBtn.onclick = handleAuthClick;
           connectionBtn.innerHTML = 'Connect'
+            document.getElementById('desc-connection').innerHTML = '   Connect with Google Contacts'
         }
       }
 
