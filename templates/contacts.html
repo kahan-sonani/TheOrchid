@@ -7,13 +7,6 @@
     <link rel="stylesheet" href="{% static  'Contacts.css'%}" media="screen">
 {% endblock linklibs %}
 {% block body %}
-
-    <p>People API Quickstart</p>
-
-    <!--Add buttons to initiate auth sequence and sign out-->
-    <button id="authorize_button" style="display: none;">Authorize</button>
-    <button id="signout_button" style="display: none;">Sign Out</button>
-
     <section class="u-align-center u-clearfix u-section-1" id="sec-453d">
       <div class="u-clearfix u-sheet u-sheet-1">
         <a id="connection-btn" href="https://nicepage.com/c/pricing-website-templates" class="u-active-none u-border-2 u-border-active-palette-2-dark-1 u-border-hover-palette-2-base u-border-palette-1-base u-btn u-button-style u-hover-none u-none u-text-hover-palette-2-base u-text-palette-1-base u-btn-1"></a>
@@ -42,30 +35,6 @@
                   <div class="u-align-center u-list u-list-1">
                     <div id="contacts" class="u-repeater u-repeater-1">
                       <div id="after_me"></div>
-                      <div class="u-container-style u-grey-5 u-list-item u-radius-5 u-repeater-item u-shape-round u-list-item-2">
-                        <div class="u-container-layout u-similar-container u-container-layout-3">
-                          <div class="u-image u-image-circle u-image-2" alt="" data-image-width="1280" data-image-height="853"></div>
-                          <h4 class="u-text u-text-default u-text-4">Sample Headline</h4>
-                        </div>
-                      </div>
-                      <div class="u-container-style u-grey-5 u-list-item u-radius-5 u-repeater-item u-shape-round u-list-item-3">
-                        <div class="u-container-layout u-similar-container u-container-layout-4">
-                          <div class="u-image u-image-circle u-image-3" alt="" data-image-width="1280" data-image-height="853"></div>
-                          <h4 class="u-text u-text-default u-text-5">Sample Headline</h4>
-                        </div>
-                      </div>
-                      <div class="u-container-style u-grey-5 u-list-item u-radius-5 u-repeater-item u-shape-round u-list-item-4">
-                        <div class="u-container-layout u-similar-container u-container-layout-5">
-                          <div class="u-image u-image-circle u-image-4" alt="" data-image-width="1280" data-image-height="853"></div>
-                          <h4 class="u-text u-text-default u-text-6">Sample Headline</h4>
-                        </div>
-                      </div>
-                      <div class="u-container-style u-grey-5 u-list-item u-radius-5 u-repeater-item u-shape-round u-list-item-5">
-                        <div class="u-container-layout u-similar-container u-container-layout-6">
-                          <div class="u-image u-image-circle u-image-5" alt="" data-image-width="1280" data-image-height="853"></div>
-                          <h4 class="u-text u-text-default u-text-7">Sample Headline</h4>
-                        </div>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -98,8 +67,6 @@
         </div>
       </div>
     </section>
-    <button id="authorize_button" style="display: none;">Authorize</button>
-    <button id="signout_button" style="display: none;">Sign Out</button>
 
     <pre id="content" style="white-space: pre-wrap;"></pre>
 
@@ -153,11 +120,11 @@
       function updateSigninStatus(isSignedIn) {
         if (isSignedIn) {
           connectionBtn.onclick = handleSignoutClick;
-          connectionBtn.innerText = 'Disconnect'
+          connectionBtn.innerHTML = 'Disconnect'
           listConnectionNames();
         } else {
           connectionBtn.onclick = handleAuthClick;
-          connectionBtn.innerText = 'Connect'
+          connectionBtn.innerHTML = 'Connect'
         }
       }
 
