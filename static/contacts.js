@@ -85,7 +85,7 @@
 
 
       function appendPre(name, index) {
-        contact_after_me.insertAdjacentHTML('afterend',
+        contact_after_me.insertAdjacentHTML('beforeend',
             `<div id="contact-list-${index}" onclick="displayContactInfo(${index});" class="card2 u-container-style u-grey-5 u-list-item u-radius-5 u-repeater-item u-shape-round u-list-item-1">
                         <div class="u-container-layout u-similar-container u-container-layout-2">
                           <div class="u-image u-image-circle u-image-1" alt="" data-image-width="1280" data-image-height="853"></div>
@@ -101,6 +101,7 @@
       function listConnectionNames() {
         gapi.client.people.people.connections.list({
            'resourceName': 'people/me',
+            'sortOrder': 'FIRST_NAME_ASCENDING',
            'personFields': 'names,phoneNumbers',
          }).then(function(response) {
            var connections = response.result.connections;
@@ -150,7 +151,7 @@
               let child = children[i];
               h4 = child.getElementsByTagName('h4')[0];
               txtValue = h4.textContent || h4.innerText;
-              if (filter === '' || txtValue.toUpperCase().indexOf(filter) > -1) {
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
                   child.style.display = "";
                   count++;
               } else {
