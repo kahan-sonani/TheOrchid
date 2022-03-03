@@ -112,6 +112,7 @@
          });
       }
 
+
       var modal = document.getElementById("myModal");
       function displayContactInfo(index){
           modal.style.display ='block';
