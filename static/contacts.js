@@ -113,7 +113,7 @@
                }
              }
            } else{
-               contact_after_me.innerHTML = 'No Contacts';
+               contact_after_me.innerHTML = '0 Contacts';
            }
          });
       }
@@ -145,13 +145,17 @@
           let children = contact_list.children;
           let h4 = '';
           let txtValue = '';
+          let count = 0;
           for(let i = 1; i < children.length; i++){
               let child = children[i];
               h4 = child.getElementsByTagName('h4')[0];
               txtValue = h4.textContent || h4.innerText;
-              if (txtValue.toUpperCase().indexOf(filter) > -1) {child.style.display = "";
-                } else {
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                  child.style.display = "";
+                  count++;
+              } else {
                   child.style.display = "none";
               }
           }
+          contact_after_me.innerHTML = `${count} Contacts`;
       }
