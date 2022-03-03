@@ -151,7 +151,7 @@
               let child = children[i];
               h4 = child.getElementsByTagName('h4')[0];
               txtValue = h4.textContent || h4.innerText;
-              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              if (filter === '' || txtValue.toUpperCase().indexOf(filter) > -1) {
                   child.style.display = "";
                   count++;
               } else {
