@@ -9,11 +9,13 @@
       // Authorization scopes required by the API; multiple scopes can be
       // included, separated by spaces.
       var SCOPES = "https://www.googleapis.com/auth/contacts";
+      var contact_list = document.getElementById('contact-list');
       var phone_list = document.getElementById('phones');
       var contact_name = document.getElementById('person')
       var contact_after_me = document.getElementById('after_me');
       var connectionBtn = document.getElementById('connection-btn');
-
+      var searchInput = document.getElementById('name-a49c');
+      var modal = document.getElementById("myModal");
       /**
        *  On load, called to load the auth2 library and API client library.
        */
@@ -78,13 +80,13 @@
        * as its text node. Used to display the results of the API call.
        *
        * @param name
-       * @param phone
+       * @param index
        */
 
 
       function appendPre(name, index) {
         contact_after_me.insertAdjacentHTML('afterend',
-            `<div id="myBtn" onclick="displayContactInfo(${index});" class="card2 u-container-style u-grey-5 u-list-item u-radius-5 u-repeater-item u-shape-round u-list-item-1">
+            `<div id="contact-list-${index}" onclick="displayContactInfo(${index});" class="card2 u-container-style u-grey-5 u-list-item u-radius-5 u-repeater-item u-shape-round u-list-item-1">
                         <div class="u-container-layout u-similar-container u-container-layout-2">
                           <div class="u-image u-image-circle u-image-1" alt="" data-image-width="1280" data-image-height="853"></div>
                           <h4 class="u-text u-text-default u-text-3">${name}</h4>
@@ -113,7 +115,6 @@
          });
       }
 
-      var modal = document.getElementById("myModal");
       function displayContactInfo(index){
           modal.style.display ='block';
           let person = people[index];
@@ -127,16 +128,27 @@
                 </a>`);
           }
       }
-        var close = document.getElementById('close')
 
-        var btn = document.getElementById("myBtn");
+      var close = document.getElementById('close')
+      var btn = document.getElementById("myBtn");
+      var span = document.getElementsByClassName("close")[0];
+      
+      close.onclick = function() {
+          modal.style.display = "none";
+      }
 
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
-
-        // When the user clicks on the button, open the modal
-
-        // When the user clicks anywhere outside of the modal, close it
-        close.onclick = function() {
-            modal.style.display = "none";
-        }
+      function onSearch(){
+          let filter = searchInput.value.toUpperCase();
+          let children = contact_list.children;
+          let h4 = '';
+          let txtValue = '';
+          for(let i = 1; i < children.length; i++){
+              let child = children[i];
+              h4 = child.getElementsByTagName('h4')[0];
+              txtValue = h4.textContent || h4.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {child.style.display = "";
+                } else {
+                  child.style.display = "none";
+              }
+          }
+      }
