@@ -9,8 +9,9 @@
       // Authorization scopes required by the API; multiple scopes can be
       // included, separated by spaces.
       var SCOPES = "https://www.googleapis.com/auth/contacts";
-      var list = document.getElementById('phone-after-me');
-      var contactList = document.getElementById('after_me');
+      var phone_list = document.getElementById('phones');
+      var phone_after_me = document.getElementById('phone-after-me');
+      var contact_after_me = document.getElementById('after_me');
       var connectionBtn = document.getElementById('connection-btn');
 
       /**
@@ -82,7 +83,7 @@
 
 
       function appendPre(name, index) {
-        contactList.insertAdjacentHTML('afterend',
+        contact_after_me.insertAdjacentHTML('afterend',
             `<div id="myBtn" onclick="displayContactInfo(${index});" class="card2 u-container-style u-grey-5 u-list-item u-radius-5 u-repeater-item u-shape-round u-list-item-1">
                         <div class="u-container-layout u-similar-container u-container-layout-2">
                           <div class="u-image u-image-circle u-image-1" alt="" data-image-width="1280" data-image-height="853"></div>
@@ -116,11 +117,11 @@
       function displayContactInfo(index){
           modal.style.display ='block';
           let person = people[index];
-          console.log(person)
           document.getElementById('person').innerHTML = person.names[0].displayName;
-          list.innerHTML = '';
+          phone_list.innerHTML = '';
+          phone_list.appendChild(phone_after_me);
           for(i = 0; i < person.phoneNumbers.length; i++){
-                list.insertAdjacentHTML('afterend',
+                phone_after_me.insertAdjacentHTML('afterend',
                 `<a href="#" style="padding: 10px 10px 10px 10px" class="list-group-item">
                             ${person.phoneNumbers[i].value}
                 </a>`);
