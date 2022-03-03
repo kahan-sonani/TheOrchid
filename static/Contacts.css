@@ -76,7 +76,6 @@
 .u-section-1 .u-repeater-1 {
   grid-gap: 10px 10px;
   grid-template-columns: 100%;
-  min-height: 460px;
 }
 
 .u-section-1 .u-list-item-1 {
@@ -118,9 +117,8 @@
 }
 
 .u-section-1 .u-text-4 {
-  font-weight: 500;
+  font-weight: 300;
   font-size: 1.25rem;
-  margin: -42px auto 0 82px;
 }
 
 .u-section-1 .u-list-item-3 {
@@ -212,7 +210,6 @@
 .u-section-1 .u-repeater-2 {
   grid-gap: 10px 10px;
   grid-template-columns: 100%;
-  min-height: 180px;
 }
 
 .u-section-1 .u-list-item-6 {
@@ -220,7 +217,7 @@
 }
 
 .u-section-1 .u-container-layout-8 {
-  padding: 0 10px;
+  padding: 0 10px 20px;
 }
 
 .u-section-1 .u-image-6 {
@@ -260,7 +257,7 @@
 }
 
 .u-section-1 .u-container-layout-9 {
-  padding: 0 10px;
+  padding: 0 10px 20px;
 }
 
 .u-section-1 .u-image-7 {

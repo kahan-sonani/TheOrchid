@@ -105,12 +105,15 @@
          }).then(function(response) {
            var connections = response.result.connections;
            if (connections.length > 0) {
+               contact_after_me.innerHTML = `${connections.length} Contacts`;
              for (i = 0; i < connections.length; i++) {
                people[i] = connections[i];
                if (people[i].names && people[i].names.length > 0 && people[i].phoneNumbers && people[i].phoneNumbers.length > 0) {
                  appendPre(people[i].names[0].displayName, i)
                }
              }
+           } else{
+               contact_after_me.innerHTML = 'No Contacts';
            }
          });
       }
@@ -132,7 +135,7 @@
       var close = document.getElementById('close')
       var btn = document.getElementById("myBtn");
       var span = document.getElementsByClassName("close")[0];
-      
+
       close.onclick = function() {
           modal.style.display = "none";
       }
