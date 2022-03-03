@@ -10,7 +10,7 @@
       // included, separated by spaces.
       var SCOPES = "https://www.googleapis.com/auth/contacts";
       var phone_list = document.getElementById('phones');
-      var phone_after_me = document.getElementById('phone-after-me');
+      var contact_name = document.getElementById('person')
       var contact_after_me = document.getElementById('after_me');
       var connectionBtn = document.getElementById('connection-btn');
 
@@ -117,9 +117,9 @@
       function displayContactInfo(index){
           modal.style.display ='block';
           let person = people[index];
-          document.getElementById('person').innerHTML = person.names[0].displayName;
-          phone_list.innerHTML = '';
-          phone_list.appendChild(phone_after_me);
+          contact_name.innerHTML = person.names[0].displayName;
+          phone_list.innerHTML = '<div id="phone-after-me"></div>';
+          let phone_after_me = document.getElementById('phone-after-me');
           for(i = 0; i < person.phoneNumbers.length; i++){
                 phone_after_me.insertAdjacentHTML('afterend',
                 `<a href="#" style="padding: 10px 10px 10px 10px" class="list-group-item">
