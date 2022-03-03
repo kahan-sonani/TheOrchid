@@ -9,7 +9,7 @@
       // Authorization scopes required by the API; multiple scopes can be
       // included, separated by spaces.
       var SCOPES = "https://www.googleapis.com/auth/contacts";
-
+      var list = document.getElementById('phone-after-me');
       var contactList = document.getElementById('after_me');
       var connectionBtn = document.getElementById('connection-btn');
 
@@ -118,13 +118,12 @@
           let person = people[index];
           console.log(person)
           document.getElementById('person').innerHTML = person.names[0].displayName;
-          let list = document.getElementById('phone-after-me')
+          list.innerHTML = '';
           for(i = 0; i < person.phoneNumbers.length; i++){
                 list.insertAdjacentHTML('afterend',
                 `<a href="#" style="padding: 10px 10px 10px 10px" class="list-group-item">
                             ${person.phoneNumbers[i].value}
-                     </a>`
-                );
+                </a>`);
           }
       }
         var close = document.getElementById('close')
