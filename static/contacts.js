@@ -57,7 +57,7 @@
         } else {
           connectionBtn.onclick = handleAuthClick;
           connectionBtn.innerHTML = 'Connect'
-            document.getElementById('desc-connection').innerHTML = '   Connect with Google Contacts'
+            document.getElementById('desc-connection').innerHTML = 'Connect to Google Contacts'
         }
       }
 
