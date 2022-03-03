@@ -1,6 +1,7 @@
 google-api-python-client
 google-oauth
 requests
+pillow
 google-auth-httplib2
 google-auth-oauthlib
 pyotp

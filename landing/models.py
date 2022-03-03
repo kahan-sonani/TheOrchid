@@ -72,7 +72,6 @@ class OUser(AbstractBaseUser):
     staff = models.BooleanField(default=False)
     admin = models.BooleanField(default=False)
     time_stamp = models.DateTimeField(auto_now=True)
-    profile_photo = models.ImageField(upload_to='images/', default='icons8-test-account.svg')
 
     USERNAME_FIELD = 'mobileno'
     EMAIL_FIELD = 'email'

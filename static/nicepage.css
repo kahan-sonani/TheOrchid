@@ -1936,7 +1936,8 @@ a {
   display: inline-block;
 }
 .u-label {
-  font-weight: normal;
+    font-family: Roboto, sans-serif;
+  font-weight: 300;
 }
 .u-form ::placeholder {
   opacity: 0.5;
@@ -30255,6 +30256,7 @@ li.active > a.u-button-style.u-button-style.u-border-active-grey-25 {
 }
 .u-border-grey-30,
 .u-separator-grey-30:after {
+    font-family: Roboto, sans-serif;
   border-color: #b3b3b3;
   stroke: #b3b3b3;
 }
@@ -36360,14 +36362,12 @@ a.u-link.u-text-hover-grey-90:hover {
   padding: 20px;
   background-color: #F95D51; /* Red */
   color: white;
-  margin-bottom: 15px;
 }
 
 .alert-box-success {
   padding: 20px;
   background-color: #62C584;
   color: white;
-  margin-bottom: 15px;
 }
 
 /* The close button */

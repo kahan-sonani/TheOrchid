@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from django.core.files.storage import FileSystemStorage
 from django.forms import ModelForm
 from django.shortcuts import render, redirect
 from landing.models import OUser
@@ -21,17 +22,12 @@ def contacts(request):
 
 
 def profile(request):
-
+    user = OUser.objects.get(mobileno=request.user.mobileno)
     if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES)
-        if form.is_valid():
-            user = form.save()
-            user.save()
-    user = request.user
+        user.fname = request.POST.get('fname')
+        user.lname = request.POST.get('lname')
+        user.email = request.POST.get('email')
+        user.save()
+        messages.success(request, 'Profile updated successfully!')
+        return render(request, 'Profile.html', {"user": user})
     return render(request, 'Profile.html', {"user": user})
-
-
-class ProfileForm(ModelForm):
-    class Meta:
-        model = OUser
-        fields = ['fname', 'lname', 'email', 'mobileno', 'profile_photo']

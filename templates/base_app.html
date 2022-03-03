@@ -66,8 +66,8 @@
             <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
           </div>
         </nav>
-      </div></header>
-    {% if messages %}
+      </div>
+      {% if messages %}
         {% for message in messages %}
               <div class="alert-box-{{ message.tags }}">
                   <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
@@ -75,8 +75,9 @@
               </div>
         {% endfor %}
     {% endif %}
-    {% block body %}
-    {% endblock body %}
+  </header>
+  {% block body %}
+  {% endblock body %}
   <footer class="u-black u-clearfix u-footer" id="sec-76b0"><div class="u-clearfix u-sheet u-sheet-1">
         <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="135" data-image-height="135">
           <img src="{% static 'images/icons8-orchid2.svg'%}" class="u-logo-image u-logo-image-1">

@@ -84,11 +84,11 @@
        */
 
 
-      function appendPre(name, index) {
+      function appendPre(name, url, index) {
         contact_list.insertAdjacentHTML('beforeend',
             `<div id="contact-list-${index}" onclick="displayContactInfo(${index});" class="card2 u-container-style u-grey-5 u-list-item u-radius-5 u-repeater-item u-shape-round u-list-item-1">
                         <div class="u-container-layout u-similar-container u-container-layout-2">
-                          <div class="u-image u-image-circle u-image-1" alt="" data-image-width="1280" data-image-height="853"></div>
+                          <div href="${url}" class="u-image u-image-circle u-image-1" alt="" data-image-width="1280" data-image-height="853"></div>
                           <h4 class="u-text u-text-default u-text-3">${name}</h4>
                         </div>
                       </div>`);
@@ -102,7 +102,7 @@
         gapi.client.people.people.connections.list({
            'resourceName': 'people/me',
             'sortOrder': 'FIRST_NAME_ASCENDING',
-           'personFields': 'names,phoneNumbers',
+           'personFields': 'names,phoneNumbers,photos',
          }).then(function(response) {
            var connections = response.result.connections;
            if (connections.length > 0) {
@@ -110,7 +110,7 @@
              for (i = 0; i < connections.length; i++) {
                people[i] = connections[i];
                if (people[i].names && people[i].names.length > 0 && people[i].phoneNumbers && people[i].phoneNumbers.length > 0) {
-                 appendPre(people[i].names[0].displayName, i)
+                 appendPre(people[i].names[0].displayName, people[i].photos[0].url,  i)
                }
              }
            } else{

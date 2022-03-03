@@ -10,28 +10,24 @@
 
     <section class="u-clearfix u-section-1" id="sec-220e">
       <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-        <div id="profile-container" class="u-image u-image-circle u-image-1" alt="" data-image-width="257" data-image-height="279">
-            <image id="profileImage" src="{{ user.profile_photo.url }}" />
-        </div>
         <div class="u-align-center u-form u-form-1">
           <form action="profile" method="POST" class="u-clearfix u-form-custom-backend u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;" redirect="true">
             {% csrf_token %}
-              <input id="imageUpload" type="file" name="profile_photo" placeholder="Photo" required="" capture>
               <div class="u-form-group u-form-name u-form-partition-factor-2">
-              <label for="name-da68" class="u-form-control-hidden u-label"></label>
+              <label for="name-da68" class="u-label">First Name</label>
               <input type="text" placeholder="First Name" value="{{ user.fname}}" id="name-da68" name="fname" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
             </div>
             <div class="u-form-group u-form-name u-form-partition-factor-2 u-form-group-2">
-              <label for="name-363e" class="u-form-control-hidden u-label"></label>
+              <label for="name-363e" class="u-label">Last Name</label>
               <input type="text" placeholder="Last Name" value="{{ user.lname }}" id="name-363e" name="lname" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
             </div>
             <div class="u-form-email u-form-group">
-              <label for="email-da68" class="u-form-control-hidden u-label"></label>
+              <label for="email-da68" class="u-form u-label">Email</label>
               <input type="email" placeholder="Email" id="email-da68" value="{{ user.email }}" name="email" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
             </div>
             <div class="u-form-group u-form-phone">
-              <label for="message-da68" class="u-form-control-hidden u-label"></label>
-              <input placeholder="Phone" rows="4" cols="50" id="message-da68" value="{{ user.mobileno }}" name="phone" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required" type="tel">
+              <label for="message-da68" class=" u-label">Phone</label>
+              <input placeholder="Phone" rows="4" cols="50" id="message-da68" value="{{ user.mobileno }}" name="phone" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" disabled type="tel">
             </div>
             <div class="u-align-center u-form-group u-form-submit">
                 <button formmethod="post" href="profile" class="u-black u-border-none u-btn u-btn-submit u-button-style u-custom-font u-heading-font u-hover-black u-btn-1">SAVE</button>
