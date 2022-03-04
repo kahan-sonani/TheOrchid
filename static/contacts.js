@@ -16,6 +16,9 @@
       var connectionBtn = document.getElementById('connection-btn');
       var searchInput = document.getElementById('name-a49c');
       var modal = document.getElementById("myModal");
+      var request_result = document.getElementById('request-result');
+      var timer_div = document.getElementById('timer-div');
+      var timer = document.getElementById('timer')
       /**
        *  On load, called to load the auth2 library and API client library.
        */
@@ -127,7 +130,7 @@
           let phone_after_me = document.getElementById('phone-after-me');
           for(i = 0; i < person.phoneNumbers.length; i++){
                 phone_after_me.insertAdjacentHTML('afterend',
-                `<a href="#" style="padding: 10px 10px 10px 10px" class="list-group-item">
+                `<a href="callRequest/${person.phoneNumbers[i].value}" onclick="loading(${person.names[0].displayName()})" style="padding: 10px 10px 10px 10px; color: black;" class="list-group-item">
                             ${person.phoneNumbers[i].value}
                 </a>`);
           }
@@ -139,6 +142,21 @@
 
       close.onclick = function() {
           modal.style.display = "none";
+      }
+
+      function loading(name){
+          timer_div.style.display = 'block';
+          timer.innerHTML = '';
+          request_result.innerHTML = '';
+          var timeleft = 10;
+          var downloadTimer = setInterval(function(){
+              if(timeleft <= 0){
+                clearInterval(downloadTimer);
+                request_result.innerHTML = `${name} didn't respond to your call`;
+              }
+                timer.innerHTML = `Calling..., Wait for ${15 - timeleft} seconds`;
+                timeleft -= 1;
+              }, 1000);
       }
 
       function onSearch(){

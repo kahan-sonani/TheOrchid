@@ -37,7 +37,7 @@
                   <h2 class="u-align-center u-text u-text-8">Call Log</h2>
                   <div class="u-align-center u-list u-list-2">
                     <div class="u-repeater u-repeater-2">
-                      <div id="myBtn" class="card2 u-container-style u-grey-5 u-list-item u-radius-5 u-repeater-item u-shape-round u-list-item-6">
+                      <div class="card2 u-container-style u-grey-5 u-list-item u-radius-5 u-repeater-item u-shape-round u-list-item-6">
                         <div class="u-container-layout u-similar-container u-container-layout-8">
                           <div class="u-image u-image-circle u-image-6" alt="" data-image-width="1280" data-image-height="853"></div>
                           <h4 class="u-text u-text-default u-text-9">Sonani Kahan</h4><span class="u-file-icon u-icon u-icon-1"><img src="images/2227858.png" alt=""></span><span class="u-file-icon u-icon u-icon-2"><img src="images/483947.png" alt=""></span>
@@ -65,6 +65,10 @@
             <div class="container height-100 d-flex justify-content-center align-items-center">
                 <div class="position-relative">
                     <div class="card p-2 text-center">
+                        <div id="timer-div" style="display:none;" class="spinner-grow" role="status">
+                          <span id="timer" class="sr-only"></span>
+                        </div>
+                        <span style="display: none;" id="request-result" class="text-warning"></span>
                         <h6 id="person"></h6>
                         <div id="phones" style="overflow: auto; min-width: 300px" class="list-group">
                         </div>
@@ -73,7 +77,6 @@
                 </div>
             </div>
         </div>
-    </section>
 
     <script async defer src="https://apis.google.com/js/api.js"
       onload="this.onload=function(){};handleClientLoad()"

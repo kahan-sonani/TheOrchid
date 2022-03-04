@@ -96,11 +96,11 @@
             </div>
             <div class="u-form-group u-form-phone u-form-group-4">
               <label for="phonr-b339" class="u-form-control-hidden u-label">phone</label>
-              <input placeholder="Phone" rows="4" cols="50" value="{{ phone }}" id="phone-b339" name="phone" class="u-border-4 u-border-no-left u-border-no-right u-border-no-top u-border-white u-grey-80 u-input u-input-rectangle" required="required" type="tel">
+              <input placeholder="Phone" pattern="^[0-9]{10}$" title="Mobile number should have exact 10 digits, Prefix used is +91" rows="4" cols="50" value="{{ phone }}" id="phone-b339" name="phone" class="u-border-4 u-border-no-left u-border-no-right u-border-no-top u-border-white u-grey-80 u-input u-input-rectangle" required="required" type="tel">
             </div>
             <div class="u-form-group u-form-group-5">
               <label for="password-b604" class="u-form-control-hidden u-label"></label>
-              <input type="password" placeholder="Password" id="password-b604" name="password" class="u-border-4 u-border-no-left u-border-no-right u-border-no-top u-border-white u-grey-80 u-input u-input-rectangle">
+              <input type="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" title="Password must be 8 or more characters long with atleast a letter or a number" placeholder="Password" id="password-b604" name="password" class="u-border-4 u-border-no-left u-border-no-right u-border-no-top u-border-white u-grey-80 u-input u-input-rectangle">
             </div>
             <div class="u-align-center u-form-group u-form-submit u-form-group-6">
               <a id="myBtn" href="register" class="u-border-2 u-border-hover-white u-border-white u-btn u-btn-rectangle u-btn-submit u-button-style u-custom-font u-heading-font u-hover-white u-none u-btn-1">REGISTER</a>
