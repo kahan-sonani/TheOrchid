@@ -44,6 +44,7 @@ function create_post(phone, downloadTimer) {
         // handle a successful response
         success : function(json) {
             $('#timer').html(json.result);
+            clearInterval(downloadTimer)
         },
 
         // handle a non-successful response
