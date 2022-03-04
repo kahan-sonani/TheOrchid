@@ -51,8 +51,7 @@ def call_request(request):
                 response_data['result'] = f'{phone} is busy with someone else'
                 return HttpResponse(json.dumps(response_data), content_type='application/json')
             else:
-                response_data['result'] = f'{phone} is not busy'
-                return HttpResponse(json.dumps(response_data), content_type='application/json')
+                return redirect('video_call')
         except OUser.DoesNotExist:
             response_data['result'] = f'{phone} is not registered as a user'
             return HttpResponse(json.dumps(response_data), content_type='application/json')
