@@ -1,8 +1,11 @@
+import json
+
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.core.files.storage import FileSystemStorage
 from django.forms import ModelForm
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from landing.models import OUser
 
@@ -35,3 +38,25 @@ def profile(request):
 
 def video_call(request):
     return render(request, 'video_call.html')
+
+
+def call_request(request):
+    if request.method == 'POST':
+        response_data = {}
+        phone = request.POST.get('phone')
+        try:
+            phone = reformat_phone(phone)
+            user = OUser.objects.get(mobileno=phone)
+            if user.is_busy:
+                response_data['result'] = f'{phone} is busy with someone else'
+                return HttpResponse(json.dumps(response_data), content_type='application/json')
+            else:
+                response_data['result'] = f'{phone} is not busy'
+                return HttpResponse(json.dumps(response_data), content_type='application/json')
+        except OUser.DoesNotExist:
+            response_data['result'] = f'{phone} is not registered as a user'
+            return HttpResponse(json.dumps(response_data), content_type='application/json')
+
+
+def reformat_phone(phone):
+    return phone.replace('+91', '').replace(' ', '')

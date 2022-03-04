@@ -23,6 +23,7 @@ urlpatterns = [
     path('logout', views.logout_user, name='logout'),
     path('contacts', views.contacts, name='contacts'),
     path('profile', views.profile, name='profile'),
-    path('videoCall', views.video_call, name='video_call')
+    path('videoCall', views.video_call, name='video_call'),
+    path('callRequest', views.call_request, name='call_request')
 ]
 

@@ -7,3 +7,24 @@ $("#profileImage").click(function(e) {
 $("#imageUpload").change(function(){
     fasterPreview( this );
 });
+
+// AJAX for posting
+function create_post(phone) {
+    $.ajax({
+        url : "/callRequest", // the endpoint
+        type : "POST", // http method
+        data : {
+            phone: phone,
+        }, // data sent with the post request
+
+        // handle a successful response
+        success : function(json) {
+            $('#timer').html(json.result);
+        },
+
+        // handle a non-successful response
+        error : function(xhr,errmsg,err) {
+            $('#timer').html(json.result);
+        }
+    });
+}
