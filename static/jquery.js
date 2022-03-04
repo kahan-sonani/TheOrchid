@@ -46,6 +46,8 @@ function create_post(phone, downloadTimer) {
             $('#timer').html(json.result);
             $('#timer-div').css("display", "none")
             clearInterval(downloadTimer)
+            if (json.redirect)
+                window.location.href = json.redirect;
         },
 
         // handle a non-successful response
