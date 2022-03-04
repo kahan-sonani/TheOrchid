@@ -31,3 +31,7 @@ def profile(request):
         messages.success(request, 'Profile updated successfully!')
         return render(request, 'Profile.html', {"user": user})
     return render(request, 'Profile.html', {"user": user})
+
+
+def video_call(request):
+    return render(request, 'video_call.html')

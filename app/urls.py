@@ -22,6 +22,7 @@ urlpatterns = [
     path('home', views.home, name='home'),
     path('logout', views.logout_user, name='logout'),
     path('contacts', views.contacts, name='contacts'),
-    path('profile', views.profile, name='profile')
+    path('profile', views.profile, name='profile'),
+    path('videoCall', views.video_call, name='video_call')
 ]
 

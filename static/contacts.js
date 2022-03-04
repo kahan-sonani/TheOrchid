@@ -130,7 +130,7 @@
           let phone_after_me = document.getElementById('phone-after-me');
           for(i = 0; i < person.phoneNumbers.length; i++){
                 phone_after_me.insertAdjacentHTML('afterend',
-                `<a href="callRequest/${person.phoneNumbers[i].value}" onclick="loading(${person.names[0].displayName});" style="padding: 10px 10px 10px 10px; color: black;" class="list-group-item">
+                `<a onclick="loading('${person.names[0].displayName}');" style="padding: 10px 10px 10px 10px; color: black;" class="list-group-item">
                             ${person.phoneNumbers[i].value}
                 </a>`);
           }
