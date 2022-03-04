@@ -155,7 +155,7 @@
                 request_result.innerHTML = `${name} didn't respond to your call`;
               }
                 timer.innerHTML = `Calling..., Wait for ${15 - timeleft} seconds`;
-                timeleft -= 1;
+                timeleft += 1;
               }, 1000);
       }
 
