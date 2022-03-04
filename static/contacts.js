@@ -148,9 +148,9 @@
           timer_div.style.display = 'block';
           timer.innerHTML = '';
           request_result.innerHTML = '';
-          var timeleft = 10;
+          var timeleft = 0;
           var downloadTimer = setInterval(function(){
-              if(timeleft <= 0){
+              if(timeleft >= 15){
                 clearInterval(downloadTimer);
                 request_result.innerHTML = `${name} didn't respond to your call`;
               }
