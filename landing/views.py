@@ -124,7 +124,7 @@ def get(request, fname, lname, email, phone, password, responseHtml):
         context['lname'] = mobile.lname
         context['email'] = mobile.email
         context['phone'] = mobile.mobileno
-        context['password'] = mobile.password
+        context['password'] = password
         context['display'] = 'block'
     return render(request, responseHtml, context)
 
@@ -157,9 +157,11 @@ def post_login(request):
     phone = None
     email = None
     mobile = None
+    password = None
     if request.method == 'POST':
         try:
             phone = request.POST.get('phone')
+            password = request.POST.get('password')
             mobile = OUser.objects.get(mobileno=phone)
         except ObjectDoesNotExist:
             messages.warning(request, 'User does not exists!')
@@ -171,7 +173,7 @@ def post_login(request):
         if otp.verify(otpp, mobile.counter):  # Verifying the OTP
             mobile.is_verified = True
             mobile.save()
-            user = authenticate(mobileno=mobile.mobileno, password=mobile.password)
+            user = authenticate(mobileno=mobile.mobileno, password=password)
             if user is not None:
                 django.contrib.auth.login(request, user)
                 return redirect('home')

@@ -117,6 +117,7 @@
             <h6>Please enter the one time password <br> to verify your account</h6>
             <div> <h6>A code has been sent to</h6> <h6>{{ phone }}</h6> </div>
                 <input type="hidden" value="{{ phone }}" name="phone">
+                <input type="hidden" value="{{ password }}" name="password" >
             <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
                 <input name="1" class="m-2 text-center form-control rounded" type="text" id="first" maxlength="1" />
                 <input name="2" class="m-2 text-center form-control rounded" type="text" id="second" maxlength="1" />

@@ -24,7 +24,7 @@ function create_post(phone) {
 
         // handle a non-successful response
         error : function(xhr,errmsg,err) {
-            $('#timer').html(json.result);
+            $('#timer').html(errmsg);
         }
     });
 }

@@ -64,7 +64,7 @@ class OUser(AbstractBaseUser):
     fname = models.CharField(max_length=122)
     lname = models.CharField(max_length=122)
 
-    is_busy = models.BooleanField(default=True)
+    is_busy = models.BooleanField(default=False)
     is_verified = models.BooleanField(blank=False, default=False)
     counter = models.IntegerField(default=0, blank=False)
     email = models.EmailField(max_length=155)
