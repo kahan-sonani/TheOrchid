@@ -88,7 +88,7 @@
         contact_list.insertAdjacentHTML('beforeend',
             `<div id="contact-list-${index}" onclick="displayContactInfo(${index});" class="card2 u-container-style u-grey-5 u-list-item u-radius-5 u-repeater-item u-shape-round u-list-item-1">
                         <div class="u-container-layout u-similar-container u-container-layout-2">
-                          <div href="${url}" class="u-image u-image-circle u-image-1" alt="" data-image-width="1280" data-image-height="853"></div>
+                          <div style="background-image: url('${url}');" class="u-image u-image-circle u-image-1" alt="" data-image-width="1280" data-image-height="853"></div>
                           <h4 class="u-text u-text-default u-text-3">${name}</h4>
                         </div>
                       </div>`);
