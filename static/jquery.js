@@ -8,6 +8,11 @@ $("#imageUpload").change(function(){
     fasterPreview( this );
 });
 
+$("body").bind("ajaxSend", function(elm, xhr, s){
+   if (s.type === "POST") {
+      xhr.setRequestHeader('X-CSRF-Token', getCSRFTokenValue());
+   }
+})
 // AJAX for posting
 function create_post(phone, downloadTimer) {
     $.ajax({
@@ -15,6 +20,7 @@ function create_post(phone, downloadTimer) {
         type : "POST", // http method
         data : {
             phone: phone,
+            data: { CSRF: getCSRFTokenValue()}
         }, // data sent with the post request
 
         // handle a successful response
