@@ -122,6 +122,7 @@
       }
 
       function displayContactInfo(index){
+          reset()
           modal.style.display ='block';
           let person = people[index];
           contact_name.innerHTML = person.names[0].displayName;
@@ -144,15 +145,12 @@
       }
 
       function loading(name){
-          timer_div.style.marginTop = '20px';
-          timer_div.style.display = 'block';
-          timer.innerHTML = '';
-          var timeleft = 0;
+          set()
+          var timeleft = 1;
           var downloadTimer = setInterval(function(){
               if(timeleft >= 15){
                 clearInterval(downloadTimer);
-                timer_div.style.display = 'none';
-                timer_div.style.marginTop = '0px';
+                reset()
                 timer.innerHTML = `${name} didn't respond to your call`;
               }
                 timer.innerHTML = `Calling..., Wait for ${15 - timeleft} seconds`;
@@ -178,4 +176,17 @@
               }
           }
           contact_after_me.innerHTML = `${count} Contacts`;
+      }
+
+      function reset(){
+          timer_div.style.marginTop = '0px'
+          timer_div.style.display = 'none'
+          timer.innerHTML = '';
+      }
+
+      function set(){
+          timer_div.style.marginTop = '20px'
+          timer.style.display = 'block';
+          timer_div.style.display = 'block';
+          timer.innerHTML = '';
       }
