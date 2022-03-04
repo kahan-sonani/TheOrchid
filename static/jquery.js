@@ -23,8 +23,8 @@ function create_post(phone, downloadTimer) {
         },
 
         // handle a non-successful response
-        error : function(json) {
-            $('#timer').html(json.result);
+        error : function(e,x,r) {
+            $('#timer').html(e);
             clearInterval(downloadTimer)
         }
     });
