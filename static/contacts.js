@@ -18,11 +18,13 @@
       var modal = document.getElementById("myModal");
       var timer_div = document.getElementById('timer-div');
       var timer = document.getElementById('timer')
+      var loadingModal = document.getElementById('contactLoadingModal');
       /**
        *  On load, called to load the auth2 library and API client library.
        */
       function handleClientLoad() {
-        gapi.load('client:auth2', initClient);
+          startContactLoading()
+          gapi.load('client:auth2', initClient);
       }
 
       /**
@@ -118,11 +120,12 @@
            } else{
                contact_after_me.innerHTML = '0 Contacts';
            }
+           endContactLoading();
          });
       }
 
       function displayContactInfo(index){
-          reset()
+          endCallRequestWaiting()
           timer.style.display = 'none';
           modal.style.display ='block';
           let person = people[index];
@@ -131,7 +134,7 @@
           let phone_after_me = document.getElementById('phone-after-me');
           for(i = 0; i < person.phoneNumbers.length; i++){
                 phone_after_me.insertAdjacentHTML('afterend',
-                `<a onclick="loading('${person.names[0].displayName}', '${person.phoneNumbers[i].value}');" style="padding: 10px 10px 10px 10px; color: black;" class="list-group-item">
+                `<a onclick="callRequestLoading('${person.names[0].displayName}', '${person.phoneNumbers[i].value}');" style="padding: 10px 10px 10px 10px; color: black;" class="list-group-item">
                             ${person.phoneNumbers[i].value}
                 </a>`);
           }
@@ -145,13 +148,13 @@
           modal.style.display = "none";
       }
 
-      function loading(name, phone){
-          set()
+      function callRequestLoading(name, phone){
+          startCallRequestWaiting()
           var timeleft = 1;
           let bool = true
           var downloadTimer = setInterval(function(){
               if(timeleft >= 15){
-                  reset()
+                  endCallRequestWaiting()
                   timer.innerHTML = `${name} didn't respond to your call`;
                   clearInterval(downloadTimer);
               }
@@ -164,7 +167,7 @@
               }, 1000);
       }
 
-      function onSearch(){
+      function onContactSearch(){
           let filter = searchInput.value.toUpperCase();
           let children = contact_list.children;
           let h4 = '';
@@ -184,15 +187,24 @@
           contact_after_me.innerHTML = `${count} Contacts`;
       }
 
-      function reset(){
+      function endCallRequestWaiting(){
           timer_div.style.marginTop = '0px'
           timer_div.style.display = 'none'
           timer.innerHTML = '';
       }
 
-      function set(){
+      function startCallRequestWaiting(){
           timer_div.style.marginTop = '20px'
           timer.style.display = 'block';
           timer_div.style.display = 'block';
           timer.innerHTML = '';
       }
+
+      function startContactLoading(){
+          loadingModal.style.display = 'block';
+      }
+
+      function endContactLoading(){
+          loadingModal.style.display = 'none';
+      }
+
