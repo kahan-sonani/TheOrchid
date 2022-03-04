@@ -23,7 +23,7 @@
        *  On load, called to load the auth2 library and API client library.
        */
       function handleClientLoad() {
-          startContactLoading()
+          startLoading()
           gapi.load('client:auth2', initClient);
       }
 
@@ -43,8 +43,10 @@
 
           // Handle the initial sign-in state.
           updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+          endLoading()
         }, function(error) {
           appendPre(JSON.stringify(error, null, 2));
+          startLoading()
         });
       }
 
@@ -69,6 +71,7 @@
        *  Sign in the user upon button click.
        */
       function handleAuthClick(event) {
+          startLoading()
         gapi.auth2.getAuthInstance().signIn();
       }
 
@@ -120,7 +123,7 @@
            } else{
                contact_after_me.innerHTML = '0 Contacts';
            }
-           endContactLoading();
+           endLoading();
          });
       }
 
@@ -200,11 +203,11 @@
           timer.innerHTML = '';
       }
 
-      function startContactLoading(){
+      function startLoading(){
           loadingModal.style.display = 'block';
       }
 
-      function endContactLoading(){
+      function endLoading(){
           loadingModal.style.display = 'none';
       }
 
