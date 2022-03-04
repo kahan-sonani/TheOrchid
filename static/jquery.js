@@ -23,8 +23,8 @@ function create_post(phone) {
         },
 
         // handle a non-successful response
-        error : function(xhr,errmsg,err) {
-            $('#timer').html(errmsg);
+        error : function(json) {
+            $('#timer').html(json.result);
         }
     });
 }
