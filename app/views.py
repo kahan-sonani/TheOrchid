@@ -20,10 +20,12 @@ def logout_user(request):
     return redirect('index')
 
 
+@login_required
 def contacts(request):
     return render(request, 'contacts.html')
 
 
+@login_required
 def profile(request):
     user = OUser.objects.get(mobileno=request.user.mobileno)
     if request.method == 'POST':
@@ -36,10 +38,12 @@ def profile(request):
     return render(request, 'Profile.html', {"user": user})
 
 
+@login_required
 def video_call(request):
     return render(request, 'video_call.html')
 
 
+@login_required
 def call_request(request):
     if request.method == 'POST':
         response_data = {}
