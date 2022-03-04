@@ -147,7 +147,6 @@
           timer_div.style.marginTop = '20px';
           timer_div.style.display = 'block';
           timer.innerHTML = '';
-          request_result.innerHTML = '';
           var timeleft = 0;
           var downloadTimer = setInterval(function(){
               if(timeleft >= 15){
