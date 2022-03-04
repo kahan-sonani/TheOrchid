@@ -16,7 +16,6 @@
       var connectionBtn = document.getElementById('connection-btn');
       var searchInput = document.getElementById('name-a49c');
       var modal = document.getElementById("myModal");
-      var request_result = document.getElementById('request-result');
       var timer_div = document.getElementById('timer-div');
       var timer = document.getElementById('timer')
       /**
@@ -145,6 +144,7 @@
       }
 
       function loading(name){
+          timer_div.style.marginTop = '20px';
           timer_div.style.display = 'block';
           timer.innerHTML = '';
           request_result.innerHTML = '';
@@ -152,7 +152,9 @@
           var downloadTimer = setInterval(function(){
               if(timeleft >= 15){
                 clearInterval(downloadTimer);
-                request_result.innerHTML = `${name} didn't respond to your call`;
+                timer_div.style.display = 'none';
+                timer_div.style.marginTop = '0px';
+                timer.innerHTML = `${name} didn't respond to your call`;
               }
                 timer.innerHTML = `Calling..., Wait for ${15 - timeleft} seconds`;
                 timeleft += 1;
