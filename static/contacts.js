@@ -46,7 +46,7 @@
           endLoading()
         }, function(error) {
           appendPre(JSON.stringify(error, null, 2));
-          startLoading()
+          endLoading()
         });
       }
 

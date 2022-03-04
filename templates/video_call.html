@@ -7,20 +7,6 @@
     <script>
       function createFrameAndJoinRoom() {
         window.callFrame = window.DailyIframe.createFrame();
-        callFrame.setTheme({
-          colors: {
-            accent: '#fff',
-            accentText: '#000',
-            background: '#FFFFFF',
-            backgroundAccent: '#fff',
-            baseText: '#000000',
-            border: '#EBEFF4',
-            mainAreaBg: '#000000',
-            mainAreaBgAccent: '#333333',
-            mainAreaText: '#FFFFFF',
-            supportiveText: '#808080',
-          },
-        });
         callFrame.join({ url: DAILY_ROOM_URL });
       }
     </script>
