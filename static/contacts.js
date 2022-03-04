@@ -148,13 +148,17 @@
       function loading(name, phone){
           set()
           var timeleft = 1;
+          let bool = true
           var downloadTimer = setInterval(function(){
               if(timeleft >= 15){
                   reset()
                   timer.innerHTML = `${name} didn't respond to your call`;
                   clearInterval(downloadTimer);
               }
-              create_post(phone, downloadTimer)
+              if( bool ) {
+                  bool = false;
+                  create_post(phone, downloadTimer);
+              }
               timer.innerHTML = `Calling..., Wait for ${15 - timeleft} seconds`;
               timeleft += 1;
               }, 1000);
