@@ -9,7 +9,7 @@ $("#imageUpload").change(function(){
 });
 
 // AJAX for posting
-function create_post(phone) {
+function create_post(phone, downloadTimer) {
     $.ajax({
         url : "/callRequest", // the endpoint
         type : "POST", // http method
@@ -25,6 +25,7 @@ function create_post(phone) {
         // handle a non-successful response
         error : function(json) {
             $('#timer').html(json.result);
+            clearInterval(downloadTimer)
         }
     });
 }

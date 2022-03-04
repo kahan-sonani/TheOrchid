@@ -123,6 +123,7 @@
 
       function displayContactInfo(index){
           reset()
+          timer.style.display = 'none';
           modal.style.display ='block';
           let person = people[index];
           contact_name.innerHTML = person.names[0].displayName;
@@ -153,7 +154,7 @@
                   timer.innerHTML = `${name} didn't respond to your call`;
                   clearInterval(downloadTimer);
               }
-              create_post(phone)
+              create_post(phone, downloadTimer)
               timer.innerHTML = `Calling..., Wait for ${15 - timeleft} seconds`;
               timeleft += 1;
               }, 1000);
