@@ -13,6 +13,7 @@
       redirectOnLeave: "https://theorchid.azurewebsites.net/home",
       micEnabled: true,
       webcamEnabled: true,
+        chatEnabled: true,
         brandingEnabled: true,
         brandLogoURL: "{% static 'images/icons8-orchid2.svg'%}",
         brandName: "The Orchid",
@@ -20,7 +21,7 @@
       participantCanToggleSelfWebcam: true,
       participantCanToggleSelfMic: true,
       joinScreen: {
-        visible: true, // Show the join screen ?
+        visible: false, // Show the join screen ?
         title: "VC - The Orchid", // Meeting title
         meetingUrl: window.location.href, // Meeting joining url
       },
@@ -29,6 +30,9 @@
     meeting.init(config);
   });
 
+  document.addEventListener('DOMContentLoaded', function GetFavColor() {
+    document.body.style.backgroundColor = 'black';
+  });
   script.src = "https://sdk.videosdk.live/rtc-js-prebuilt/0.1.29/rtc-js-prebuilt.js";
   document.getElementsByTagName("head")[0].appendChild(script);
 
