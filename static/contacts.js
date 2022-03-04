@@ -130,7 +130,7 @@
           let phone_after_me = document.getElementById('phone-after-me');
           for(i = 0; i < person.phoneNumbers.length; i++){
                 phone_after_me.insertAdjacentHTML('afterend',
-                `<a onclick="loading('${person.names[0].displayName}');create_post('${person.phoneNumbers[i].value}');" style="padding: 10px 10px 10px 10px; color: black;" class="list-group-item">
+                `<a onclick="loading('${person.names[0].displayName}', '${person.phoneNumbers[i].value}');" style="padding: 10px 10px 10px 10px; color: black;" class="list-group-item">
                             ${person.phoneNumbers[i].value}
                 </a>`);
           }
@@ -144,7 +144,7 @@
           modal.style.display = "none";
       }
 
-      function loading(name){
+      function loading(name, phone){
           set()
           var timeleft = 1;
           var downloadTimer = setInterval(function(){
@@ -153,6 +153,7 @@
                   timer.innerHTML = `${name} didn't respond to your call`;
                   clearInterval(downloadTimer);
               }
+              create_post(phone)
               timer.innerHTML = `Calling..., Wait for ${15 - timeleft} seconds`;
               timeleft += 1;
               }, 1000);
