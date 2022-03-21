@@ -118,14 +118,6 @@ $(document).ready(function() {
           timer.innerHTML = '';
       }
 
-      function startLoading(){
-          loadingModal.style.display = 'block';
-      }
-
-      function endLoading(){
-          loadingModal.style.display = 'none';
-      }
-
     function incomingCallUI(data) {
         return `<div id="${data['caller_phone']}" class="toast show" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
              <div class="toast-header">

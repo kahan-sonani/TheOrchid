@@ -24,6 +24,15 @@
       /**
        *  On load, called to load the auth2 library and API client library.
        */
+
+      function startLoading(){
+          loadingModal.style.display = 'block';
+      }
+
+      function endLoading(){
+          loadingModal.style.display = 'none';
+      }
+
       function handleClientLoad() {
           startLoading()
           gapi.load('client:auth2', initClient);

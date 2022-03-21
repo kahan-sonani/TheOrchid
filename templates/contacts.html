@@ -5,7 +5,6 @@
 {% block linklibs %}
     {% load  static %}
     <link rel="stylesheet" href="{% static  'Contacts.css'%}" media="screen">
-    <script type="text/javascript" async defer src="{% static 'contacts.js'%}"></script>
 {% endblock linklibs %}
 {% block body %}
     <section class="u-align-center u-clearfix u-section-1" id="sec-453d">
@@ -33,6 +32,7 @@
         </div>
       </div>
     </section>
+    <script type="text/javascript" src="{% static 'contacts.js'%}"></script>
     <script async defer src="https://apis.google.com/js/api.js"
       onload="this.onload=function(){};handleClientLoad()"
       onreadystatechange="if (this.readyState === 'complete') this.onload()">

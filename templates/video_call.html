@@ -1,7 +1,18 @@
-<html>
-  <head>....</head>
-  <body>
-    .....
-    <script src="https://sdk.videosdk.live/js-sdk/0.0.20/videosdk.js"></script>
-  </body>
-</html>
+{% extends 'base_app.html'%}
+{% block title %}
+    VC
+{% endblock %}
+{% block body %}
+    <div id="video-container">
+        <div><video id="local-video" style="float:left;" autoplay playsinline></video></div>
+        <button id="btn-togggle-audio"> Audio Mute</button>
+        <button id="btn-toggle-video"> Video Off</button>
+    </div>
+    <div id="chat">
+        <h3>CHAT</h3>
+        <div id="messages">
+            <ul id="message-list"></ul>
+        </div>
+        <div><input id="msg"><button id="btn-send-msg">Send</button></div>
+    </div>
+{% endblock %}
