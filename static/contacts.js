@@ -29,6 +29,9 @@
           gapi.load('client:auth2', initClient);
       }
 
+      function startLoading(){
+          loadingModal.style.display = 'block';
+      }
       /**
        *  Initializes the API client library and sets up sign-in state
        *  listeners.
@@ -152,16 +155,16 @@
       close.addEventListener("click", function (){
           callTimeout(true)
       })
-      addContacts.addEventListener('click', function(){
-          gapi.client.setApiKey(API_KEY)
-          gapi.client.request({
-              'path': 'https://people.googleapis.com/v1/people:createContact',
-              'method': 'POST',
-              'names': "kahan"
-          }).then(function(response){
-              console.log(response)
-          });
-      })
+      // addContacts.addEventListener('click', function(){
+      //     gapi.client.setApiKey(API_KEY)
+      //     gapi.client.request({
+      //         'path': 'https://people.googleapis.com/v1/people:createContact',
+      //         'method': 'POST',
+      //         'names': "kahan"
+      //     }).then(function(response){
+      //         console.log(response)
+      //     });
+      // })
       function onContactSearch(){
           let filter = searchInput.value.toUpperCase();
           let children = contact_list.children;

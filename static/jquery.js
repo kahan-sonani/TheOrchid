@@ -7,7 +7,6 @@ const CALL_INCOMING = '3'
 const SAVE_CHANNEL_TO_DB = '4'
 const CALL_TIMEOUT = '5'
 var websocket = null
-
     function init_websocket(){
           websocket = new WebSocket("ws://localhost:8000/ws/call");
           websocket.onopen = function (event){
@@ -106,6 +105,27 @@ $(document).ready(function() {
     }
     var stack = document.getElementById('notification-stack');
 
+    function endCallRequestWaiting(){
+          timer_div.style.marginTop = '0px'
+          timer_div.style.display = 'none'
+          timer.innerHTML = '';
+      }
+
+      function startCallRequestWaiting(){
+          timer_div.style.marginTop = '20px'
+          timer.style.display = 'block';
+          timer_div.style.display = 'block';
+          timer.innerHTML = '';
+      }
+
+      function startLoading(){
+          loadingModal.style.display = 'block';
+      }
+
+      function endLoading(){
+          loadingModal.style.display = 'none';
+      }
+
     function incomingCallUI(data) {
         return `<div id="${data['caller_phone']}" class="toast show" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
              <div class="toast-header">
@@ -145,26 +165,7 @@ $(document).ready(function() {
         if (call != null)
             call.remove()
     }
-    function endCallRequestWaiting(){
-          timer_div.style.marginTop = '0px'
-          timer_div.style.display = 'none'
-          timer.innerHTML = '';
-      }
 
-      function startCallRequestWaiting(){
-          timer_div.style.marginTop = '20px'
-          timer.style.display = 'block';
-          timer_div.style.display = 'block';
-          timer.innerHTML = '';
-      }
-
-      function startLoading(){
-          loadingModal.style.display = 'block';
-      }
-
-      function endLoading(){
-          loadingModal.style.display = 'none';
-      }
 
       function endCallAjax(){
           $.ajax({
