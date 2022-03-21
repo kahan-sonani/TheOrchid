@@ -28,10 +28,6 @@
           startLoading()
           gapi.load('client:auth2', initClient);
       }
-
-      function startLoading(){
-          loadingModal.style.display = 'block';
-      }
       /**
        *  Initializes the API client library and sets up sign-in state
        *  listeners.

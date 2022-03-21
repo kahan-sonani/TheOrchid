@@ -1,39 +1,7 @@
-<script>
-    {% load static %}
-  var script = document.createElement("script");
-  script.type = "text/javascript";
-  script.addEventListener("load", function (event) {
-
-    const meeting = new VideoSDKMeeting();
-
-    const config = {
-      name: "kahan-sonani",
-      apiKey: "1ed1638e-be39-425c-a157-2aa778ce1f48",
-      meetingId: "SOCIAL_DEMO",
-      redirectOnLeave: "https://theorchid.azurewebsites.net/home",
-      micEnabled: true,
-      webcamEnabled: true,
-        chatEnabled: true,
-        brandingEnabled: true,
-        brandLogoURL: "{% static 'images/icons8-orchid2.svg'%}",
-        brandName: "The Orchid",
-        poweredBy: false,
-      participantCanToggleSelfWebcam: true,
-      participantCanToggleSelfMic: true,
-      joinScreen: {
-        visible: false, // Show the join screen ?
-        title: "VC - The Orchid", // Meeting title
-        meetingUrl: window.location.href, // Meeting joining url
-      },
-    };
-
-    meeting.init(config);
-  });
-
-  document.addEventListener('DOMContentLoaded', function GetFavColor() {
-    document.body.style.backgroundColor = 'black';
-  });
-  script.src = "https://sdk.videosdk.live/rtc-js-prebuilt/0.1.29/rtc-js-prebuilt.js";
-  document.getElementsByTagName("head")[0].appendChild(script);
-
-</script>
+<html>
+  <head>....</head>
+  <body>
+    .....
+    <script src="https://sdk.videosdk.live/js-sdk/0.0.20/videosdk.js"></script>
+  </body>
+</html>
