@@ -30,7 +30,6 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'channels',
-    'signals',
     'app.apps.AppConfig',
     'landing.apps.LandingConfig',
     'django.contrib.admin',
