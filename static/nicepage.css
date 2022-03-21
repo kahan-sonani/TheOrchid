@@ -36396,7 +36396,7 @@ body {
     height: 100vh
 }
 
-.card {
+.position-relative .card {
     min-width: 400px;
     border: none;
     max-height: 400px;
@@ -36409,7 +36409,11 @@ body {
 
 .card h6 {
     color: black;
-    font-size: 20px
+    font-weight: 400;
+        font-size: 20px;
+        line-height: 1.2;
+        margin-top: 20px;
+        margin-bottom: 20px;
 }
 
 .inputs input {

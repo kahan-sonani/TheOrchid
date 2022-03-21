@@ -19,6 +19,8 @@
       var timer_div = document.getElementById('timer-div');
       var timer = document.getElementById('timer')
       var loadingModal = document.getElementById('contactLoadingModal');
+      var callTimer = null
+      var addContacts = document.getElementById('add_contacts')
       /**
        *  On load, called to load the auth2 library and API client library.
        */
@@ -137,7 +139,7 @@
           let phone_after_me = document.getElementById('phone-after-me');
           for(i = 0; i < person.phoneNumbers.length; i++){
                 phone_after_me.insertAdjacentHTML('afterend',
-                `<a onclick="callRequestLoading('${person.names[0].displayName}', '${person.phoneNumbers[i].value}');" style="padding: 10px 10px 10px 10px; color: black;" class="list-group-item">
+                `<a onclick="callRequestLoading('${person.phoneNumbers[i].value}');" style="padding: 10px 10px 10px 10px; color: black;" class="list-group-item">
                             ${person.phoneNumbers[i].value}
                 </a>`);
           }
@@ -147,29 +149,19 @@
       var btn = document.getElementById("myBtn");
       var span = document.getElementsByClassName("close")[0];
 
-      close.onclick = function() {
-          modal.style.display = "none";
-      }
-
-      function callRequestLoading(name, phone){
-          startCallRequestWaiting()
-          var timeleft = 1;
-          let bool = true
-          var downloadTimer = setInterval(function(){
-              if(timeleft >= 15){
-                  endCallRequestWaiting()
-                  timer.innerHTML = `${name} didn't respond to your call`;
-                  clearInterval(downloadTimer);
-              }
-              if( bool ) {
-                  bool = false;
-                  create_post(phone, downloadTimer);
-              }
-              timer.innerHTML = `Calling..., Wait for ${15 - timeleft} seconds`;
-              timeleft += 1;
-              }, 1000);
-      }
-
+      close.addEventListener("click", function (){
+          callTimeout(true)
+      })
+      addContacts.addEventListener('click', function(){
+          gapi.client.setApiKey(API_KEY)
+          gapi.client.request({
+              'path': 'https://people.googleapis.com/v1/people:createContact',
+              'method': 'POST',
+              'names': "kahan"
+          }).then(function(response){
+              console.log(response)
+          });
+      })
       function onContactSearch(){
           let filter = searchInput.value.toUpperCase();
           let children = contact_list.children;
@@ -190,24 +182,7 @@
           contact_after_me.innerHTML = `${count} Contacts`;
       }
 
-      function endCallRequestWaiting(){
-          timer_div.style.marginTop = '0px'
-          timer_div.style.display = 'none'
-          timer.innerHTML = '';
-      }
 
-      function startCallRequestWaiting(){
-          timer_div.style.marginTop = '20px'
-          timer.style.display = 'block';
-          timer_div.style.display = 'block';
-          timer.innerHTML = '';
-      }
 
-      function startLoading(){
-          loadingModal.style.display = 'block';
-      }
 
-      function endLoading(){
-          loadingModal.style.display = 'none';
-      }
 

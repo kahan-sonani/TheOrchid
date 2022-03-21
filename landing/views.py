@@ -3,11 +3,11 @@ import pyotp
 import requests
 from django.contrib.auth import authenticate, login
 from django.core.exceptions import ObjectDoesNotExist
+from django.dispatch import receiver
 from django.shortcuts import render, redirect
 from datetime import datetime
 import base64
-from rest_framework.views import APIView
-
+from django.contrib.auth import user_logged_in, user_logged_out
 from landing.models import Contact
 from django.contrib import messages
 from landing.models import OUser

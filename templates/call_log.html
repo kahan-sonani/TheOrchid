@@ -1,0 +1,69 @@
+{% extends 'base_app.html'%}
+{% load template_tags %}
+{% block title %}
+    Call Log
+{% endblock title %}
+{% block linklibs %}
+    {% load  static %}
+    <link rel="stylesheet" href="{% static  'Contacts.css'%}" media="screen">
+{% endblock linklibs %}
+{% block body %}
+    <section class="u-align-center u-clearfix u-section-1" id="sec-454d">
+      <div style="padding-bottom: 30px;" class="u-clearfix u-sheet u-sheet-1">
+          <div class="u-container-layout u-container-layout-7">
+                <h2 style="padding-top: 30px" class="u-align-center u-text u-text-8">Call Log</h2>
+                <div class="u-expanded-width-sm u-expanded-width-xs u-form u-form-1">
+                  <form class="u-clearfix u-form-custom-backend u-form-horizontal u-form-spacing-9 u-inner-form" source="custom" name="form" style="padding: 0px;">
+                      <div class="u-form-group u-form-name">
+                      <label for="name-1a20" class="u-form-control-hidden u-label"></label>
+                      <input type="search" placeholder="Search by First name" name="q" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-align-left u-form-group u-form-submit">
+                      <button type="submit" class="u-black u-border-none u-btn u-btn-submit u-button-style u-custom-font u-heading-font">Search</button>
+                    </div>
+                  </form>
+                </div>
+                <div class="u-align-center u-list u-list-2">
+                    <div class="u-repeater u-repeater-2">
+                        <div class="u-align-center u-text u-text-4" id="after_me_log">{{ size }} Entries</div>
+                        {% for log in page_obj %}
+                            <div class="card2 u-container-style u-grey-5 u-list-item u-radius-5 u-repeater-item u-shape-round u-list-item-6">
+                                <div class="u-container-layout u-similar-container u-container-layout-8">
+                                    <img src="{% static 'images/icons8-test-account.svg'%}" class="u-image u-image-circle u-image-6" alt="" data-image-width="1280" data-image-height="853">
+                                    <h4 class="u-text u-text-default u-text-9">{{ log.callee.fname|add:' '|add:log.callee.lname }}</h4>
+                                    <span class="u-file-icon u-icon u-icon-2">
+                                        <img style="margin-top: 8px;display: {% is_missed log %}" src="{% static 'images/icons8-missed-call.svg'%}" alt="">
+                                        <img style="margin-top: 8px;display: {% is_outgoing log request.user.mobileno %}" src="{% static 'images/icons8-outgoing-call.svg'%}" alt="">
+                                        <img style="margin-top: 8px;display: {% is_incoming log request.user.mobileno %}" src="{% static 'images/icons8-incoming-call.svg'%}" alt="">
+                                    </span>
+                                    <h5 class="u-text u-text-default u-text-10">{{ log.time }}</h5>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    <nav>
+                          <ul class="pagination pagination-sm justify-content-center">
+                              {% if page_obj.has_previous %}
+                                <li class="page-item">
+                                  <a class="page-link" style="color: black;" href="?page={{page_obj.previous_page_number}}"> Previous</a>
+                                </li>
+                              {% endif %}
+                                {% for i in page_obj.paginator.page_range %}
+                                    {% if page_obj.number == i %}
+                                    <li class="page-item active"><a style="color: white; background-color: black; border: black" class="page-link" href="#">{{ i }}</a></li>
+                                    {% else %}
+                                    <li class="page-item"><a style="color: black;" class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                                {% if page_obj.has_next %}
+                                    <li class="page-item">
+                                        <a style="color: black;" class="page-link" href="?page={{page_obj.next_page_number}}"> Next</a>
+                                    </li>
+                                {% endif %}
+                          </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+      </div>
+    </section>
+{% endblock body %}

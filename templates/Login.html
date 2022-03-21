@@ -14,6 +14,7 @@
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js">
     <script class="u-script" type="text/javascript" src="{% static 'jquery.js'%}" defer=""></script>
+      <script class="u-script" type="text/javascript" src="{% static 'Login.js'%}" defer=""></script>
     <script class="u-script" type="text/javascript" src="{% static 'nicepage.js'%}" defer=""></script>
     <meta name="generator" content="Nicepage 4.5.4, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
@@ -93,6 +94,7 @@
             <div class="u-form-group u-form-group-3">
               <label for="password-b441" class="u-form-control-hidden u-label">Password</label>
               <input type="password" placeholder="Password" id="password-b441" name="password" class="u-border-4 u-border-no-left u-border-no-right u-border-no-top u-border-white u-grey-80 u-input u-input-rectangle" required="required">
+                <input style="margin: 10px 5px 0px 0px" type="checkbox" onclick="myFunction()">Show Password
             </div>
             <div class="u-align-center u-form-group u-form-submit u-form-group-4">
               <a href="#" class="u-border-2 u-border-hover-white u-border-white u-btn u-btn-rectangle u-btn-submit u-button-style u-custom-font u-heading-font u-hover-white u-none u-text-hover-black u-btn-2">SIGN IN</a>
@@ -111,7 +113,7 @@
         <!-- Modal content -->
          <div class="container height-100 d-flex justify-content-center align-items-center">
         <div class="position-relative">
-        <div class="card p-2 text-center">
+        <div style="padding: 20px;" class="card p-2 text-center">
             <form action="validateOtpLogin" method="post">
                 {% csrf_token %}
             <h6>Please enter the one time password <br> to verify your account</h6>

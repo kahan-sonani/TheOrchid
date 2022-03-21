@@ -2,6 +2,9 @@ google-api-python-client
 google-oauth
 requests
 pillow
+channels_redis
+channels
+asgiref
 google-auth-httplib2
 google-auth-oauthlib
 pyotp

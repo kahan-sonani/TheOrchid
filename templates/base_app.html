@@ -12,6 +12,8 @@
   {% endblock linklibs %}
       {% load static %}
     <link rel="stylesheet" href="{% static 'nicepage.css'%}" media="screen">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script class="u-script" type="text/javascript" src="{% static  'jquery.js'%}" defer=""></script>
     <script class="u-script" type="text/javascript" src="{% static 'nicepage.js'%}" defer=""></script>
@@ -47,20 +49,25 @@
             </a>
           </div>
           <div class="u-custom-menu u-nav-container">
-            <ul class="u-custom-font u-nav u-spacing-30 u-text-font u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-1-light-2 u-text-white" href="contacts" style="padding: 6px 0px;">Contacts</a>
-<li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-1-light-2 u-text-white" href="profile" style="padding: 6px 0px;">Profile</a>
+            <ul class="u-custom-font u-nav u-spacing-30 u-text-font u-unstyled u-nav-1">
                 <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-1-light-2 u-text-white" href="home" style="padding: 6px 0px;">Home</a></li>
-<li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-1-light-2 u-text-white" href="logout" style="padding: 6px 0px;">Sign Out</a></ul>
+                <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-1-light-2 u-text-white" href="contacts" style="padding: 6px 0px;">Contacts</a></li>
+                <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-1-light-2 u-text-white" href="call_log" style="padding: 6px 0px;">Call Log</a></li>
+                <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-1-light-2 u-text-white" href="profile" style="padding: 6px 0px;">Profile</a></li>
+                <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-1-light-2 u-text-white" href="logout" style="padding: 6px 0px;">Sign Out</a></li>
+            </ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
             <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
               <div class="u-inner-container-layout u-sidenav-overflow">
                 <div class="u-menu-close"></div>
-                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href='contacts' style="padding: 6px 0px;">Contacts</a>
-                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href='home' style="padding: 6px 0px;">Home</a>
-<li class="u-nav-item"><a class="u-button-style u-nav-link" href="profile" style="padding: 6px 0px;">Profile</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="logout" style="padding: 6px 0px;">Sign Out</a>
-</li></ul>
+                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href='home' style="padding: 6px 0px;">Home</a></li>
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href='contacts' style="padding: 6px 0px;">Contacts</a></li>
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href='call_log' style="padding: 6px 0px;">Call Log</a></li>
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="profile" style="padding: 6px 0px;">Profile</a></li>
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="logout" style="padding: 6px 0px;">Sign Out</a></li>
+                </ul>
               </div>
             </div>
             <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
@@ -76,6 +83,40 @@
         {% endfor %}
     {% endif %}
   </header>
+    <div style="z-index: 1" aria-live="polite" aria-atomic="true" class="position-relative">
+      <div class="toast-container position-absolute top-0 end-0 p-3" id="notification-stack">
+      </div>
+    </div>
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+            <div class="container height-100 d-flex justify-content-center align-items-center">
+                <div class="position-relative">
+                    <div class="card p-2 text-center">
+                        <div id="timer-div" style="display:none;" class="spinner-grow" role="status">
+                            <span class="sr-only"></span>
+                        </div>
+                        <h6 style="display: none;" id="timer" class="u-text-4"></h6>
+                        <h6 id="person"></h6>
+                        <div id="phones" style="overflow: auto; min-width: 300px" class="list-group">
+                        </div>
+                        <button id="close" style="margin-top: 20px;margin-bottom: 20px;background: white;border-style: none;" class="u-btn-2">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="contactLoadingModal" class="modal">
+        <!-- Modal content -->
+            <div class="container height-100 d-flex justify-content-center align-items-center">
+                <div class="position-relative">
+                    <div class="card-loading p-2 text-center">
+                        <div class="spinner-grow text-light" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        <h6 style="color: white" class="u-text-4">Loading</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
   {% block body %}
   {% endblock body %}
   <footer class="u-black u-clearfix u-footer" id="sec-76b0"><div class="u-clearfix u-sheet u-sheet-1">

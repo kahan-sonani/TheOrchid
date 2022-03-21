@@ -15,19 +15,19 @@
             {% csrf_token %}
               <div class="u-form-group u-form-name u-form-partition-factor-2">
               <label for="name-da68" class="u-label">First Name</label>
-              <input type="text" placeholder="First Name" value="{{ user.fname}}" id="name-da68" name="fname" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+              <input type="text" placeholder="First Name" value="{{ request.user.fname}}" id="name-da68" name="fname" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
             </div>
             <div class="u-form-group u-form-name u-form-partition-factor-2 u-form-group-2">
               <label for="name-363e" class="u-label">Last Name</label>
-              <input type="text" placeholder="Last Name" value="{{ user.lname }}" id="name-363e" name="lname" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+              <input type="text" placeholder="Last Name" value="{{ request.user.lname }}" id="name-363e" name="lname" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
             </div>
             <div class="u-form-email u-form-group">
               <label for="email-da68" class="u-form u-label">Email</label>
-              <input type="email" placeholder="Email" id="email-da68" value="{{ user.email }}" name="email" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+              <input type="email" placeholder="Email" id="email-da68" value="{{ request.user.email }}" name="email" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
             </div>
             <div class="u-form-group u-form-phone">
               <label for="message-da68" class=" u-label">Phone</label>
-              <input placeholder="Phone" rows="4" cols="50" id="message-da68" value="{{ user.mobileno }}" name="phone" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" disabled type="tel">
+              <input placeholder="Phone" rows="4" cols="50" id="message-da68" value="{{ request.user.mobileno }}" name="phone" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" disabled type="tel">
             </div>
             <div class="u-align-center u-form-group u-form-submit">
                 <button formmethod="post" href="profile" class="u-black u-border-none u-btn u-btn-submit u-button-style u-custom-font u-heading-font u-hover-black u-btn-1">SAVE</button>

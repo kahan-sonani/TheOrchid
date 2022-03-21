@@ -4,8 +4,6 @@
 {% endblock title %}
 {% block linklibs %}
     {% load  static %}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js">
     <link rel="stylesheet" href="{% static  'Contacts.css'%}" media="screen">
 {% endblock linklibs %}
 {% block body %}
@@ -15,9 +13,7 @@
         <h5 id="desc-connection" class="u-align-center u-text u-text-default u-text-1"></h5>
         <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-1">
           <div class="u-layout">
-            <div class="u-layout-row">
-              <div class="u-align-right u-container-style u-layout-cell u-size-30-xl u-size-60-lg u-size-60-md u-size-60-sm u-size-60-xs u-layout-cell-1">
-                <div class="u-container-layout u-container-layout-1">
+              <div class="u-container-layout u-container-layout-1">
                   <h2 class="u-align-center u-text u-text-2">Contacts</h2>
                   <div class="u-align-center u-form u-form-1">
                       <div class="u-form-group u-form-name">
@@ -27,69 +23,15 @@
                   </div>
                   <div class="u-align-center u-list u-list-1">
                     <div id = "contact-list" class="u-repeater u-repeater-1">
+                        <button id="add_contacts" style="margin-bottom: 20px; padding: 10px" class="u-black u-border-none u-button-style u-custom-font u-heading-font">Add Contact</button>
                       <div class="u-align-center u-text u-text-4" id="after_me">0 Contacts</div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="u-align-center-lg u-align-center-md u-align-center-sm u-align-center-xs u-container-style u-layout-cell u-shape-rectangle u-size-30-xl u-size-60-lg u-size-60-md u-size-60-sm u-size-60-xs u-layout-cell-2">
-                <div class="u-container-layout u-container-layout-7">
-                  <h2 class="u-align-center u-text u-text-8">Call Log</h2>
-                  <div class="u-align-center u-list u-list-2">
-                    <div class="u-repeater u-repeater-2">
-                      <div class="card2 u-container-style u-grey-5 u-list-item u-radius-5 u-repeater-item u-shape-round u-list-item-6">
-                        <div class="u-container-layout u-similar-container u-container-layout-8">
-                          <img src="{% static 'images/WhatsAppImage2022-02-17at1.21.30PM.jpeg'%}" class="u-image u-image-circle u-image-6" alt="" data-image-width="1280" data-image-height="853"/>
-                          <h4 class="u-text u-text-default u-text-9">Jigar Trivedi</h4><span class="u-file-icon u-icon u-icon-1"><img src="{% static 'images/icons8-outgoing-call.svg'%}" alt=""></span><span class="u-file-icon u-icon u-icon-2"><img src="{% static 'images/icons8-phone.svg'%}" alt=""></span>
-                          <h5 class="u-text u-text-default u-text-10">Yesterday</h5>
-                        </div>
-                      </div>
-                      <div class=" card2 u-container-style u-grey-5 u-list-item u-radius-5 u-repeater-item u-shape-round u-list-item-7">
-                        <div class="u-container-layout u-similar-container u-container-layout-9">
-                          <img src="{% static 'images/WhatsAppImage2022-02-17at1.21.30PM.jpeg'%}" class="u-image u-image-circle u-image-7" alt="" data-image-width="1280" data-image-height="853"/>
-                          <h4 class="u-text u-text-default u-text-11">Jigar Trivedi</h4><span class="u-file-icon u-icon u-icon-3"><img src="{% static 'images/icons8-outgoing-call.svg'%}" alt=""></span><span class="u-file-icon u-icon u-icon-4"><img src="{% static 'images/icons8-phone.svg'%}" alt=""></span>
-                          <h5 class="u-text u-text-default u-text-12">15 hours ago</h5>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
         <script type="text/javascript" async defer src="{% static 'contacts.js'%}"></script>
-        <div id="myModal" class="modal">
-        <!-- Modal content -->
-            <div class="container height-100 d-flex justify-content-center align-items-center">
-                <div class="position-relative">
-                    <div class="card p-2 text-center">
-                        <div id="timer-div" style="display:none;" class="spinner-grow" role="status">
-                            <span class="sr-only"></span>
-                        </div>
-                        <h6 style="display: none;" id="timer" class="u-text-4"></h6>
-                        <h6 id="person"></h6>
-                        <div id="phones" style="overflow: auto; min-width: 300px" class="list-group">
-                        </div>
-                        <button id="close" style="margin-top: 20px;margin-bottom: 20px;background: white" class="u-btn-2">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="contactLoadingModal" class="modal">
-        <!-- Modal content -->
-            <div class="container height-100 d-flex justify-content-center align-items-center">
-                <div class="position-relative">
-                    <div class="card-loading p-2 text-center">
-                        <div class="spinner-grow text-light" role="status">
-                            <span class="sr-only">Loading...</span>
-                        </div>
-                        <h6 style="color: white" class="u-text-4">Loading</h6>
-                    </div>
-                </div>
-            </div>
-        </div>
     </section>
     <script async defer src="https://apis.google.com/js/api.js"
       onload="this.onload=function(){};handleClientLoad()"
