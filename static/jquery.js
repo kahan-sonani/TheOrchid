@@ -6,7 +6,10 @@ const CALL_REJECT = '2'
 const CALL_INCOMING = '3'
 const SAVE_CHANNEL_TO_DB = '4'
 const CALL_TIMEOUT = '5'
+const CHAT_MESSAGE = '6'
+const redirectVC = 'videoCall'
 var websocket = null
+
     function init_websocket(){
           websocket = new WebSocket("ws://localhost:8000/ws/call");
           websocket.onopen = function (event){
@@ -24,7 +27,7 @@ var websocket = null
                 var data = JSON.parse(event.data)
                 switch(data.code){
                     case CALL_ACCEPT:
-                        accepted()
+                        accepted(data)
                         break;
                     case CALL_REJECT:
                         rejected()
@@ -132,10 +135,20 @@ $(document).ready(function() {
 
     function addCallhandlers(data){
         document.getElementById(`${data['caller_phone']}-accept`)
-            .addEventListener("click", function(){
+            .addEventListener("click", async function () {
                 data['code'] = CALL_ACCEPT
                 removeNotificationStack(data['caller_phone'])
-                websocket.send(JSON.stringify(data))
+                strdata = JSON.stringify(data)
+                websocket.send(strdata)
+                let room = data['caller_phone'].toUpperCase()
+                let response = await fetch(`/get_token_for_vc/?channel=${room}`)
+                let res = await response.json()
+                let UID = res.uid
+                let token = data.token
+                sessionStorage.setItem('UID', UID)
+                sessionStorage.setItem('token', token)
+                sessionStorage.setItem('room', room)
+                window.location.href = redirectVC
             })
         document.getElementById(`${data['caller_phone']}-reject`)
             .addEventListener("click", function(){
@@ -172,10 +185,23 @@ $(document).ready(function() {
                 })
       }
 
-      function accepted(){
+      async function accepted(data){
           endCallRequestWaiting()
           clearInterval(callTimer)
-          timer.innerHTML = `User accepted your call`
+          timer.innerHTML = 'User accepted your call'
+          let room = data['caller_phone'].toUpperCase()
+
+          let response = await fetch(`/get_token_for_vc/?channel=${room}`)
+          let res = await response.json()
+
+          let UID = res.uid
+          let token = data.token
+
+          sessionStorage.setItem('UID', UID)
+          sessionStorage.setItem('token', token)
+          sessionStorage.setItem('room', room)
+
+          window.location.href = redirectVC
       }
 
       function rejected(){

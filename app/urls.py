@@ -27,6 +27,8 @@ urlpatterns = [
     path('videoCall', views.video_call, name='video_call'),
     path('callRequest', views.call_request, name='call_request'),
     path('saveChannel', views.save_channel, name='save_channel'),
-    path('callTimeout', views.call_timeout, name='call_timeout')
+    path('callTimeout', views.call_timeout, name='call_timeout'),
+    path('acceptCall', views.accept_call, name='accept_call'),
+    path('get_token_for_vc/', views.get_token_for_vc, name='get_token_for_vc')
 ]
 

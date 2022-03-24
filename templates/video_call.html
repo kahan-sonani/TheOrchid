@@ -1,18 +1,42 @@
-{% extends 'base_app.html'%}
+{% extends 'base_vc.html'%}
 {% block title %}
     VC
 {% endblock %}
+{% block linklibs%}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'video_call.css'%}" media="screen">
+{% endblock %}
 {% block body %}
-    <div id="video-container">
-        <div><video id="local-video" style="float:left;" autoplay playsinline></video></div>
-        <button id="btn-togggle-audio"> Audio Mute</button>
-        <button id="btn-toggle-video"> Video Off</button>
-    </div>
-    <div id="chat">
-        <h3>CHAT</h3>
-        <div id="messages">
-            <ul id="message-list"></ul>
+    <section class="section-44">
+            <div id="video-streams">
+
+            </div>
+{#        <div class="chat-layout" id="chat">#}
+{#                    <h4 class="window-header">Chat</h4>#}
+{#                    <hr>#}
+{#                    <div id="message-list" class="message-list">#}
+{#                    </div>#}
+{#                    <div class="send-message u-form-horizontal">#}
+{#                        <input type="text" placeholder="Message" id="chat-message" name="message" class="u-border-4 u-border-no-left u-border-no-right u-border-no-top u-border-white u-grey-80 u-input u-input-rectangle" required="required">#}
+{#                        <button id="message-send" class="button-send" type="button">Send</button>#}
+{#                    </div>#}
+{#                </div>#}
+    </section>
+    <section id="controls-wrapper">
+        <div class ="icon-wrapper">
+            <img id="mic-btn" class="control-icon" src="{% static 'images/icons8-microphone.svg' %}"/>
         </div>
-        <div><input id="msg"><button id="btn-send-msg">Send</button></div>
-    </div>
+        <div class ="icon-wrapper">
+            <img id="camera-btn" class="control-icon" src="{% static 'images/icons8-video-call.svg' %}"/>
+        </div>
+        <div class ="icon-wrapper">
+            <img id="leave-btn" class="control-icon" src="{% static 'images/icons8-end-call.svg' %}"/>
+        </div>
+    </section>
+{#    <script>#}
+{#        var call_info = JSON.parse('{{ call_info | escapejs }}')#}
+{#        console.log(call_info)#}
+{#    </script>#}
+    <script type="text/javascript" src="{% static 'assets/AgoraRTC_N-4.10.2.js' %}"></script>
+    <script type="text/javascript" src="{% static 'video_call.js' %}"></script>
 {% endblock %}

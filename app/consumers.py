@@ -46,7 +46,7 @@ class TOAConsumer(AsyncWebsocketConsumer):
                 log = await get_call_log(data)
                 log.missed = True
                 log.rejected = False
-            await sync_to_async(log.save)()
+                await sync_to_async(log.save)()
             await self.channel_layer.send(
                 data['channel_name'], data)
 

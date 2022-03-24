@@ -1,5 +1,7 @@
 import json
-
+import random
+from urllib.parse import unquote
+from agora_token_builder import RtcTokenBuilder
 from channels.layers import get_channel_layer
 from django.contrib import messages
 from django.contrib.auth import logout
@@ -9,8 +11,9 @@ from django.core.files.storage import default_storage
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.forms import ModelForm
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
+import time
 
 from app.models import ChannelName, CallLog
 from landing.models import OUser
@@ -87,7 +90,6 @@ def save_channel(request):
             response['result'] = 'Saved the new entry'
             channel = ChannelName.objects.create(phone=phone, channel_name=channel_name)
             channel.save()
-
     return HttpResponse(json.dumps(response), content_type='application/json')
 
 
@@ -117,3 +119,26 @@ def call_log(request):
     page_number = request.GET.get('page', 1)
     logs = paginator.get_page(page_number)
     return render(request, 'call_log.html', {'page_obj': logs, 'size': size})
+
+
+def accept_call(request):
+    context = {}
+    log = CallLog.objects.filter(caller=request.user).order_by('-time')[0]
+    context['log'] = log
+    return render(request, 'video_call.html', context=context)
+
+
+def get_token_for_vc(request):
+
+    appId = '3e7cba117dc14b9eb96d8d54c64f9294'
+    appCertificate = '8d74a4ff4248452bb29361bdebfc3647'
+    channelName = request.GET.get('channel')
+    uid = random.randint(1, 230)
+    expirationTimeInSeconds = 3600 * 24
+    currentTimeStamp = time.time()
+    privilegeExpiredTs = currentTimeStamp + expirationTimeInSeconds
+    role = 1
+
+    token = RtcTokenBuilder.buildTokenWithUid(appId, appCertificate, channelName,
+                                              uid, role, privilegeExpiredTs)
+    return JsonResponse({'token': token, 'uid': uid}, safe=False)
