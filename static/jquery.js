@@ -16,11 +16,11 @@ var websocket = null
               console.log("Listening to call requests...")
           }
           websocket.onerror = function (event){
-              console.log("Something went wrong with listening with call requests...")
+              console.log("Something went wrong with listening with call requests... ")
+              console.log(JSON.stringify(event))
           }
           websocket.onclose = function (event){
               console.log("Stopping to listen for call requests...")
-              console.log(JSON.stringify(event))
               init_websocket()
           }
           websocket.onmessage = function (event){
