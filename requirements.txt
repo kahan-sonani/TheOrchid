@@ -1,8 +1,7 @@
 google-api-python-client
 google-oauth
-uvicorn
-uvloop
-httptools
+agora_token_builder
+agora
 requests
 pillow
 channels_redis
