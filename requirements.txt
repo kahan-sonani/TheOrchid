@@ -1,7 +1,9 @@
 google-api-python-client
 google-oauth
 agora_token_builder
+redis-server
 agora
+daphne
 requests
 pillow
 channels_redis

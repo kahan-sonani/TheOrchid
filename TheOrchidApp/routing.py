@@ -13,7 +13,7 @@ application = ProtocolTypeRouter({
     'websocket': AllowedHostsOriginValidator(
         AuthMiddlewareStack(
             URLRouter([
-                path("ws/call", TOAConsumer.as_asgi()),
+                path("ws/call:8001", TOAConsumer.as_asgi()),
             ])
         )
     ),

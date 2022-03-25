@@ -11,7 +11,7 @@ const redirectVC = 'videoCall'
 var websocket = null
 
     function init_websocket(){
-          websocket = new WebSocket("wss://theorchid.azurewebsites.net/ws/call");
+          websocket = new WebSocket("wss://theorchid.azurewebsites.net/ws/call:8001");
           websocket.onopen = function (event){
               console.log("Listening to call requests...")
           }
