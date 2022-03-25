@@ -10,11 +10,9 @@ from app.consumers import TOAConsumer
 application = ProtocolTypeRouter({
     'http': get_asgi_application(),
     'https': get_asgi_application(),
-    'websocket': AllowedHostsOriginValidator(
-        AuthMiddlewareStack(
-            URLRouter([
-                path("ws/call:8001", TOAConsumer.as_asgi()),
-            ])
-        )
+    'websocket': AuthMiddlewareStack(
+                URLRouter([
+                    path("ws/call", TOAConsumer.as_asgi()),
+                ])
     ),
 })
