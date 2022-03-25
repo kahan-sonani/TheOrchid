@@ -11,7 +11,7 @@ const redirectVC = 'videoCall'
 var websocket = null
 
     function init_websocket(){
-          websocket = new WebSocket(((window.location.protocol === "https:") ? "wss://" : "ws://") + window.location.host + "/ws/call");
+          websocket = new WebSocket(((window.location.protocol === "https:") ? "wss://" : "ws://") + window.location.host + "/ws/call:443");
           websocket.onopen = function (event){
               console.log("Listening to call requests...")
           }
@@ -20,6 +20,7 @@ var websocket = null
           }
           websocket.onclose = function (event){
               console.log("Stopping to listen for call requests...")
+              console.log(JSON.stringify(event))
               init_websocket()
           }
           websocket.onmessage = function (event){
