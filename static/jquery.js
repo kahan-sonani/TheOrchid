@@ -11,13 +11,12 @@ const redirectVC = 'videoCall'
 var websocket = null
 
     function init_websocket(){
-          websocket = new WebSocket(((window.location.protocol === "https:") ? "wss://" : "ws://") + window.location.host + "/ws/call:443");
+          websocket = new WebSocket(((window.location.protocol === "https:") ? "wss://" : "ws://") + window.location.host + "/ws/call");
           websocket.onopen = function (event){
               console.log("Listening to call requests...")
           }
           websocket.onerror = function (event){
               console.log("Something went wrong with listening with call requests... ")
-              console.log(JSON.stringify(event))
           }
           websocket.onclose = function (event){
               console.log("Stopping to listen for call requests...")
