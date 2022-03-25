@@ -32,3 +32,4 @@ def is_outgoing(log, user):
     else:
         return 'none'
 
+

@@ -15,7 +15,7 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 import time
 
-from app.models import ChannelName, CallLog
+from app.models import ChannelName, CallLog, CallSettings
 from landing.models import OUser
 
 
@@ -47,7 +47,13 @@ def profile(request):
 
 @login_required
 def video_call(request):
-    return render(request, 'video_call.html')
+    call_settings = {}
+    try:
+        user_settings = CallSettings.objects.get(user=request.user)
+        call_settings['enable_predictions'] = user_settings.enable_predictions
+    except CallSettings.DoesNotExist:
+        call_settings['enable_predictions'] = 0
+    return render(request, 'video_call.html', context=call_settings)
 
 
 @login_required
@@ -142,3 +148,20 @@ def get_token_for_vc(request):
     token = RtcTokenBuilder.buildTokenWithUid(appId, appCertificate, channelName,
                                               uid, role, privilegeExpiredTs)
     return JsonResponse({'token': token, 'uid': uid}, safe=False)
+
+
+def save_call_settings(request):
+    response = {}
+    if request.method == 'POST':
+        enable_predictions = int(request.POST.get('enable_predictions'))
+        try:
+            user = CallSettings.objects.get(user=request.user)
+            user.enable_predictions = enable_predictions
+            user.save()
+            print('saved')
+        except CallSettings.DoesNotExist:
+            new_user = CallSettings.objects.create(user=request.user)
+            new_user.enable_predictions = enable_predictions
+            new_user.save()
+    response['result'] = 'Saved'
+    return HttpResponse(json.dumps(response), content_type='application/json')

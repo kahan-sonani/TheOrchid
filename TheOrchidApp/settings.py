@@ -84,10 +84,10 @@ ASGI_APPLICATION = 'TheOrchidApp.routing.application'
 #     }
 # }
 CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels_redis.core.RedisChannelLayer",
-        "CONFIG": {
-            "hosts": [("https://theorchid.azurewebsites.net", 6379)],
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
         },
     },
 }
@@ -141,13 +141,13 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
-# STATICFILES_STORAGE = 'backend.custom_azure.AzureStaticStorage'
-# STATIC_LOCATION = "static"
-# AZURE_ACCOUNT_NAME = "djangotheorchidstorage"
-# AZURE_CUSTOM_DOMAIN = f'{AZURE_ACCOUNT_NAME}.blob.core.windows.net'
-# STATIC_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
+STATICFILES_STORAGE = 'backend.custom_azure.AzureStaticStorage'
+STATIC_LOCATION = "static"
+AZURE_ACCOUNT_NAME = "djangotheorchidstorage"
+AZURE_CUSTOM_DOMAIN = f'{AZURE_ACCOUNT_NAME}.blob.core.windows.net'
+STATIC_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
 
 SECURE_REFERRER_POLICY = 'no-referrer-when-downgrade'
 AUTH_USER_MODEL = 'landing.OUser'
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
 

@@ -1,4 +1,5 @@
 {% extends 'base_vc.html'%}
+{% load template_tags %}
 {% block title %}
     VC
 {% endblock %}
@@ -9,18 +10,18 @@
 {% block body %}
     <section class="section-44">
             <div id="video-streams">
-
+                <div class="window-layout" id="chat">
+                    <h4 class="window-header">Chat</h4>
+                    <hr>
+                    <div id="message-list" class="message-list">
+                    </div>
+                    <div class="send-message u-form-horizontal">
+                        <input type="text" placeholder="Message" id="chat-message" name="message" class="u-border-4 u-border-no-left u-border-no-right u-border-no-top u-border-white u-grey-80 u-input u-input-rectangle" required="required">
+                        <button id="message-send" class="button-send" type="button">Send</button>
+                    </div>
+                </div>
             </div>
-{#        <div class="chat-layout" id="chat">#}
-{#                    <h4 class="window-header">Chat</h4>#}
-{#                    <hr>#}
-{#                    <div id="message-list" class="message-list">#}
-{#                    </div>#}
-{#                    <div class="send-message u-form-horizontal">#}
-{#                        <input type="text" placeholder="Message" id="chat-message" name="message" class="u-border-4 u-border-no-left u-border-no-right u-border-no-top u-border-white u-grey-80 u-input u-input-rectangle" required="required">#}
-{#                        <button id="message-send" class="button-send" type="button">Send</button>#}
-{#                    </div>#}
-{#                </div>#}
+
     </section>
     <section id="controls-wrapper">
         <div class ="icon-wrapper">
@@ -33,10 +34,22 @@
             <img id="leave-btn" class="control-icon" src="{% static 'images/icons8-end-call.svg' %}"/>
         </div>
     </section>
-{#    <script>#}
-{#        var call_info = JSON.parse('{{ call_info | escapejs }}')#}
-{#        console.log(call_info)#}
-{#    </script>#}
+    <div class="call-settings" id="call-settings">
+        <h4 class="window-header">Call Settings</h4>
+        <hr/>
+        <label class="container"><h6 style="margin: 3px 0 0 30px ">Sign Language predictions</h6>
+          <input type="checkbox" id="enable-predictions">
+          <span class="checkmark"></span>
+        </label>
+    </div>
+    <script>
+         let check = document.getElementById('enable-predictions')
+         check.checked = {{ enable_predictions }}
+         addMessageLocaly("sdfsdf")
+        {#var call_info = JSON.parse('{{ call_info | escapejs }}')#}
+        {#console.log(call_info)#}
+    </script>
     <script type="text/javascript" src="{% static 'assets/AgoraRTC_N-4.10.2.js' %}"></script>
     <script type="text/javascript" src="{% static 'video_call.js' %}"></script>
+
 {% endblock %}
