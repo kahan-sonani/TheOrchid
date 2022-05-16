@@ -13,12 +13,8 @@ class CallLog(models.Model):
     missed = models.BooleanField(default=False)
 
 
-class ChannelName(models.Model):
-    phone = models.CharField(primary_key=True, max_length=10)
-    channel_name = models.CharField(max_length=122)
-
-
 class CallSettings(models.Model):
     user = models.OneToOneField(OUser, on_delete=models.CASCADE, related_name="user", default=None, primary_key=True)
     enable_predictions = models.IntegerField(default=0)
+    enable_transcriptions = models.IntegerField(default=0)
 

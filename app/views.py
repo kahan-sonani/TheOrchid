@@ -1,22 +1,36 @@
+import gc
 import json
+import multiprocessing
 import random
-from urllib.parse import unquote
+
+import numpy as np
+import torch
 from agora_token_builder import RtcTokenBuilder
-from channels.layers import get_channel_layer
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from django.core.files.base import ContentFile
-from django.core.files.storage import default_storage
 from django.core.paginator import Paginator
 from django.db.models import Q
-from django.forms import ModelForm
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 import time
-
-from app.models import ChannelName, CallLog, CallSettings
+from app.models import CallLog, CallSettings
 from landing.models import OUser
+from ml_model.configs import TransformerConfig
+from ml_model.models import Transformer
+from ml_model.utils import load_label_map, inference, KeypointsDataset, get_pt_model_uri
+from torch.utils import data
+
+label_map = load_label_map()
+label_map = dict(zip(label_map.values(), label_map.keys()))
+
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+config = TransformerConfig(size="large", max_position_embeddings=256)
+model = Transformer(config=config, n_classes=263)
+model = model.to(device)
+pretrained_model_name = get_pt_model_uri()
+ckpt = torch.load(pretrained_model_name)
+model.load_state_dict(ckpt["model"])
 
 
 @login_required
@@ -51,7 +65,10 @@ def video_call(request):
     try:
         user_settings = CallSettings.objects.get(user=request.user)
         call_settings['enable_predictions'] = user_settings.enable_predictions
+        call_settings['enable_transcription'] = user_settings.enable_transcriptions
+
     except CallSettings.DoesNotExist:
+        call_settings['enable_transcription'] = 0
         call_settings['enable_predictions'] = 0
     return render(request, 'video_call.html', context=call_settings)
 
@@ -64,16 +81,14 @@ def call_request(request):
         phone = reformat_phone(request.POST.get('phone'))
         try:
             user = OUser.objects.get(mobileno=phone)
-            channel = ChannelName.objects.get(phone=user.mobileno)
             response['code'] = '3'
-            response['channel_name'] = channel.channel_name
             response['caller_phone'] = request.user.mobileno
+            response['callee_phone'] = user.mobileno
             response['caller_fname'] = request.user.fname
-            response['caller_lname'] = request.user.lname
+            response['callee_lname'] = request.user.lname
             log = CallLog.objects.create(caller=request.user, callee=user)
             log.save()
-
-        except OUser.DoesNotExist or ChannelName.DoesNotExist:
+        except OUser.DoesNotExist:
             response['error'] = f'User with {phone} does not exists'
     return HttpResponse(json.dumps(response), content_type='application/json')
 
@@ -82,31 +97,13 @@ def reformat_phone(phone):
     return phone.replace('+91', '').replace(' ', '')
 
 
-def save_channel(request):
-    response = {}
-    if request.method == 'POST':
-        phone = request.user.mobileno
-        channel_name = request.POST.get('channel_name')
-        try:
-            channel = ChannelName.objects.get(phone=phone)
-            channel.channel_name = channel_name
-            channel.save()
-            response['result'] = 'Updated existing entry'
-        except ChannelName.DoesNotExist:
-            response['result'] = 'Saved the new entry'
-            channel = ChannelName.objects.create(phone=phone, channel_name=channel_name)
-            channel.save()
-    return HttpResponse(json.dumps(response), content_type='application/json')
-
-
 def call_timeout(request):
     response = {}
     if request.method == 'POST':
         code = request.POST.get('code')
         response['caller_phone'] = request.user.mobileno
         log = CallLog.objects.filter(caller=request.user).order_by('-time')[0]
-        channel = ChannelName.objects.get(phone=log.callee.mobileno)
-        response['channel_name'] = channel.channel_name
+        response['callee_phone'] = log.callee.mobileno
         response['code'] = code
     return HttpResponse(json.dumps(response), content_type='application/json')
 
@@ -127,15 +124,7 @@ def call_log(request):
     return render(request, 'call_log.html', {'page_obj': logs, 'size': size})
 
 
-def accept_call(request):
-    context = {}
-    log = CallLog.objects.filter(caller=request.user).order_by('-time')[0]
-    context['log'] = log
-    return render(request, 'video_call.html', context=context)
-
-
 def get_token_for_vc(request):
-
     appId = '3e7cba117dc14b9eb96d8d54c64f9294'
     appCertificate = '8d74a4ff4248452bb29361bdebfc3647'
     channelName = request.GET.get('channel')
@@ -147,21 +136,81 @@ def get_token_for_vc(request):
 
     token = RtcTokenBuilder.buildTokenWithUid(appId, appCertificate, channelName,
                                               uid, role, privilegeExpiredTs)
-    return JsonResponse({'token': token, 'uid': uid}, safe=False)
+    log = CallLog.objects.filter(caller__mobileno=channelName).order_by('-time')[0]
+    response = {
+        'token': token,
+        'uid': uid,
+        'caller_phone': log.caller.mobileno,
+        'callee_phone': log.callee.mobileno,
+        'callee_fname': log.callee.fname,
+        'caller_fname': log.caller.fname
+    }
+    return JsonResponse(response, safe=False)
 
 
-def save_call_settings(request):
+def get_user(request):
+    response = {
+        'phone': request.user.mobileno,
+        'fname': request.user.fname,
+        'lname': request.user.lname
+    }
+    return JsonResponse(response, safe=False)
+
+
+def enable_predictions(request):
     response = {}
     if request.method == 'POST':
-        enable_predictions = int(request.POST.get('enable_predictions'))
+        ep = int(request.POST.get('enable_predictions'))
         try:
             user = CallSettings.objects.get(user=request.user)
-            user.enable_predictions = enable_predictions
+            user.enable_predictions = ep
             user.save()
-            print('saved')
         except CallSettings.DoesNotExist:
             new_user = CallSettings.objects.create(user=request.user)
-            new_user.enable_predictions = enable_predictions
+            new_user.enable_predictions = ep
             new_user.save()
     response['result'] = 'Saved'
     return HttpResponse(json.dumps(response), content_type='application/json')
+
+
+def enable_transcription(request):
+    response = {}
+    if request.method == 'POST':
+        et = int(request.POST.get('enable_transcriptions'))
+        try:
+            user = CallSettings.objects.get(user=request.user)
+            user.enable_transcriptions = et
+            user.save()
+        except CallSettings.DoesNotExist:
+            new_user = CallSettings.objects.create(user=request.user)
+            new_user.enable_transcriptions = et
+            new_user.save()
+    response['result'] = 'Saved'
+    return HttpResponse(json.dumps(response), content_type='application/json')
+
+
+async def model_inference(request):
+    if request.method == 'POST':
+        save_data = json.loads(request.POST.get('key_points'))
+        save_data['pose_x'] = save_data['pose_x'] if save_data['pose_x'] else [[np.nan] * 25]
+        save_data['pose_y'] = save_data['pose_y'] if save_data['pose_y'] else [[np.nan] * 25]
+        save_data['hand1_x'] = save_data['hand1_x'] if save_data['hand1_x'] else [[np.nan] * 25]
+        save_data['hand1_y'] = save_data['hand1_y'] if save_data['hand1_y'] else [[np.nan] * 25]
+        save_data['hand2_x'] = save_data['hand2_x'] if save_data['hand2_x'] else [[np.nan] * 25]
+        save_data['hand2_y'] = save_data['hand2_y'] if save_data['hand2_y'] else [[np.nan] * 25]
+
+        dataset = KeypointsDataset(
+            uid=save_data['uid'],
+            key_points=save_data,
+            max_frame_len=169,
+        )
+        dataloader = data.DataLoader(
+            dataset,
+            batch_size=1,
+            shuffle=False,
+            num_workers=4,
+            pin_memory=True,
+        )
+        response = inference(dataloader=dataloader, model=model, label_map=label_map, device=device, uid=save_data['uid'])
+        gc.collect()
+        return HttpResponse(json.dumps(response), content_type='application/json')

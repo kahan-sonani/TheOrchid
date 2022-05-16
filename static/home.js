@@ -10,7 +10,7 @@ var callTimer = null
 
 
 closeModal.addEventListener("click", function(){
-    callTimeout()
+    callTimeout(true)
     person.style.display = 'block'
     phones.style.display = 'block'
 })

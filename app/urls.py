@@ -26,10 +26,11 @@ urlpatterns = [
     path('call_log', views.call_log, name='call_log'),
     path('videoCall', views.video_call, name='video_call'),
     path('callRequest', views.call_request, name='call_request'),
-    path('saveChannel', views.save_channel, name='save_channel'),
     path('callTimeout', views.call_timeout, name='call_timeout'),
-    path('acceptCall', views.accept_call, name='accept_call'),
     path('get_token_for_vc/', views.get_token_for_vc, name='get_token_for_vc'),
-    path('saveCallSettings', views.save_call_settings, name='save_call_settings')
+    path('enableTranscription', views.enable_transcription, name='enable_transcription'),
+    path('enablePredictions', views.enable_predictions, name='enable_predictions'),
+    path('get_user', views.get_user, name='get_user'),
+    path('inference', views.model_inference, name='inference')
 ]
 

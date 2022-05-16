@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="file://$PROJECT_DIR$" libraries="{@daily-co, animate.css, api, bootstrap, jquery, popper.js}" />
+    <file url="file://$PROJECT_DIR$" libraries="{@daily-co, @mediapipe/camera_utils, @mediapipe/control_utils, @mediapipe/control_utils_3d, @mediapipe/drawing_utils, @mediapipe/hands, @mediapipe/pose, @popperjs/core, agora-rtm-sdk, animate.css, api, bootstrap, jquery, opencv, popper.js}" />
   </component>
 </project>

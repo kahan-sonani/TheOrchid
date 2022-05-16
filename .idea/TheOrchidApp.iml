@@ -22,11 +22,23 @@
     <orderEntry type="library" name="api" level="application" />
     <orderEntry type="library" name="@daily-co" level="application" />
     <orderEntry type="library" name="popper.js" level="application" />
+    <orderEntry type="library" name="@mediapipe/camera_utils" level="application" />
+    <orderEntry type="library" name="@mediapipe/control_utils" level="application" />
+    <orderEntry type="library" name="@mediapipe/drawing_utils" level="application" />
+    <orderEntry type="library" name="@mediapipe/hands" level="application" />
+    <orderEntry type="library" name="@mediapipe/pose" level="application" />
+    <orderEntry type="library" name="@mediapipe/control_utils_3d" level="application" />
+    <orderEntry type="library" name="opencv" level="application" />
+    <orderEntry type="library" name="@popperjs/core" level="application" />
+    <orderEntry type="library" name="agora-rtm-sdk" level="application" />
   </component>
   <component name="PackageRequirementsSettings">
     <option name="versionSpecifier" value="Strong equality (==x.y.z)" />
     <option name="removeUnused" value="true" />
     <option name="modifyBaseFiles" value="true" />
+  </component>
+  <component name="PyDocumentationSettings">
+    <option name="renderExternalDocumentation" value="true" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />

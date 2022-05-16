@@ -4,54 +4,56 @@
 const CALL_ACCEPT = '1'
 const CALL_REJECT = '2'
 const CALL_INCOMING = '3'
-const SAVE_CHANNEL_TO_DB = '4'
 const CALL_TIMEOUT = '5'
 const CHAT_MESSAGE = '6'
+const PREDICTIONS = '7'
+
 const redirectVC = 'videoCall'
 var websocket = null
 
-    function init_websocket(){
-          websocket = new WebSocket(((window.location.protocol === "https:") ? "wss://" : "ws://") + window.location.host + "/ws/call");
-          websocket.onopen = function (event){
-              console.log("Listening to call requests...")
-          }
-          websocket.onerror = function (event){
-              console.log("Something went wrong with listening with call requests... ")
-          }
-          websocket.onclose = function (event){
-              console.log("Stopping to listen for call requests...")
-              init_websocket()
-          }
-          websocket.onmessage = function (event){
+    async function init_websocket() {
 
-                var data = JSON.parse(event.data)
-                switch(data.code){
-                    case CALL_ACCEPT:
-                        accepted(data)
-                        break;
-                    case CALL_REJECT:
-                        rejected()
-                        break;
-                    case CALL_INCOMING:
-                        addToNotificationStack(data)
-                        break;
-                    case CALL_TIMEOUT:
-                        removeNotificationStack(data.caller_phone)
-                        break;
-                    case SAVE_CHANNEL_TO_DB:
-                        $.ajax({
-                            type: "POST",
-                            url: 'saveChannel',
-                            data: {
-                                channel_name: data.channel_name
-                            },
-                            success: function callback(response){
-                                console.log(response.result);
-                            }
-                        })
-                        break;
-                }
-          }
+        let user = await fetch('/get_user')
+        let userJson = await user.json()
+        sessionStorage.setItem('phone', userJson['phone'])
+        sessionStorage.setItem('fname', userJson['fname'])
+        sessionStorage.setItem('lname', userJson['lname'])
+
+        websocket = new WebSocket(((window.location.protocol === "https:") ? "wss://" : "ws://") + window.location.host + "/ws/call/" + userJson['phone']);
+        websocket.onopen = function (event) {
+            console.log("Listening to call requests...")
+        }
+        websocket.onerror = function (event) {
+            console.log("Something went wrong with listening with call requests... ")
+        }
+        websocket.onclose = function (event) {
+            console.log("Stopping to listen for call requests...")
+            init_websocket()
+        }
+        websocket.onmessage = function (event) {
+
+            var data = JSON.parse(event.data)
+            switch (data.code) {
+                case CALL_ACCEPT:
+                    accepted(data)
+                    break;
+                case CALL_REJECT:
+                    rejected()
+                    break;
+                case CALL_INCOMING:
+                    addToNotificationStack(data)
+                    break;
+                case CALL_TIMEOUT:
+                    removeNotificationStack(data.caller_phone)
+                    break;
+                case CHAT_MESSAGE:
+                    addRemoteMessageFromCaller(data)
+                    break;
+                case PREDICTIONS:
+                    addPredictionsFromRemoteCaller(data)
+                    break;
+            }
+        }
     }
     init_websocket()
 
@@ -137,22 +139,26 @@ $(document).ready(function() {
         document.getElementById(`${data['caller_phone']}-accept`)
             .addEventListener("click", async function () {
                 data['code'] = CALL_ACCEPT
+                data['callee_fname'] = sessionStorage.getItem('fname')
                 removeNotificationStack(data['caller_phone'])
                 strdata = JSON.stringify(data)
                 websocket.send(strdata)
-                let room = data['caller_phone'].toUpperCase()
+                let room = data['caller_phone']
                 let response = await fetch(`/get_token_for_vc/?channel=${room}`)
                 let res = await response.json()
                 let UID = res.uid
-                let token = data.token
+                let token = res.token
                 sessionStorage.setItem('UID', UID)
                 sessionStorage.setItem('token', token)
                 sessionStorage.setItem('room', room)
+                sessionStorage.setItem('other_user_fname', data['caller_fname'])
+                sessionStorage.setItem('other_user_phone', data['caller_phone'])
                 window.location.href = redirectVC
             })
         document.getElementById(`${data['caller_phone']}-reject`)
             .addEventListener("click", function(){
                 data['code'] = CALL_REJECT
+                data['callee_fname'] = sessionStorage.getItem('fname')
                 removeNotificationStack(data['caller_phone'])
                 websocket.send(JSON.stringify(data))
             })
@@ -189,17 +195,18 @@ $(document).ready(function() {
           endCallRequestWaiting()
           clearInterval(callTimer)
           timer.innerHTML = 'User accepted your call'
-          let room = data['caller_phone'].toUpperCase()
+          let room = data['caller_phone']
 
           let response = await fetch(`/get_token_for_vc/?channel=${room}`)
           let res = await response.json()
-
           let UID = res.uid
-          let token = data.token
+          let token = res.token
 
           sessionStorage.setItem('UID', UID)
           sessionStorage.setItem('token', token)
           sessionStorage.setItem('room', room)
+          sessionStorage.setItem('other_user_fname', data['callee_fname'])
+          sessionStorage.setItem('other_user_phone', data['callee_phone'])
 
           window.location.href = redirectVC
       }

@@ -1,18 +1,16 @@
-import django.contrib.auth.backends
-from channels.auth import AuthMiddlewareStack, AuthMiddleware
+from channels.auth import AuthMiddlewareStack
 from channels.routing import ProtocolTypeRouter, URLRouter
-from channels.security.websocket import AllowedHostsOriginValidator
 from django.core.asgi import get_asgi_application
 from django.urls import re_path, path
 
-from app.consumers import TOAConsumer
+from app.call_consumers import TOAConsumer
 
 application = ProtocolTypeRouter({
     'http': get_asgi_application(),
     'https': get_asgi_application(),
     'websocket': AuthMiddlewareStack(
                 URLRouter([
-                    path("ws/call", TOAConsumer.as_asgi()),
+                    path("ws/call/<str:phone>", TOAConsumer.as_asgi()),
                 ])
     ),
 })

@@ -4,6 +4,13 @@ agora_token_builder
 redis-server
 agora
 daphne
+opencv-python
+torch
+mediapipe
+numpy
+joblib
+tqdm
+pandas
 requests
 pillow
 channels_redis

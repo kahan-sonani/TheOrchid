@@ -137,9 +137,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static')
+# ]
 
 STATICFILES_STORAGE = 'backend.custom_azure.AzureStaticStorage'
 STATIC_LOCATION = "static"
@@ -150,4 +150,5 @@ STATIC_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
 SECURE_REFERRER_POLICY = 'no-referrer-when-downgrade'
 AUTH_USER_MODEL = 'landing.OUser'
 # STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 

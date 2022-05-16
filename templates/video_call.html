@@ -1,11 +1,14 @@
 {% extends 'base_vc.html'%}
-{% load template_tags %}
 {% block title %}
     VC
 {% endblock %}
 {% block linklibs%}
     {% load static %}
     <link rel="stylesheet" href="{% static 'video_call.css'%}" media="screen">
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js" crossorigin="anonymous"></script>
 {% endblock %}
 {% block body %}
     <section class="section-44">
@@ -20,6 +23,24 @@
                         <button id="message-send" class="button-send" type="button">Send</button>
                     </div>
                 </div>
+                <div class = "video-container" id="user-container-callee">
+                    <div class="username-wrapper"><span class="user-name" id="user-name-callee">No User</span></div>
+                    <div class="video-player" id="user-callee"></div>
+                    <div class = "sub-video-container">
+                        <div class="username-wrapper"><span class="user-name" id="user-name-caller">No User</span></div>
+                        <div class="video-player" id="user-caller">
+                            <video id="video_track_local" playsinline="" muted="" style="width: 100%; height: 100%; position: absolute; left: 0px; top: 0px; transform: rotateY(180deg); object-fit: cover;"></video>
+                        </div>
+                        <div style="display: none;" class="record-start" id="start-record">REC</div>
+                    </div>
+                </div>
+                <div class="window-layout" id="predictions">
+                    <h4 class="window-header">ISL Predictions</h4>
+                    <hr>
+                    <div id="prediction-list" class="prediction-list">
+                    </div>
+                    <button style="width: 100%;margin-left: 0;" id="pred-send" class="button-send" type="button">Send</button>
+                 </div>
             </div>
 
     </section>
@@ -41,15 +62,39 @@
           <input type="checkbox" id="enable-predictions">
           <span class="checkmark"></span>
         </label>
+        <label class="container"><h6 style="margin: 3px 0 0 30px ">Enable Speech to text conversion</h6>
+          <input type="checkbox" id="enable-speech-to-text">
+          <span class="checkmark"></span>
+        </label>
+        <p style="margin-top: 10px;"><strong>Note:&nbsp;</strong>Press [Alt + s] key to start capturing and end the ISL signs.</p>
+    </div>
+    <div id="predictionModal" class="modal">
+        <!-- Modal content -->
+            <div class="container height-100 d-flex justify-content-center align-items-center">
+                <div class="position-relative">
+                    <div class="card p-2 text-center">
+                        <h5 style="margin-top: 20px;" id="sequence" class="pred-item"></h5>
+                        <h5 style="margin-bottom: 20px;" id="label" class="pred-item"></h5>
+                        <div style="display: inline-flex;">
+                            <button id="close-pred" class="prediction-options" >Close</button>
+                            <button id="edit-pred" class="prediction-options">Edit</button>
+                            <button id="delete-pred" class="prediction-options">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </div>
     <script>
-         let check = document.getElementById('enable-predictions')
-         check.checked = {{ enable_predictions }}
-         addMessageLocaly("sdfsdf")
-        {#var call_info = JSON.parse('{{ call_info | escapejs }}')#}
-        {#console.log(call_info)#}
+         let checkPred = document.getElementById('enable-predictions')
+         let checkTranscript = document.getElementById('enable-speech-to-text')
+         checkTranscript.checked = {{ enable_transcription }}
+         checkPred.checked = {{ enable_predictions }}
+
     </script>
+
     <script type="text/javascript" src="{% static 'assets/AgoraRTC_N-4.10.2.js' %}"></script>
-    <script type="text/javascript" src="{% static 'video_call.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/agora-rtm-sdk@1.3.1/index.js"></script>
+    <script type="text/javascript" src="{% static 'video-call-2.js' %}"></script>
+
 
 {% endblock %}

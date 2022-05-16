@@ -26,11 +26,11 @@
 }
 
 .window-layout{
+    width: 20%;
     color: white;
     height: 77vh;
-    width: 20%;
     border-radius: 4px;
-    border: 1px #2f2f2f solid;
+    border: 1px #1f1f1f solid;
     margin: 2px 10px 0 10px;
     padding: 20px 20px 0 20px;
 }
@@ -57,7 +57,7 @@
     padding: 25px;
     border: 1px solid;
     border-radius: 50%;
-    background-color: #2f2f2f;
+    background-color: #1f1f1f;
     text-align: center;
     background-size: contain;
     align-self: center;
@@ -67,7 +67,7 @@
 
 .message-list .message{
     inline-size: fit-content;
-    background-color: #2f2f2f;
+    background-color: #1f1f1f;
     color: white;
     padding: 10px;
     border-radius: 4px;
@@ -85,12 +85,13 @@
     margin: 0 auto;
 }
 .video-container{
+
     width: 60%;
     height: 100%;
-    border: 1px solid #2f2f2f;
+    border: 1px solid #1f1f1f;
     border-radius: 4px;
     margin: 2px;
-    background-color: #2f2f2f;
+    background-color: #1f1f1f;
     position: relative;
 }
 
@@ -98,10 +99,10 @@
     position: absolute;
     bottom: 10px;
     right: 10px;
-    border: 1px solid #2f2f2f;
+    border: 1px solid #1f1f1f;
     border-radius: 4px;
     margin: 2px;
-    background-color: #2f2f2f;
+    background-color: #1f1f1f;
     height: 30%;
     width: 30%;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
@@ -141,13 +142,6 @@
     font-family: Roboto, sans-serif;
 }
 
-@media screen and (max-width: 1650px){
-    .video-container{
-        flex-basis: 300px;
-        min-height: 200px;
-    }
-}
-
 .video-player{
     height: 100%;
     width: 100%;
@@ -158,15 +152,29 @@
 }
 
 .call-settings{
-    width: 19.5%;
+    width: 19.6%;
     margin: 15px 0 0 10px;
     color: white;
     display: flex;
     flex-direction: column;
     align-self: center;
     padding: 20px;
-    border: 1px solid #2f2f2f;
+    border: 1px solid #1f1f1f;
     border-radius: 4px;
+}
+
+.record-start{
+    position: absolute;
+    top:40px;
+    z-index: 5;
+    font-size: 14px;
+    left: 10px;
+    padding: 5px;
+    font-weight: bold;
+    border-radius: 4px;
+    background-color: #F95D51;
+    color: white;
+    margin-top: 20px;
 }
 
 .container {
@@ -234,6 +242,32 @@
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
+}
+
+.prediction-list{
+    overflow: auto;
+    height: calc(100% - 140px);
+    display: inline-flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.prediction-options{
+        /* margin-top: 20px; */
+    margin-bottom: 20px;
+    background: black;
+    border: 1px solid black;
+    font-size: 18px;
+    /* color: black; */
+    border-radius: 4px;
+    max-height: 40px;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+
+.pred-item {
+    color: black;
 }
 
 

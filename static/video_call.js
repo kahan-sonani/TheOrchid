@@ -2,7 +2,7 @@
 const APP_ID = '3e7cba117dc14b9eb96d8d54c64f9294'
 const CHANNEL = sessionStorage.getItem('room')
 const TOKEN = sessionStorage.getItem('token')
-let UID = sessionStorage.getItem('uid')
+let UID = parseInt(sessionStorage.getItem('UID'))
 
 const client = AgoraRTC.createClient({mode:'rtc', codec: 'vp8'})
 
@@ -48,26 +48,18 @@ let handleUserJoined = async (user, mediaType) => {
     remoteUsers[user.uid] = user
     await client.subscribe(user, mediaType)
     if (mediaType === 'video'){
-        console.log("called")
-        // let player = document.getElementById(`user-container-${user.uid}`)
-        //
-        // if (player != null)
-        //     player.remove()
-        //
-        // player = `<div class = "video-container" id="user-container-${user.uid}">
-        //             <div class="username-wrapper"><span class="user-name"  >Hello</span></div>
-        //             <div class="video-player" id="user-${user.uid}"></div>
-        //         </div>`
-        // document.getElementById('video-streams').insertAdjacentHTML('beforeend', player)
-        user.videoTrack.play(`user-callee`)
+
+        await user.videoTrack.play(`user-callee`)
+        document.getElementById('user-name-callee').textContent = other_user_fname
+
     }
     if(mediaType === 'audio'){
-        user.audioTrack.play()
+        await user.audioTrack.play()
     }
 }
 
 let joinAndDisplayLocalStream = async () => {
-    // client.on('user-left', handleUserLeft)
+    client.on('user-published', handleUserJoined)
     try{
         await client.join(APP_ID, CHANNEL, TOKEN, UID)
     }catch(error){
@@ -75,54 +67,62 @@ let joinAndDisplayLocalStream = async () => {
     }
 
     localTracks = await AgoraRTC.createMicrophoneAndCameraTracks()
-
-    let player = `<div class = "video-container" id="user-container-callee">
-                    <div class="username-wrapper"><span class="user-name" >Hello</span></div>
-                    <div class="video-player" id="user-callee"></div>
-                    <div class = "sub-video-container">
-                        <div class="username-wrapper"><span class="user-name" >Hello</span></div>
-                        <div class="video-player" id="user-${UID}"></div>
-                    </div>
-                </div>`
-    document.getElementById('video-streams').insertAdjacentHTML('beforeend', player)
-    document.getElementById('video-streams')
-        .insertAdjacentHTML('beforeend',
-            `<div class="window-layout" id="predictions">
-                       <h4 class="window-header">ISL Predictions</h4>
-                        <hr>
-                        <div id="message-list" class="message-list">
-                        </div>
-                 </div>`)
-    localTracks[1].play(`user-${UID}`)
-    client.on('user-published', handleUserJoined)
-
+    await localTracks[1].play(`user-caller`)
+    document.getElementById('user-name-caller').textContent = user_fname
     await client.publish([localTracks[0], localTracks[1]])
 
     if(enablePredictions.checked)
-        document.getElementById('predictions').style.display = 'block'
+        document.getElementById('predictions').style.visibility = 'visible'
     else
-        document.getElementById('predictions').style.display = 'none'
+        document.getElementById('predictions').style.visibility = 'hidden'
 }
 
 const messageList = document.getElementById('message-list')
 const sendMessage = document.getElementById('message-send')
 const message = document.getElementById('chat-message')
 const enablePredictions = document.getElementById('enable-predictions')
+const other_user_fname = sessionStorage.getItem('other_user_fname')
+const other_user_phone = sessionStorage.getItem('other_user_phone')
+const user_fname = sessionStorage.getItem('fname')
+const recordUI = document.getElementById('start-record')
+var rec = false
+
+
+document.onkeydown = function (event) {
+    event = event || window.events[0]
+    if(event.altKey && event.key === "s"){
+        rec = !rec
+
+        if(rec)
+            recordUI.style.display = 'block'
+        else
+            recordUI.style.display = 'none'
+    }
+}
 
 sendMessage.addEventListener('click', function(){
-    addMessageLocaly(message.value)
-    message.value = ''
+    if(message.value !== '') {
+        addMessageLocally()
+        response = {}
+        response['code'] = CHAT_MESSAGE
+        response['other_user_phone'] = other_user_phone
+        response['user_fname'] = user_fname
+        response['message'] = message.value
+        websocket.send(JSON.stringify(response))
+        message.value = ''
+    }
+
 })
 
 enablePredictions.addEventListener('change', function (){
     var result;
     if(this.checked) {
         result = 1
-        document.getElementById('predictions').style.display = 'block'
+        document.getElementById('predictions').style.visibility = 'visible'
     }
     else {
         result = 0
-        document.getElementById('predictions').style.display = 'none'
+        document.getElementById('predictions').style.visibility = 'hidden'
     }
 
     $.ajax({
@@ -137,14 +137,19 @@ enablePredictions.addEventListener('change', function (){
     })
 })
 
-
-function addMessageLocaly(call_info, message){
+function addRemoteMessageFromCaller(data){
     messageList.insertAdjacentHTML('beforeend',
-        `<div class='message'><strong>${call_info['callee_fname']}:</strong> ${message}</div>`
+        `<div class='message'><strong>${data['user_fname']}:</strong> ${data['message']}</div>`
     )
 }
+
+function addMessageLocally(){
+    messageList.insertAdjacentHTML('beforeend',
+        `<div class='message'><strong>You:</strong> ${message.value}</div>`
+    )
+}
+
 joinAndDisplayLocalStream()
-enablePredictions.change()
 document.getElementById('leave-btn').addEventListener('click', leaveAndRemoveLocalStream)
 document.getElementById('camera-btn').addEventListener('click', toggleCamera)
 document.getElementById('mic-btn').addEventListener('click', toggleMic)
